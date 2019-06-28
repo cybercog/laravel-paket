@@ -1,0 +1,8 @@
+/node_modules
+/vendor
+.php_cs.cache
+composer.lock
+composer.phar
+npm-debug.log
+phpunit.xml
+yarn-error.log
