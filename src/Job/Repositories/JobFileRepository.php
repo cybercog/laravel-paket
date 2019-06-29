@@ -117,7 +117,7 @@ final class JobFileRepository implements JobRepositoryContract
 
         foreach ($index as $key => $record) {
             if ($record['id'] === $job->getId()) {
-                $index[$key]['process']['status'] = $exitCode;
+                $index[$key]['process']['exitCode'] = $exitCode;
                 break;
             }
         }
