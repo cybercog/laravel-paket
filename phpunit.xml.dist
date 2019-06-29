@@ -18,6 +18,7 @@
     </testsuites>
     <php>
         <env name="APP_ENV" value="testing"/>
+        <env name="APP_KEY" value="base64:nGpI2Trh/XgW0GXg3YMsuYGStSgG7z/XTkNYXKu0rrU="/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>

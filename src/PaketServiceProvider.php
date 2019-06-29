@@ -28,6 +28,7 @@ final class PaketServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->configure();
         $this->registerConsoleCommands();
     }
 
@@ -44,9 +45,21 @@ final class PaketServiceProvider extends ServiceProvider
     {
         return [
             'namespace' => 'Cog\Laravel\Paket\Http\Controllers',
-            'prefix' => 'paket',
+            'prefix' => config('paket.uri'),
             'middleware' => 'web',
         ];
+    }
+
+    /**
+     * Merge Paket configuration with the application configuration.
+     *
+     * @return void
+     */
+    private function configure(): void
+    {
+        if (!$this->app->configurationIsCached()) {
+            $this->mergeConfigFrom(__DIR__ . '/../config/paket.php', 'paket');
+        }
     }
 
     private function registerResources(): void
@@ -60,6 +73,10 @@ final class PaketServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../public' => public_path('vendor/paket'),
             ], 'paket-assets');
+
+            $this->publishes([
+                __DIR__ . '/../config/paket.php' => config_path('paket.php'),
+            ], 'paket-config');
         }
     }
 
