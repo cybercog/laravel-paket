@@ -51,7 +51,52 @@ final class Action
         return new Response($job);
     }
 
-    // TODO: Extract to RequirementFileRepository
+    private function install(RequirementContract $requirement): JobContract
+    {
+        if ($this->isRequirementInstalled($requirement)) {
+            throw ValidationException::withMessages([
+                'name' => [
+                    "Package `{$requirement}` already installed",
+                ],
+            ]);
+        }
+
+        $job = new Job(
+            'RequirementInstall',
+            Uuid::uuid4()->toString(),
+            'Waiting',
+            Carbon::now(),
+            new Process(),
+            $requirement
+        );
+
+        $this->jobs->store($job);
+
+        event(new RequirementInstalling($requirement, $job));
+
+        return $job;
+    }
+
+    private function uninstall(RequirementContract $requirement): JobContract
+    {
+        $requirement = $this->getInstalledRequirement($requirement);
+
+        $job = new Job(
+            'RequirementUninstall',
+            Uuid::uuid4()->toString(),
+            'Waiting',
+            Carbon::now(),
+            new Process(),
+            $requirement
+        );
+
+        $this->jobs->store($job);
+
+        event(new RequirementUninstalling($requirement, $job));
+
+        return $job;
+    }
+
     private function getInstalledRequirements(): array
     {
         $lockFile = ComposerParser::parseLockfile(base_path('composer.lock'));
@@ -85,33 +130,7 @@ final class Action
         return array_merge($packages, $devPackages, $platforms);
     }
 
-    private function install(RequirementContract $requirement): JobContract
-    {
-        if ($this->isRequirementInstalled($requirement)) {
-            throw ValidationException::withMessages([
-                'name' => [
-                    "Package `{$requirement}` already installed",
-                ],
-            ]);
-        }
-
-        $job = new Job(
-            'RequirementInstall',
-            Uuid::uuid4()->toString(),
-            'Waiting',
-            Carbon::now(),
-            new Process(),
-            $requirement
-        );
-
-        $this->jobs->store($job);
-
-        event(new RequirementInstalling($requirement, $job));
-
-        return $job;
-    }
-
-    private function uninstall(RequirementContract $requirement): JobContract
+    private function getInstalledRequirement(RequirementContract $requirement): RequirementContract
     {
         $installedRequirements = $this->getInstalledRequirements();
 
@@ -125,20 +144,7 @@ final class Action
 
         $requirement = Requirement::fromArray($installedRequirement);
 
-        $job = new Job(
-            'RequirementUninstall',
-            Uuid::uuid4()->toString(),
-            'Waiting',
-            Carbon::now(),
-            new Process(),
-            $requirement
-        );
-
-        $this->jobs->store($job);
-
-        event(new RequirementUninstalling($requirement, $job));
-
-        return $job;
+        return $requirement;
     }
 
     private function isRequirementInstalled(RequirementContract $requirement): bool
