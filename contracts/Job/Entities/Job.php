@@ -15,8 +15,6 @@ namespace Cog\Contracts\Paket\Job\Entities;
 
 interface Job
 {
-    public static function ofType(string $type): self;
-
     public static function fromArray(array $job): self;
 
     public function toArray(): array;

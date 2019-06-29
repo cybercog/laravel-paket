@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\Laravel\Paket;
 
-use Cog\Contracts\Paket\Job\Repositories\JobRepository as JobRepositoryContract;
+use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Cog\Laravel\Paket\Console\Commands\Setup;
 use Cog\Laravel\Paket\Job\Repositories\JobFileRepository;
 use Cog\Laravel\Paket\Requirement\Events\RequirementInstalling;

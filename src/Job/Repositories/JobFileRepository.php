@@ -14,12 +14,10 @@ declare(strict_types=1);
 namespace Cog\Laravel\Paket\Job\Repositories;
 
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
-use Cog\Contracts\Paket\Job\Repositories\JobRepository as JobRepositoryContract;
-use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
+use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Cog\Laravel\Paket\Job\Entities\Job;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Carbon;
 use RuntimeException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -78,24 +76,11 @@ final class JobFileRepository implements JobRepositoryContract
         throw new NotFoundHttpException("Job with id `{$id}` not found.");
     }
 
-    public function store(JobContract $job, RequirementContract $requirement): void
+    public function store(JobContract $job): void
     {
         $index = $this->getIndex();
 
-        $index[] = [
-            'type' => $job->getType(),
-            'id' => $job->getId(),
-            'status' => 'Waiting',
-            'process' => [
-                'exitCode' => null,
-            ],
-            'requirement' => [
-                'name' => $requirement->getName(),
-                'version' => $requirement->getVersion(),
-                'isDevelopment' => $requirement->isDevelopment(),
-            ],
-            'createdAt' => Carbon::now()->format(DATE_RFC3339_EXTENDED),
-        ];
+        $index[] = $job->toArray();
 
         $this->putIndex($index);
     }
@@ -132,7 +117,7 @@ final class JobFileRepository implements JobRepositoryContract
 
         foreach ($index as $key => $record) {
             if ($record['id'] === $job->getId()) {
-                $index[$key]['process']['status'] = $exitCode;
+                $index[$key]['process']['exitCode'] = $exitCode;
                 break;
             }
         }

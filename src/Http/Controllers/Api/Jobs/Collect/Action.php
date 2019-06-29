@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Collect;
 
-use Cog\Contracts\Paket\Job\Repositories\JobRepository as JobRepositoryContract;
+use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Http\Request;
 
