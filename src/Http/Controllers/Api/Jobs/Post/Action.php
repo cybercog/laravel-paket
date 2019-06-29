@@ -11,49 +11,50 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements\Post;
+namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Post;
 
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
+use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
 use Cog\Laravel\Paket\Job\Entities\Job;
+use Cog\Laravel\Paket\Job\Events\JobHasBeenCreated;
 use Cog\Laravel\Paket\Process\Entities\Process;
 use Cog\Laravel\Paket\Requirement\Entities\Requirement;
-use Cog\Laravel\Paket\Requirement\Events\RequirementInstalling;
-use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\ValidationException;
 use MCStreetguy\ComposerParser\Factory as ComposerParser;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class Action
 {
-    public function __invoke(JobRepositoryContract $jobs, Composer $composer, Request $request): ResponsableContract
+    private $jobs;
+
+    public function __construct(JobRepositoryContract $jobs)
     {
-        $name = $request->input('name');
-        $version = $request->input('version');
-        $isDevelopment = (bool) $request->input('isDevelopment');
+        $this->jobs = $jobs;
+    }
 
-        $requirement = new Requirement($name, $version, $isDevelopment);
+    public function __invoke(Request $request): ResponsableContract
+    {
+        $type = $request->input('type');
+        $requirement = Requirement::fromArray($request->input('requirement'));
 
-        $installedRequirements = $this->getInstalledRequirements();
-
-        $installedRequirement = Arr::first($installedRequirements, function (array $value) use ($name) {
-            return $value['name'] === $name;
-        });
-
-        if (!is_null($installedRequirement)) {
-            if ($version === $installedRequirement['version'] && $installedRequirement['isDevelopment'] === $isDevelopment) {
+        if ($type === 'RequirementInstall') {
+            if ($this->isRequirementInstalled($requirement)) {
                 throw ValidationException::withMessages([
                     'name' => [
-                        "Package `{$name}` v{$version} already installed",
+                        "Package `{$requirement}` already installed",
                     ],
                 ]);
             }
+        } else {
+            $requirement = $this->getInstalledRequirement($requirement);
         }
 
         $job = new Job(
-            'ComposerInstall',
+            $type,
             Uuid::uuid4()->toString(),
             'Waiting',
             Carbon::now(),
@@ -61,11 +62,11 @@ final class Action
             $requirement
         );
 
-        $jobs->store($job);
+        $this->jobs->store($job);
 
-        event(new RequirementInstalling($requirement, $job));
+        event(new JobHasBeenCreated($job));
 
-        return new Response($requirement, $job);
+        return new Response($job);
     }
 
     private function getInstalledRequirements(): array
@@ -99,5 +100,35 @@ final class Action
         }
 
         return array_merge($packages, $devPackages, $platforms);
+    }
+
+    private function getInstalledRequirement(RequirementContract $requirement): RequirementContract
+    {
+        $installedRequirements = $this->getInstalledRequirements();
+
+        $installedRequirement = Arr::first($installedRequirements, function (array $value) use ($requirement) {
+            return $value['name'] === $requirement->getName();
+        });
+
+        if (is_null($installedRequirement)) {
+            throw new NotFoundHttpException();
+        }
+
+        $requirement = Requirement::fromArray($installedRequirement);
+
+        return $requirement;
+    }
+
+    private function isRequirementInstalled(RequirementContract $requirement): bool
+    {
+        $installedRequirements = $this->getInstalledRequirements();
+
+        $installedRequirement = Arr::first($installedRequirements, function (array $value) use ($requirement) {
+            return $value['name'] === $requirement->getName();
+        });
+
+        return !is_null($installedRequirement)
+            && $installedRequirement['version'] === $requirement->getVersion()
+            && $installedRequirement['isDevelopment'] === $requirement->isDevelopment();
     }
 }

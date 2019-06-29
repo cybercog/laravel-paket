@@ -32,10 +32,9 @@
                         showConfirmButton: false,
                     });
 
-                    await this.$store.dispatch('postRequirements', {
-                        name: this.requirement.name,
-                        version: this.requirement.version,
-                        isDevelopment: this.requirement.isDevelopment,
+                    await this.$store.dispatch('postJobs', {
+                        type: 'RequirementInstall',
+                        requirement: this.requirement,
                     });
 
                     this.alertSuccess({

@@ -70,7 +70,7 @@
 
                 const executable = this.getExecutable(type);
                 const requirementName = requirement.name;
-                const version = requirement.version && type === 'ComposerInstall' ? `:${requirement.version}` : '';
+                const version = requirement.version && type === 'RequirementInstall' ? `:${requirement.version}` : '';
                 const isDevelopment = requirement.isDevelopment ? '--dev' : '';
 
                 return `${executable} ${requirementName}${version} ${isDevelopment}`.trim();
@@ -86,9 +86,9 @@
 
             getExecutable(type) {
                 switch (type) {
-                    case 'ComposerInstall':
+                    case 'RequirementInstall':
                         return 'composer require';
-                    case 'ComposerUninstall':
+                    case 'RequirementUninstall':
                         return 'composer remove';
                     default:
                         return '%UNKNOWN_EXECUTABLE%';

@@ -2423,10 +2423,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   showConfirmButton: false
                 });
                 _context.next = 5;
-                return this.$store.dispatch('postRequirements', {
-                  name: this.requirement.name,
-                  version: this.requirement.version,
-                  isDevelopment: this.requirement.isDevelopment
+                return this.$store.dispatch('postJobs', {
+                  type: 'RequirementInstall',
+                  requirement: this.requirement
                 });
 
               case 5:
@@ -2553,10 +2552,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   showConfirmButton: false
                 });
                 _context.next = 10;
-                return this.$store.dispatch('postRequirements', {
-                  name: this.requirement.name,
-                  version: this.requirement.version,
-                  isDevelopment: this.requirement.isDevelopment
+                return this.$store.dispatch('postJobs', {
+                  type: 'RequirementInstall',
+                  requirement: this.requirement
                 });
 
               case 10:
@@ -2872,11 +2870,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       buttonText: 'Uninstall'
     };
   },
-  computed: {
-    getRequirementUid: function getRequirementUid() {
-      return btoa(unescape(encodeURIComponent(this.requirement.name)));
-    }
-  },
   methods: {
     uninstall: function () {
       var _uninstall = _asyncToGenerator(
@@ -2893,7 +2886,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   showConfirmButton: false
                 });
                 _context.next = 5;
-                return this.$store.dispatch('deleteRequirements', this.getRequirementUid);
+                return this.$store.dispatch('postJobs', {
+                  type: 'RequirementUninstall',
+                  requirement: this.requirement
+                });
 
               case 5:
                 this.alertSuccess({
@@ -3183,7 +3179,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           requirement = job.requirement;
       var executable = this.getExecutable(type);
       var requirementName = requirement.name;
-      var version = requirement.version && type === 'ComposerInstall' ? ":".concat(requirement.version) : '';
+      var version = requirement.version && type === 'RequirementInstall' ? ":".concat(requirement.version) : '';
       var isDevelopment = requirement.isDevelopment ? '--dev' : '';
       return "".concat(executable, " ").concat(requirementName).concat(version, " ").concat(isDevelopment).trim();
     },
@@ -3193,10 +3189,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     getExecutable: function getExecutable(type) {
       switch (type) {
-        case 'ComposerInstall':
+        case 'RequirementInstall':
           return 'composer require';
 
-        case 'ComposerUninstall':
+        case 'RequirementUninstall':
           return 'composer remove';
 
         default:
@@ -47640,8 +47636,8 @@ var actions = {
 
     return collectRequirements;
   }(),
-  postRequirements: function () {
-    var _postRequirements = _asyncToGenerator(
+  postJobs: function () {
+    var _postJobs = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(context, payload) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -47649,7 +47645,7 @@ var actions = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/paket/api/requirements", payload);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/paket/api/jobs", payload);
 
             case 2:
               this.dispatch('collectRequirements');
@@ -47662,62 +47658,34 @@ var actions = {
       }, _callee2, this);
     }));
 
-    function postRequirements(_x, _x2) {
-      return _postRequirements.apply(this, arguments);
+    function postJobs(_x, _x2) {
+      return _postJobs.apply(this, arguments);
     }
 
-    return postRequirements;
+    return postJobs;
   }(),
-  deleteRequirements: function () {
-    var _deleteRequirements = _asyncToGenerator(
+  collectJobs: function () {
+    var _collectJobs = _asyncToGenerator(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(context, id) {
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("/paket/api/requirements/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/paket/api/jobs");
 
             case 2:
-              this.dispatch('collectRequirements');
+              response = _context3.sent;
+              this.state.jobs = response.data.reverse();
 
-            case 3:
+            case 4:
             case "end":
               return _context3.stop();
           }
         }
       }, _callee3, this);
-    }));
-
-    function deleteRequirements(_x3, _x4) {
-      return _deleteRequirements.apply(this, arguments);
-    }
-
-    return deleteRequirements;
-  }(),
-  collectJobs: function () {
-    var _collectJobs = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              _context4.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/paket/api/jobs");
-
-            case 2:
-              response = _context4.sent;
-              this.state.jobs = response.data.reverse();
-
-            case 4:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4, this);
     }));
 
     function collectJobs() {

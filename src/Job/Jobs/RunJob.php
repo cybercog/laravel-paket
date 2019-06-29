@@ -11,32 +11,29 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Requirement\Jobs;
+namespace Cog\Laravel\Paket\Job\Jobs;
 
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Cog\Contracts\Paket\Job\Exceptions\JobFailed;
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
-use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
-use Cog\Laravel\Paket\Requirement\Events\RequirementHasBeenUninstalled;
+use Cog\Laravel\Paket\Job\Events\JobHasBeenTerminated;
 use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use RuntimeException;
 
-final class UninstallRequirement implements ShouldQueue
+final class RunJob implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
     use Queueable;
 
-    private $requirement;
-
     private $paketJob;
 
-    public function __construct(RequirementContract $requirement, JobContract $paketJob)
+    public function __construct(JobContract $paketJob)
     {
-        $this->requirement = $requirement;
         $this->paketJob = $paketJob;
     }
 
@@ -45,17 +42,27 @@ final class UninstallRequirement implements ShouldQueue
         $jobs->changeJobStatus($this->paketJob, 'InProgress');
 
         try {
-            $composer->uninstall($this->requirement, $this->paketJob);
+            switch ($this->paketJob->getType()) {
+                case 'RequirementInstall':
+                    // TODO: Don't pass `paketJob`
+                    $composer->install($this->paketJob->getRequirement(), $this->paketJob);
+                    break;
+                case 'RequirementUninstall':
+                    // TODO: Don't pass `paketJob`
+                    $composer->uninstall($this->paketJob->getRequirement(), $this->paketJob);
+                    break;
+                default:
+                    // TODO: Throw custom exception
+                    throw new RuntimeException('Unknown type of job');
+            }
 
             $jobs->changeJobStatus($this->paketJob, 'Done');
             $jobs->changeJobExitCode($this->paketJob, 0);
-
-            event(new RequirementHasBeenUninstalled($this->requirement, $this->paketJob));
         } catch (JobFailed $exception) {
             $jobs->changeJobStatus($this->paketJob, 'Failed');
             $jobs->changeJobExitCode($this->paketJob, $exception->getExitCode());
-
-            // TODO: (?) Dispatch `RequirementUninstallationHasBeenFailed` || `UninstallationHasBeenFailed` event?
         }
+
+        event(new JobHasBeenTerminated($this->paketJob));
     }
 }

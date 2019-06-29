@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements\Post;
+namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -20,15 +20,15 @@ final class Request extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
+            'requirement.name' => [
                 'required',
                 'string',
             ],
-            'version' => [
+            'requirement.version' => [
                 'nullable',
                 'string',
             ],
-            'isDevelopment' => [
+            'requirement.isDevelopment' => [
                 'nullable',
                 'boolean',
             ],

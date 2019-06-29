@@ -15,11 +15,10 @@ namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Collect;
 
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
-use Illuminate\Http\Request;
 
 final class Action
 {
-    public function __invoke(JobRepositoryContract $jobs, Request $request): ResponsableContract
+    public function __invoke(JobRepositoryContract $jobs): ResponsableContract
     {
         return new Response($jobs->all());
     }

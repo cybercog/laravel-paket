@@ -13,13 +13,12 @@ declare(strict_types=1);
 
 namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements\Collect;
 
-use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use MCStreetguy\ComposerParser\Factory as ComposerParser;
 
 final class Action
 {
-    public function __invoke(Composer $composer): ResponsableContract
+    public function __invoke(): ResponsableContract
     {
         $requirements = $this->getInstalledRequirements();
 

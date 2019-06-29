@@ -32,14 +32,8 @@ const actions = {
         this.state.requirements = response.data;
     },
 
-    async postRequirements(context, payload) {
-        await Axios.post(`/paket/api/requirements`, payload);
-
-        this.dispatch('collectRequirements');
-    },
-
-    async deleteRequirements(context, id) {
-        await Axios.delete(`/paket/api/requirements/${id}`);
+    async postJobs(context, payload) {
+        await Axios.post(`/paket/api/jobs`, payload);
 
         this.dispatch('collectRequirements');
     },

@@ -11,30 +11,26 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements\Delete;
+namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Post;
 
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
-use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 final class Response implements ResponsableContract
 {
-    private $requirement;
-
     private $job;
 
-    public function __construct(RequirementContract $requirement, JobContract $job)
+    public function __construct(JobContract $job)
     {
-        $this->requirement = $requirement;
         $this->job = $job;
     }
 
     /**
      * Create an HTTP response that represents the object.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function toResponse($request)

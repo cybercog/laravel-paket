@@ -22,12 +22,6 @@
             };
         },
 
-        computed: {
-            getRequirementUid() {
-                return btoa(unescape(encodeURIComponent(this.requirement.name)));
-            },
-        },
-
         methods: {
             async uninstall() {
                 this.disableForm();
@@ -38,7 +32,10 @@
                         showConfirmButton: false,
                     });
 
-                    await this.$store.dispatch('deleteRequirements', this.getRequirementUid);
+                    await this.$store.dispatch('postJobs', {
+                        type: 'RequirementUninstall',
+                        requirement: this.requirement,
+                    });
 
                     this.alertSuccess({
                         title: `Uninstalled\n${this.requirement.name}`,
