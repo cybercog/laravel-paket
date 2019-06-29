@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Requirement\Jobs;
+namespace Cog\Laravel\Paket\Job\Jobs;
 
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Cog\Contracts\Paket\Job\Exceptions\JobFailed;
@@ -22,8 +22,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use RuntimeException;
 
-final class UninstallRequirement implements ShouldQueue
+final class RunJob implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -41,8 +42,19 @@ final class UninstallRequirement implements ShouldQueue
         $jobs->changeJobStatus($this->paketJob, 'InProgress');
 
         try {
-            // TODO: Don't pass `paketJob` to uninstall method
-            $composer->uninstall($this->paketJob->getRequirement(), $this->paketJob);
+            switch ($this->paketJob->getType()) {
+                case 'RequirementInstall':
+                    // TODO: Don't pass `paketJob`
+                    $composer->install($this->paketJob->getRequirement(), $this->paketJob);
+                    break;
+                case 'RequirementUninstall':
+                    // TODO: Don't pass `paketJob`
+                    $composer->uninstall($this->paketJob->getRequirement(), $this->paketJob);
+                    break;
+                default:
+                    // TODO: Throw custom exception
+                    throw new RuntimeException('Unknown type of job');
+            }
 
             $jobs->changeJobStatus($this->paketJob, 'Done');
             $jobs->changeJobExitCode($this->paketJob, 0);

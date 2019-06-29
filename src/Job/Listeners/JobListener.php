@@ -14,18 +14,13 @@ declare(strict_types=1);
 namespace Cog\Laravel\Paket\Job\Listeners;
 
 use Cog\Laravel\Paket\Job\Events\JobHasBeenCreated;
-use Cog\Laravel\Paket\Requirement\Jobs\InstallRequirement;
-use Cog\Laravel\Paket\Requirement\Jobs\UninstallRequirement;
+use Cog\Laravel\Paket\Job\Jobs\RunJob;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 final class JobListener implements ShouldQueue
 {
     public function handle(JobHasBeenCreated $event): void
     {
-        if ($event->getJob()->getType() === 'RequirementInstall') {
-            InstallRequirement::dispatch($event->getJob());
-        } else {
-            UninstallRequirement::dispatch($event->getJob());
-        }
+        RunJob::dispatch($event->getJob());
     }
 }
