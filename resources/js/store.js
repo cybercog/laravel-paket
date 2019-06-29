@@ -27,19 +27,19 @@ const mutations = {
 
 const actions = {
     async collectRequirements() {
-        const response = await Axios.get(`/paket/api/requirements`);
+        const response = await Axios.get(this.getters.getUrl('/api/requirements'));
 
         this.state.requirements = response.data;
     },
 
     async postJobs(context, payload) {
-        await Axios.post(`/paket/api/jobs`, payload);
+        await Axios.post(this.getters.getUrl('/api/jobs'), payload);
 
         this.dispatch('collectRequirements');
     },
 
     async collectJobs() {
-        const response = await Axios.get(`/paket/api/jobs`);
+        const response = await Axios.get(this.getters.getUrl('/api/jobs'));
 
         this.state.jobs = response.data.reverse();
     },
@@ -55,6 +55,14 @@ const getters = {
 
     isNotProtectedRequirement: (state) => (name) => {
         return state.protectedRequirements.indexOf(name) === -1;
+    },
+
+    getUrl: () => (uri) => {
+        return '/' + window.Paket.baseUri + uri;
+    },
+
+    getJob: (state, getters) => (jobId) => {
+        return Axios.get(getters.getUrl(`/api/jobs/${jobId}`));
     },
 };
 

@@ -14,14 +14,13 @@
             Started: <time v-text="getCreatedAt(job)"></time>
         </div>
 
-        <div class="p-4 text-nowrap text-left bg-black mt-4" v-show="job.process.output">
-            <code class="bg-black text-white border-0" v-html="job.process.output"></code>
+        <div class="p-4 text-nowrap text-left bg-black mt-4" v-show="processOutput">
+            <code class="bg-black text-white border-0" v-html="processOutput"></code>
         </div>
     </div>
 </template>
 
 <script>
-    import Axios from 'axios';
     import AnsiConverter from 'ansi-to-html';
     import moment from 'moment';
     import JobStatusBadge from '../../components/Job/Status/Badge';
@@ -41,9 +40,19 @@
             this.fetchData();
         },
 
+        computed: {
+            processOutput() {
+                if (!this.job.process) {
+                    return '';
+                }
+
+                return this.job.process.output;
+            },
+        },
+
         methods: {
             async fetchData() {
-                const response = await Axios.get(`/paket/api/jobs/${this.$route.params.id}`);
+                const response = await this.$store.getters.getJob(this.$route.params.id);
 
                 this.job = response.data;
 

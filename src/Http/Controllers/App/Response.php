@@ -16,6 +16,7 @@ namespace Cog\Laravel\Paket\Http\Controllers\App;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as IlluminateResponse;
+use Illuminate\Support\Facades\Config;
 
 final class Response implements ResponsableContract
 {
@@ -35,7 +36,7 @@ final class Response implements ResponsableContract
         return response()->view('paket::app', [
             'cssFile' => 'app.css',
             'paketScriptVariables' => [
-                'path' => 'paket',
+                'baseUri' => Config::get('paket.base_uri'),
             ],
         ]);
     }
