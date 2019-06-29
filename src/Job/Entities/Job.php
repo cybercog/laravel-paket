@@ -47,16 +47,6 @@ final class Job implements JobContract
         $this->requirement = $requirement;
     }
 
-    public static function ofType(string $type): JobContract
-    {
-        return new self(
-            $type,
-            Uuid::uuid4()->toString(), // TODO: Generate uuid5 identifier
-            'Waiting',
-            new Process('')
-        );
-    }
-
     public static function fromArray(array $job): JobContract
     {
         return new self(

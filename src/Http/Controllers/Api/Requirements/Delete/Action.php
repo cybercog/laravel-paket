@@ -15,11 +15,13 @@ namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements\Delete;
 
 use Cog\Contracts\Paket\Job\Repositories\JobRepository as JobRepositoryContract;
 use Cog\Laravel\Paket\Job\Entities\Job;
+use Cog\Laravel\Paket\Process\Entities\Process;
 use Cog\Laravel\Paket\Requirement\Entities\Requirement;
 use Cog\Laravel\Paket\Requirement\Events\RequirementUninstalling;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Support\Arr;
 use MCStreetguy\ComposerParser\Factory as ComposerParser;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class Action
@@ -37,16 +39,17 @@ final class Action
             throw new NotFoundHttpException();
         }
 
-        $job = Job::ofType('ComposerUninstall');
+        $requirement = Requirement::fromArray($installedRequirement);
 
-        $requirement = new Requirement(
-            $installedRequirement['name'],
-            $installedRequirement['version'],
-            $installedRequirement['isDevelopment']
+        $job = new Job(
+            'ComposerUninstall',
+            Uuid::uuid4()->toString(),
+            'Waiting',
+            new Process(),
+            $requirement
         );
 
-        $jobs
-            ->store($job, $requirement);
+        $jobs->store($job, $requirement);
 
         event(new RequirementUninstalling($requirement, $job));
 

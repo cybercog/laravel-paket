@@ -15,6 +15,7 @@ namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements\Post;
 
 use Cog\Contracts\Paket\Job\Repositories\JobRepository as JobRepositoryContract;
 use Cog\Laravel\Paket\Job\Entities\Job;
+use Cog\Laravel\Paket\Process\Entities\Process;
 use Cog\Laravel\Paket\Requirement\Entities\Requirement;
 use Cog\Laravel\Paket\Requirement\Events\RequirementInstalling;
 use Cog\Laravel\Paket\Support\Composer;
@@ -22,6 +23,7 @@ use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
 use MCStreetguy\ComposerParser\Factory as ComposerParser;
+use Ramsey\Uuid\Uuid;
 
 final class Action
 {
@@ -41,19 +43,23 @@ final class Action
 
         if (!is_null($installedRequirement)) {
             if ($version === $installedRequirement['version'] && $installedRequirement['isDevelopment'] === $isDevelopment) {
-                $error = ValidationException::withMessages([
+                throw ValidationException::withMessages([
                     'name' => [
                         "Package `{$name}` v{$version} already installed",
                     ],
                 ]);
-                throw $error;
             }
         }
 
-        $job = Job::ofType('ComposerInstall');
+        $job = new Job(
+            'ComposerInstall',
+            Uuid::uuid4()->toString(),
+            'Waiting',
+            new Process(),
+            $requirement
+        );
 
-        $jobs
-            ->store($job, $requirement);
+        $jobs->store($job, $requirement);
 
         event(new RequirementInstalling($requirement, $job));
 
