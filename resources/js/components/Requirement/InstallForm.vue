@@ -53,6 +53,7 @@
                     });
 
                     await this.$store.dispatch('postJobs', {
+                        type: 'RequirementInstall',
                         requirement: this.requirement,
                     });
 

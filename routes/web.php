@@ -18,17 +18,13 @@ Route::prefix('api')->namespace('Api')->name('paket.api.')->group(function () {
         ->uses('Requirements\Collect\Action')
         ->name('requirements.collect');
 
-    Route::post('jobs')
-        ->uses('Jobs\Post\Action')
-        ->name('jobs.post');
-
-    Route::delete('requirements/{uid}')
-        ->uses('Requirements\Delete\Action')
-        ->name('requirements.delete');
-
     Route::get('jobs')
         ->uses('Jobs\Collect\Action')
         ->name('jobs.collect');
+
+    Route::post('jobs')
+        ->uses('Jobs\Post\Action')
+        ->name('jobs.post');
 
     Route::get('jobs/{job}')
         ->uses('Jobs\Get\Action')
