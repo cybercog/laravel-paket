@@ -16,7 +16,7 @@ namespace Cog\Laravel\Paket\Requirement\Jobs;
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Cog\Contracts\Paket\Job\Exceptions\JobFailed;
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
-use Cog\Laravel\Paket\Requirement\Events\RequirementHasBeenInstalled;
+use Cog\Laravel\Paket\Job\Events\JobHasBeenTerminated;
 use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -46,13 +46,11 @@ final class InstallRequirement implements ShouldQueue
 
             $jobs->changeJobStatus($this->paketJob, 'Done');
             $jobs->changeJobExitCode($this->paketJob, 0);
-
-            event(new RequirementHasBeenInstalled($this->paketJob->getRequirement(), $this->paketJob));
         } catch (JobFailed $exception) {
             $jobs->changeJobStatus($this->paketJob, 'Failed');
             $jobs->changeJobExitCode($this->paketJob, $exception->getExitCode());
-
-            // TODO: (?) Dispatch `RequirementInstallationHasBeenFailed` || `InstallationHasBeenFailed` event?
         }
+
+        event(new JobHasBeenTerminated($this->paketJob));
     }
 }

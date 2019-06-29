@@ -11,26 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Requirement\Events;
+namespace Cog\Laravel\Paket\Job\Events;
 
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
-use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
 
-final class RequirementHasBeenInstalled
+final class JobHasBeenTerminated
 {
-    private $requirement;
-
     private $job;
 
-    public function __construct(RequirementContract $requirement, JobContract $job)
+    public function __construct(JobContract $job)
     {
-        $this->requirement = $requirement;
         $this->job = $job;
-    }
-
-    public function getRequirement(): RequirementContract
-    {
-        return $this->requirement;
     }
 
     public function getJob(): JobContract
