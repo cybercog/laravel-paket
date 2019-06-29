@@ -42,8 +42,7 @@ final class Job implements JobContract
         DateTimeInterface $createdAt,
         ProcessContract $process,
         ?RequirementContract $requirement = null
-    )
-    {
+    ) {
         $this->type = $type;
         $this->id = $id;
         $this->status = $status;

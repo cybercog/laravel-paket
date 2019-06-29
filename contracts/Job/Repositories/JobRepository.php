@@ -26,5 +26,4 @@ interface JobRepository
     public function changeJobStatus(Job $job, string $statusName): void;
 
     public function changeJobExitCode(Job $job, int $exitCode): void;
-
 }
