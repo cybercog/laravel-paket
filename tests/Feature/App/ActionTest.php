@@ -22,6 +22,8 @@ final class ActionTest extends TestCase
     {
         $response = $this->get('/paket');
 
+        dd($response);
+
         $response->assertStatus(200);
     }
 }
