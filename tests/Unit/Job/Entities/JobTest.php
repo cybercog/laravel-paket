@@ -19,9 +19,17 @@ use Cog\Tests\Laravel\Paket\TestCase;
 final class JobTest extends TestCase
 {
     /** @test */
-    public function it_can_instantiate_of_type(): void
+    public function it_can_instantiate_from_array(): void
     {
-        $job = Job::ofType('TestType');
+        $job = Job::fromArray([
+            'type' => 'TestType',
+            'id' => 'TestId',
+            'status' => 'TestStatus',
+            'process' => [],
+            'requirement' => [
+                'name' => 'cybercog/laravel-paket',
+            ],
+        ]);
 
         $this->assertInstanceOf(Job::class, $job);
         $this->assertSame('TestType', $job->getType());
