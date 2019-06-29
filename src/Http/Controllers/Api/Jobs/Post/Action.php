@@ -15,12 +15,12 @@ namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Post;
 
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
+use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
 use Cog\Laravel\Paket\Job\Entities\Job;
 use Cog\Laravel\Paket\Process\Entities\Process;
 use Cog\Laravel\Paket\Requirement\Entities\Requirement;
 use Cog\Laravel\Paket\Requirement\Events\RequirementInstalling;
 use Cog\Laravel\Paket\Requirement\Events\RequirementUninstalling;
-use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -31,12 +31,21 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class Action
 {
-    public function __invoke(JobRepositoryContract $jobs, Composer $composer, Request $request): ResponsableContract
+    private $jobs;
+
+    public function __construct(JobRepositoryContract $jobs)
     {
+        $this->jobs = $jobs;
+    }
+
+    public function __invoke(Request $request): ResponsableContract
+    {
+        $requirement = Requirement::fromArray($request->input('requirement'));
+
         if ($request->input('type') === 'RequirementInstall') {
-            $job = $this->install($jobs, $request);
+            $job = $this->install($requirement);
         } else {
-            $job = $this->uninstall($jobs, $request);
+            $job = $this->uninstall($requirement);
         }
 
         return new Response($job);
@@ -76,25 +85,14 @@ final class Action
         return array_merge($packages, $devPackages, $platforms);
     }
 
-    private function install(JobRepositoryContract $jobs, Request $request): JobContract
+    private function install(RequirementContract $requirement): JobContract
     {
-        $requirement = Requirement::fromArray($request->input('requirement'));
-
-        $installedRequirements = $this->getInstalledRequirements();
-
-        $installedRequirement = Arr::first($installedRequirements, function (array $value) use ($requirement) {
-            return $value['name'] === $requirement->getName();
-        });
-
-        if (!is_null($installedRequirement)) {
-            if ($installedRequirement['version'] === $requirement->getVersion()
-                && $installedRequirement['isDevelopment'] === $requirement->isDevelopment()) {
-                throw ValidationException::withMessages([
-                    'name' => [
-                        "Package `{$requirement}` already installed",
-                    ],
-                ]);
-            }
+        if ($this->isRequirementInstalled($requirement)) {
+            throw ValidationException::withMessages([
+                'name' => [
+                    "Package `{$requirement}` already installed",
+                ],
+            ]);
         }
 
         $job = new Job(
@@ -106,20 +104,19 @@ final class Action
             $requirement
         );
 
-        $jobs->store($job);
+        $this->jobs->store($job);
 
         event(new RequirementInstalling($requirement, $job));
 
         return $job;
     }
 
-    private function uninstall(JobRepositoryContract $jobs, Request $request): JobContract
+    private function uninstall(RequirementContract $requirement): JobContract
     {
         $installedRequirements = $this->getInstalledRequirements();
-        $requirementName = $request->input('requirement.name');
 
-        $installedRequirement = Arr::first($installedRequirements, function (array $value) use ($requirementName) {
-            return $value['name'] === $requirementName;
+        $installedRequirement = Arr::first($installedRequirements, function (array $value) use ($requirement) {
+            return $value['name'] === $requirement->getName();
         });
 
         if (is_null($installedRequirement)) {
@@ -137,10 +134,23 @@ final class Action
             $requirement
         );
 
-        $jobs->store($job);
+        $this->jobs->store($job);
 
         event(new RequirementUninstalling($requirement, $job));
 
         return $job;
+    }
+
+    private function isRequirementInstalled(RequirementContract $requirement): bool
+    {
+        $installedRequirements = $this->getInstalledRequirements();
+
+        $installedRequirement = Arr::first($installedRequirements, function (array $value) use ($requirement) {
+            return $value['name'] === $requirement->getName();
+        });
+
+        return !is_null($installedRequirement)
+            && $installedRequirement['version'] === $requirement->getVersion()
+            && $installedRequirement['isDevelopment'] === $requirement->isDevelopment();
     }
 }
