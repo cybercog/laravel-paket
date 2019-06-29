@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace Cog\Contracts\Paket\Job\Repositories;
 
-use Cog\Contracts\Paket\Job\Entities\Job;
+use Cog\Contracts\Paket\Job\Entities\Job as JobEntity;
 
-interface JobRepository
+interface Job
 {
     public function all(): iterable;
 
-    public function getById(string $id): Job;
+    public function getById(string $id): JobEntity;
 
-    public function store(Job $job): void;
+    public function store(JobEntity $job): void;
 
-    public function changeJobStatus(Job $job, string $statusName): void;
+    public function changeJobStatus(JobEntity $job, string $statusName): void;
 
-    public function changeJobExitCode(Job $job, int $exitCode): void;
+    public function changeJobExitCode(JobEntity $job, int $exitCode): void;
 }

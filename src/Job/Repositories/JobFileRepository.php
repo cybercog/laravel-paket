@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Cog\Laravel\Paket\Job\Repositories;
 
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
-use Cog\Contracts\Paket\Job\Repositories\JobRepository as JobRepositoryContract;
+use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Cog\Laravel\Paket\Job\Entities\Job;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;

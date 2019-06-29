@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements\Post;
 
-use Cog\Contracts\Paket\Job\Repositories\JobRepository as JobRepositoryContract;
+use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Cog\Laravel\Paket\Job\Entities\Job;
 use Cog\Laravel\Paket\Process\Entities\Process;
 use Cog\Laravel\Paket\Requirement\Entities\Requirement;
