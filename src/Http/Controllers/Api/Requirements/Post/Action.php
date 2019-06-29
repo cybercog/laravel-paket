@@ -74,14 +74,30 @@ final class Action
 
         $packages = $lockFile->getPackages()->getData();
         $devPackages = $lockFile->getPackagesDev()->getData();
-
+        $platform = $lockFile->getPlatform()->getData();
+        $devPlatform = $lockFile->getPlatformDev()->getData();
         foreach ($packages as &$package) {
             $package['isDevelopment'] = false;
         }
         foreach ($devPackages as &$package) {
             $package['isDevelopment'] = true;
         }
+        $platforms = [];
+        foreach ($platform as $name => $version) {
+            $platforms[] = [
+                'name' => $name,
+                'version' => $version,
+                'isDevelopment' => false,
+            ];
+        }
+        foreach ($devPlatform as $name => $version) {
+            $platforms[] = [
+                'name' => $name,
+                'version' => $version,
+                'isDevelopment' => true,
+            ];
+        }
 
-        return array_merge($packages, $devPackages);
+        return array_merge($packages, $devPackages, $platforms);
     }
 }

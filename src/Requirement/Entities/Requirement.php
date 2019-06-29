@@ -23,7 +23,7 @@ final class Requirement implements RequirementContract
 
     private $isDevelopment;
 
-    public function __construct(string $name, ?string $version, bool $isDevelopment = false)
+    public function __construct(string $name, ?string $version = null, bool $isDevelopment = false)
     {
         $this->name = $name;
         $this->version = $version;
