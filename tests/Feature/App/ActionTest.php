@@ -20,9 +20,9 @@ final class ActionTest extends TestCase
     /** @test */
     public function it_visible_to_guest(): void
     {
-        $response = $this->get('/paket');
+        $this->artisan('paket:setup');
 
-        dd($response);
+        $response = $this->get('/paket');
 
         $response->assertStatus(200);
     }
