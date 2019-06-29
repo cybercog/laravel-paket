@@ -141,6 +141,8 @@ final class Composer
     }
 
     /**
+     * TODO: Extract this method out from the `Composer` class
+     *
      * @param \Cog\Contracts\Paket\Job\Entities\Job $job
      * @param string $command
      *

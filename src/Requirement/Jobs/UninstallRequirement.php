@@ -16,7 +16,6 @@ namespace Cog\Laravel\Paket\Requirement\Jobs;
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Cog\Contracts\Paket\Job\Exceptions\JobFailed;
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
-use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
 use Cog\Laravel\Paket\Requirement\Events\RequirementHasBeenUninstalled;
 use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Bus\Queueable;
@@ -30,7 +29,6 @@ final class UninstallRequirement implements ShouldQueue
     use InteractsWithQueue;
     use Queueable;
 
-
     private $paketJob;
 
     public function __construct(JobContract $paketJob)
@@ -43,6 +41,7 @@ final class UninstallRequirement implements ShouldQueue
         $jobs->changeJobStatus($this->paketJob, 'InProgress');
 
         try {
+            // TODO: Don't pass `paketJob` to uninstall method
             $composer->uninstall($this->paketJob->getRequirement(), $this->paketJob);
 
             $jobs->changeJobStatus($this->paketJob, 'Done');

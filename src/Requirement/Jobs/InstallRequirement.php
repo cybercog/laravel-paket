@@ -41,6 +41,7 @@ final class InstallRequirement implements ShouldQueue
         $jobs->changeJobStatus($this->paketJob, 'InProgress');
 
         try {
+            // TODO: Don't pass `paketJob` to install method
             $composer->install($this->paketJob->getRequirement(), $this->paketJob);
 
             $jobs->changeJobStatus($this->paketJob, 'Done');
