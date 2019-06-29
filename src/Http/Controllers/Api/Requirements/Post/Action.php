@@ -61,7 +61,7 @@ final class Action
             $requirement
         );
 
-        $jobs->store($job, $requirement);
+        $jobs->store($job);
 
         event(new RequirementInstalling($requirement, $job));
 

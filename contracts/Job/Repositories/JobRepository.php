@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Cog\Contracts\Paket\Job\Repositories;
 
 use Cog\Contracts\Paket\Job\Entities\Job;
-use Cog\Contracts\Paket\Requirement\Entities\Requirement;
 
 interface JobRepository
 {
@@ -22,7 +21,7 @@ interface JobRepository
 
     public function getById(string $id): Job;
 
-    public function store(Job $job, Requirement $requirement): void;
+    public function store(Job $job): void;
 
     public function changeJobStatus(Job $job, string $statusName): void;
 
