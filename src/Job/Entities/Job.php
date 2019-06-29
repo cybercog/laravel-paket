@@ -18,7 +18,6 @@ use Cog\Contracts\Paket\Process\Entities\Process as ProcessContract;
 use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
 use Cog\Laravel\Paket\Process\Entities\Process;
 use Cog\Laravel\Paket\Requirement\Entities\Requirement;
-use Ramsey\Uuid\Uuid;
 
 final class Job implements JobContract
 {
