@@ -18,9 +18,9 @@ Route::prefix('api')->namespace('Api')->name('paket.api.')->group(function () {
         ->uses('Requirements\Collect\Action')
         ->name('requirements.collect');
 
-    Route::post('requirements')
-        ->uses('Requirements\Post\Action')
-        ->name('requirements.post');
+    Route::post('jobs')
+        ->uses('Jobs\Post\Action')
+        ->name('jobs.post');
 
     Route::delete('requirements/{uid}')
         ->uses('Requirements\Delete\Action')

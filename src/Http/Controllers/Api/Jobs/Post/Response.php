@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements\Post;
+namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Post;
 
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;

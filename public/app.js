@@ -2423,10 +2423,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   showConfirmButton: false
                 });
                 _context.next = 5;
-                return this.$store.dispatch('postRequirements', {
-                  name: this.requirement.name,
-                  version: this.requirement.version,
-                  isDevelopment: this.requirement.isDevelopment
+                return this.$store.dispatch('postJobs', {
+                  requirement: this.requirement
                 });
 
               case 5:
@@ -2553,10 +2551,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   showConfirmButton: false
                 });
                 _context.next = 10;
-                return this.$store.dispatch('postRequirements', {
-                  name: this.requirement.name,
-                  version: this.requirement.version,
-                  isDevelopment: this.requirement.isDevelopment
+                return this.$store.dispatch('postJobs', {
+                  requirement: this.requirement
                 });
 
               case 10:
@@ -47640,8 +47636,8 @@ var actions = {
 
     return collectRequirements;
   }(),
-  postRequirements: function () {
-    var _postRequirements = _asyncToGenerator(
+  postJobs: function () {
+    var _postJobs = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(context, payload) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -47649,7 +47645,7 @@ var actions = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/paket/api/requirements", payload);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/paket/api/jobs", payload);
 
             case 2:
               this.dispatch('collectRequirements');
@@ -47662,11 +47658,11 @@ var actions = {
       }, _callee2, this);
     }));
 
-    function postRequirements(_x, _x2) {
-      return _postRequirements.apply(this, arguments);
+    function postJobs(_x, _x2) {
+      return _postJobs.apply(this, arguments);
     }
 
-    return postRequirements;
+    return postJobs;
   }(),
   deleteRequirements: function () {
     var _deleteRequirements = _asyncToGenerator(

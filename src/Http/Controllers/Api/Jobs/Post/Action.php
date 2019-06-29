@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements\Post;
+namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Post;
 
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Cog\Laravel\Paket\Job\Entities\Job;
@@ -30,23 +30,20 @@ final class Action
 {
     public function __invoke(JobRepositoryContract $jobs, Composer $composer, Request $request): ResponsableContract
     {
-        $name = $request->input('name');
-        $version = $request->input('version');
-        $isDevelopment = (bool) $request->input('isDevelopment');
-
-        $requirement = new Requirement($name, $version, $isDevelopment);
+        $requirement = Requirement::fromArray($request->input('requirement'));
 
         $installedRequirements = $this->getInstalledRequirements();
 
-        $installedRequirement = Arr::first($installedRequirements, function (array $value) use ($name) {
-            return $value['name'] === $name;
+        $installedRequirement = Arr::first($installedRequirements, function (array $value) use ($requirement) {
+            return $value['name'] === $requirement->getName();
         });
 
         if (!is_null($installedRequirement)) {
-            if ($version === $installedRequirement['version'] && $installedRequirement['isDevelopment'] === $isDevelopment) {
+            if ($installedRequirement['version'] === $requirement->getVersion()
+                && $installedRequirement['isDevelopment'] === $requirement->isDevelopment()) {
                 throw ValidationException::withMessages([
                     'name' => [
-                        "Package `{$name}` v{$version} already installed",
+                        "Package `{$requirement}` already installed",
                     ],
                 ]);
             }
