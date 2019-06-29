@@ -25,8 +25,7 @@ mix.options({
   .js('resources/js/app.js', 'public')
   .sass('resources/sass/app.scss', 'public')
   .version()
-  //.copy('public', '../laravel-paket-sandbox/public/vendor/paket')
-  .copy('public', '../../doki/doki/public/vendor/paket')
+  .copy('public', '../laravel-paket-sandbox/public/vendor/paket')
   .webpackConfig({
     resolve: {
       symlinks: false,
