@@ -18,6 +18,8 @@ use Cog\Contracts\Paket\Process\Entities\Process as ProcessContract;
 use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
 use Cog\Laravel\Paket\Process\Entities\Process;
 use Cog\Laravel\Paket\Requirement\Entities\Requirement;
+use DateTimeInterface;
+use Illuminate\Support\Carbon;
 
 final class Job implements JobContract
 {
@@ -31,10 +33,13 @@ final class Job implements JobContract
 
     private $requirement;
 
+    private $createdAt;
+
     public function __construct(
         string $type,
         string $id,
         string $status,
+        DateTimeInterface $createdAt,
         ProcessContract $process,
         ?RequirementContract $requirement = null
     )
@@ -42,6 +47,7 @@ final class Job implements JobContract
         $this->type = $type;
         $this->id = $id;
         $this->status = $status;
+        $this->createdAt = $createdAt;
         $this->process = $process;
         $this->requirement = $requirement;
     }
@@ -52,6 +58,7 @@ final class Job implements JobContract
             $job['type'],
             $job['id'],
             $job['status'],
+            Carbon::createFromFormat(DATE_RFC3339_EXTENDED, $job['createdAt']),
             Process::fromArray($job['process']),
             Requirement::fromArray($job['requirement'])
         );
@@ -65,6 +72,7 @@ final class Job implements JobContract
             'status' => $this->status,
             'requirement' => $this->requirement->toArray(),
             'process' => $this->process->toArray(),
+            'createdAt' => $this->createdAt->format(DATE_RFC3339_EXTENDED),
         ];
     }
 

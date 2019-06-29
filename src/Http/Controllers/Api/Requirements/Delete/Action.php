@@ -20,6 +20,7 @@ use Cog\Laravel\Paket\Requirement\Entities\Requirement;
 use Cog\Laravel\Paket\Requirement\Events\RequirementUninstalling;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use MCStreetguy\ComposerParser\Factory as ComposerParser;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -45,6 +46,7 @@ final class Action
             'ComposerUninstall',
             Uuid::uuid4()->toString(),
             'Waiting',
+            Carbon::now(),
             new Process(),
             $requirement
         );

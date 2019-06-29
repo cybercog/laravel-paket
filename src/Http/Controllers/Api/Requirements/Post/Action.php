@@ -21,6 +21,7 @@ use Cog\Laravel\Paket\Requirement\Events\RequirementInstalling;
 use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Validation\ValidationException;
 use MCStreetguy\ComposerParser\Factory as ComposerParser;
 use Ramsey\Uuid\Uuid;
@@ -55,6 +56,7 @@ final class Action
             'ComposerInstall',
             Uuid::uuid4()->toString(),
             'Waiting',
+            Carbon::now(),
             new Process(),
             $requirement
         );
