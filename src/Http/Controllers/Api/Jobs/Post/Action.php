@@ -13,14 +13,12 @@ declare(strict_types=1);
 
 namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Post;
 
-use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
 use Cog\Laravel\Paket\Job\Entities\Job;
+use Cog\Laravel\Paket\Job\Events\JobHasBeenCreated;
 use Cog\Laravel\Paket\Process\Entities\Process;
 use Cog\Laravel\Paket\Requirement\Entities\Requirement;
-use Cog\Laravel\Paket\Requirement\Events\RequirementInstalling;
-use Cog\Laravel\Paket\Requirement\Events\RequirementUninstalling;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -40,61 +38,35 @@ final class Action
 
     public function __invoke(Request $request): ResponsableContract
     {
+        $type = $request->input('type');
         $requirement = Requirement::fromArray($request->input('requirement'));
 
-        if ($request->input('type') === 'RequirementInstall') {
-            $job = $this->install($requirement);
+        if ($type === 'RequirementInstall') {
+            if ($this->isRequirementInstalled($requirement)) {
+                throw ValidationException::withMessages([
+                    'name' => [
+                        "Package `{$requirement}` already installed",
+                    ],
+                ]);
+            }
         } else {
-            $job = $this->uninstall($requirement);
+            $requirement = $this->getInstalledRequirement($requirement);
         }
+
+        $job = new Job(
+            $type,
+            Uuid::uuid4()->toString(),
+            'Waiting',
+            Carbon::now(),
+            new Process(),
+            $requirement
+        );
+
+        $this->jobs->store($job);
+
+        event(new JobHasBeenCreated($job));
 
         return new Response($job);
-    }
-
-    private function install(RequirementContract $requirement): JobContract
-    {
-        if ($this->isRequirementInstalled($requirement)) {
-            throw ValidationException::withMessages([
-                'name' => [
-                    "Package `{$requirement}` already installed",
-                ],
-            ]);
-        }
-
-        $job = new Job(
-            'RequirementInstall',
-            Uuid::uuid4()->toString(),
-            'Waiting',
-            Carbon::now(),
-            new Process(),
-            $requirement
-        );
-
-        $this->jobs->store($job);
-
-        event(new RequirementInstalling($requirement, $job));
-
-        return $job;
-    }
-
-    private function uninstall(RequirementContract $requirement): JobContract
-    {
-        $requirement = $this->getInstalledRequirement($requirement);
-
-        $job = new Job(
-            'RequirementUninstall',
-            Uuid::uuid4()->toString(),
-            'Waiting',
-            Carbon::now(),
-            new Process(),
-            $requirement
-        );
-
-        $this->jobs->store($job);
-
-        event(new RequirementUninstalling($requirement, $job));
-
-        return $job;
     }
 
     private function getInstalledRequirements(): array

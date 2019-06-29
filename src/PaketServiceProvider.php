@@ -15,11 +15,9 @@ namespace Cog\Laravel\Paket;
 
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Cog\Laravel\Paket\Console\Commands\Setup;
+use Cog\Laravel\Paket\Job\Events\JobHasBeenCreated;
+use Cog\Laravel\Paket\Job\Listeners\JobListener;
 use Cog\Laravel\Paket\Job\Repositories\JobFileRepository;
-use Cog\Laravel\Paket\Requirement\Events\RequirementInstalling;
-use Cog\Laravel\Paket\Requirement\Events\RequirementUninstalling;
-use Cog\Laravel\Paket\Requirement\Listeners\RequirementInstallingListener;
-use Cog\Laravel\Paket\Requirement\Listeners\RequirementUninstallingListener;
 use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Event;
@@ -99,7 +97,6 @@ final class PaketServiceProvider extends ServiceProvider
 
     private function registerListeners(): void
     {
-        Event::listen(RequirementInstalling::class, RequirementInstallingListener::class);
-        Event::listen(RequirementUninstalling::class, RequirementUninstallingListener::class);
+        Event::listen(JobHasBeenCreated::class, JobListener::class);
     }
 }

@@ -16,7 +16,6 @@ namespace Cog\Laravel\Paket\Requirement\Jobs;
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Cog\Contracts\Paket\Job\Exceptions\JobFailed;
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
-use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
 use Cog\Laravel\Paket\Requirement\Events\RequirementHasBeenInstalled;
 use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Bus\Queueable;
@@ -30,13 +29,10 @@ final class InstallRequirement implements ShouldQueue
     use InteractsWithQueue;
     use Queueable;
 
-    private $requirement;
-
     private $paketJob;
 
-    public function __construct(RequirementContract $requirement, JobContract $paketJob)
+    public function __construct(JobContract $paketJob)
     {
-        $this->requirement = $requirement;
         $this->paketJob = $paketJob;
     }
 
@@ -45,12 +41,12 @@ final class InstallRequirement implements ShouldQueue
         $jobs->changeJobStatus($this->paketJob, 'InProgress');
 
         try {
-            $composer->install($this->requirement, $this->paketJob);
+            $composer->install($this->paketJob->getRequirement(), $this->paketJob);
 
             $jobs->changeJobStatus($this->paketJob, 'Done');
             $jobs->changeJobExitCode($this->paketJob, 0);
 
-            event(new RequirementHasBeenInstalled($this->requirement, $this->paketJob));
+            event(new RequirementHasBeenInstalled($this->paketJob->getRequirement(), $this->paketJob));
         } catch (JobFailed $exception) {
             $jobs->changeJobStatus($this->paketJob, 'Failed');
             $jobs->changeJobExitCode($this->paketJob, $exception->getExitCode());

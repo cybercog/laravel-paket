@@ -84,4 +84,9 @@ final class Job implements JobContract
     {
         return $this->id;
     }
+
+    public function getRequirement(): RequirementContract
+    {
+        return $this->requirement;
+    }
 }
