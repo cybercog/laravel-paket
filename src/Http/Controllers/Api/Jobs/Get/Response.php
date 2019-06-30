@@ -16,7 +16,6 @@ namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Get;
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 final class Response implements ResponsableContract
 {
@@ -35,10 +34,10 @@ final class Response implements ResponsableContract
      */
     public function toResponse($request)
     {
-        return $this->toJson($request);
+        return $this->toJson();
     }
 
-    private function toJson(Request $request): JsonResponse
+    private function toJson(): JsonResponse
     {
         return response()->json($this->job->toArray());
     }

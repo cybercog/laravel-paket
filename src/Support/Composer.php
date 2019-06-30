@@ -50,7 +50,6 @@ final class Composer
      * @param \Illuminate\Filesystem\Filesystem $files
      * @param string $workingPath
      * @param string $loggingPath
-     * @return void
      */
     public function __construct(Filesystem $files, string $workingPath, string $loggingPath)
     {
