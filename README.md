@@ -23,7 +23,7 @@ Documentation can be found in [Laravel Paket Guide](https://laravel-paket.readme
 Pull in the package through Composer.
 
 ```sh
-$ composer require cybercog/laravel-paket
+$ composer require cybercog/laravel-paket --dev
 ```
 
 After installing Paket, publish its assets to `public/vendor/paket` directory & create storage in `storage/paket` directory using the `paket:setup` Artisan command.
