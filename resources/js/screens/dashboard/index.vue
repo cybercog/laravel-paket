@@ -15,14 +15,14 @@
         <h2 class="mt-4">Requirements</h2>
         <ul class="list-group list-group-flush mt-4">
             <li class="list-group-item">
-                <strong>Root:</strong>
-                {{ getRequirementsCount('essentials', 'root') }} essentials
+                <strong>Essential:</strong>
+                {{ getRequirementsCount('roots', 'essential') }} roots
                 +
-                {{ getRequirementsCount('dependencies', 'root') }} dependencies
+                {{ getRequirementsCount('dependencies', 'essential') }} dependencies
             </li>
             <li class="list-group-item">
                 <strong>Development:</strong>
-                {{ getRequirementsCount('essentials', 'dev') }} essentials
+                {{ getRequirementsCount('roots', 'dev') }} roots
                 +
                 {{ getRequirementsCount('dependencies', 'dev') }} dependencies
             </li>
@@ -48,17 +48,17 @@
             getRequirementVersion(name) {
                 let version;
 
-                version = this.findRequirementVersion(this.getRequirements('essentials', 'root'), name);
+                version = this.findRequirementVersion(this.getRequirements('roots', 'essential'), name);
                 if (version !== null) {
                     return version;
                 }
 
-                version = this.findRequirementVersion(this.getRequirements('essentials', 'dev'), name);
+                version = this.findRequirementVersion(this.getRequirements('roots', 'dev'), name);
                 if (version !== null) {
                     return version;
                 }
 
-                version = this.findRequirementVersion(this.getRequirements('dependencies', 'root'), name);
+                version = this.findRequirementVersion(this.getRequirements('dependencies', 'essential'), name);
                 if (version !== null) {
                     return version;
                 }
