@@ -44,11 +44,9 @@ final class RunJob implements ShouldQueue
         try {
             switch ($this->paketJob->getType()) {
                 case 'RequirementInstall':
-                    // TODO: Don't pass `paketJob`
                     $composer->install($this->paketJob->getRequirement(), $this->paketJob);
                     break;
                 case 'RequirementUninstall':
-                    // TODO: Don't pass `paketJob`
                     $composer->uninstall($this->paketJob->getRequirement(), $this->paketJob);
                     break;
                 default:
