@@ -15,20 +15,16 @@
         <h2 class="mt-4">Requirements</h2>
         <ul class="list-group list-group-flush mt-4">
             <li class="list-group-item">
-                <strong>Essential Core:</strong>
-                {{ getRequirementsCount('essentials', 'core') }}
+                <strong>Root:</strong>
+                {{ getRequirementsCount('essentials', 'root') }} essentials
+                +
+                {{ getRequirementsCount('dependencies', 'root') }} dependencies
             </li>
             <li class="list-group-item">
-                <strong>Essential Development:</strong>
-                {{ getRequirementsCount('essentials', 'dev') }}
-            </li>
-            <li class="list-group-item">
-                <strong>Dependency Core:</strong>
-                {{ getRequirementsCount('dependencies', 'core') }}
-            </li>
-            <li class="list-group-item">
-                <strong>Dependency Development:</strong>
-                {{ getRequirementsCount('dependencies', 'dev') }}
+                <strong>Development:</strong>
+                {{ getRequirementsCount('essentials', 'dev') }} essentials
+                +
+                {{ getRequirementsCount('dependencies', 'dev') }} dependencies
             </li>
         </ul>
     </div>
@@ -52,7 +48,7 @@
             getRequirementVersion(name) {
                 let version;
 
-                version = this.findRequirementVersion(this.getRequirements('essentials', 'core'), name);
+                version = this.findRequirementVersion(this.getRequirements('essentials', 'root'), name);
                 if (version !== null) {
                     return version;
                 }
@@ -62,7 +58,7 @@
                     return version;
                 }
 
-                version = this.findRequirementVersion(this.getRequirements('dependencies', 'core'), name);
+                version = this.findRequirementVersion(this.getRequirements('dependencies', 'root'), name);
                 if (version !== null) {
                     return version;
                 }

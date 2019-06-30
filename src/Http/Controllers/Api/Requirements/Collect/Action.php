@@ -46,11 +46,11 @@ final class Action
         $devRequires = $jsonFile->getRequireDev()->getData();
 
         $essentials = [
-            'core' => [],
+            'root' => [],
             'dev' => [],
         ];
         foreach ($platform as $name => $version) {
-            $essentials['core'][] = [
+            $essentials['root'][] = [
                 'name' => $name,
                 'version' => $version,
             ];
@@ -63,7 +63,7 @@ final class Action
         }
         foreach ($packages as $key => $package) {
             if (isset($requires[$package['name']]) || isset($devRequires[$package['name']])) {
-                $essentials['core'][] = $package;
+                $essentials['root'][] = $package;
                 unset($packages[$key]);
             }
         }
@@ -74,11 +74,11 @@ final class Action
             }
         }
         $dependencies = [
-            'core' => [],
+            'root' => [],
             'dev' => [],
         ];
         foreach ($packages as $key => $package) {
-            $dependencies['core'][] = $package;
+            $dependencies['root'][] = $package;
         }
         foreach ($devPackages as $key => $package) {
             $dependencies['dev'][] = $package;

@@ -8,9 +8,9 @@
 
         <h2 class="mt-4">Essentials</h2>
 
-        <h3 class="mt-4">Core</h3>
+        <h3 class="mt-4">Root</h3>
         <ul class="list-unstyled mb-0">
-            <li class="mt-2" v-for="(requirement, index) in getRequirements('essentials', 'core')" v-bind:key="`${requirement.name}-${index}`">
+            <li class="mt-2" v-for="(requirement, index) in getRequirements('essentials', 'root')" v-bind:key="`${requirement.name}-${index}`">
                 <requirement
                     :requirement="requirement"
                     :is-dependency="false"
@@ -30,9 +30,9 @@
 
         <h2 class="mt-4">Dependencies</h2>
 
-        <h3 class="mt-4">Core</h3>
+        <h3 class="mt-4">Root</h3>
         <ul class="list-unstyled mb-0">
-            <li class="mt-2" v-for="(requirement, index) in getRequirements('dependencies', 'core')" v-bind:key="`${requirement.name}-${index}`">
+            <li class="mt-2" v-for="(requirement, index) in getRequirements('dependencies', 'root')" v-bind:key="`${requirement.name}-${index}`">
                 <requirement
                     :requirement="requirement"
                     :is-dependency="true"
