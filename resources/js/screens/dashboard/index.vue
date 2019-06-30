@@ -15,20 +15,16 @@
         <h2 class="mt-4">Requirements</h2>
         <ul class="list-group list-group-flush mt-4">
             <li class="list-group-item">
-                <strong>Root Essentials:</strong>
-                {{ getRequirementsCount('essentials', 'root') }}
+                <strong>Root:</strong>
+                {{ getRequirementsCount('essentials', 'root') }} essentials
+                +
+                {{ getRequirementsCount('dependencies', 'root') }} dependencies
             </li>
             <li class="list-group-item">
-                <strong>Root Dependencies:</strong>
-                {{ getRequirementsCount('dependencies', 'root') }}
-            </li>
-            <li class="list-group-item">
-                <strong>Development Essentials:</strong>
-                {{ getRequirementsCount('essentials', 'dev') }}
-            </li>
-            <li class="list-group-item">
-                <strong>Development Dependencies:</strong>
-                {{ getRequirementsCount('dependencies', 'dev') }}
+                <strong>Development:</strong>
+                {{ getRequirementsCount('essentials', 'dev') }} essentials
+                +
+                {{ getRequirementsCount('dependencies', 'dev') }} dependencies
             </li>
         </ul>
     </div>

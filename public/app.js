@@ -2983,10 +2983,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -30450,38 +30446,24 @@ var render = function() {
     _vm._v(" "),
     _c("ul", { staticClass: "list-group list-group-flush mt-4" }, [
       _c("li", { staticClass: "list-group-item" }, [
-        _c("strong", [_vm._v("Root Essentials:")]),
+        _c("strong", [_vm._v("Root:")]),
         _vm._v(
           "\n            " +
             _vm._s(_vm.getRequirementsCount("essentials", "root")) +
-            "\n        "
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "list-group-item" }, [
-        _c("strong", [_vm._v("Root Dependencies:")]),
-        _vm._v(
-          "\n            " +
+            " essentials\n            +\n            " +
             _vm._s(_vm.getRequirementsCount("dependencies", "root")) +
-            "\n        "
+            " dependencies\n        "
         )
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "list-group-item" }, [
-        _c("strong", [_vm._v("Development Essentials:")]),
+        _c("strong", [_vm._v("Development:")]),
         _vm._v(
           "\n            " +
             _vm._s(_vm.getRequirementsCount("essentials", "dev")) +
-            "\n        "
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "list-group-item" }, [
-        _c("strong", [_vm._v("Development Dependencies:")]),
-        _vm._v(
-          "\n            " +
+            " essentials\n            +\n            " +
             _vm._s(_vm.getRequirementsCount("dependencies", "dev")) +
-            "\n        "
+            " dependencies\n        "
         )
       ])
     ])
