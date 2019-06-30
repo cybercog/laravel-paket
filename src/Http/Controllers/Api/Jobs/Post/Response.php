@@ -40,23 +40,6 @@ final class Response implements ResponsableContract
 
     private function toJson(Request $request): JsonResponse
     {
-        $jobUrl = route('paket.api.jobs.get', $this->job->getId());
-
-        $data = [
-            'data' => [
-                'type' => 'CogPaketJob',
-                'id' => $this->job->getId(),
-                'attributes' => [
-                    'status' => 'Shell command execution',
-                ],
-                'links' => [
-                    'self' => $jobUrl,
-                ],
-            ],
-        ];
-
-        return response()->json($data, 202, [
-            'Content-Location' => $jobUrl,
-        ]);
+        return response()->json($this->job->toArray(), 201);
     }
 }
