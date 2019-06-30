@@ -15,19 +15,19 @@
         <h2 class="mt-4">Requirements</h2>
         <ul class="list-group list-group-flush mt-4">
             <li class="list-group-item">
-                <strong>Essential Core:</strong>
-                {{ getRequirementsCount('essentials', 'core') }}
+                <strong>Root Essentials:</strong>
+                {{ getRequirementsCount('essentials', 'root') }}
             </li>
             <li class="list-group-item">
-                <strong>Essential Development:</strong>
+                <strong>Root Dependencies:</strong>
+                {{ getRequirementsCount('dependencies', 'root') }}
+            </li>
+            <li class="list-group-item">
+                <strong>Development Essentials:</strong>
                 {{ getRequirementsCount('essentials', 'dev') }}
             </li>
             <li class="list-group-item">
-                <strong>Dependency Core:</strong>
-                {{ getRequirementsCount('dependencies', 'core') }}
-            </li>
-            <li class="list-group-item">
-                <strong>Dependency Development:</strong>
+                <strong>Development Dependencies:</strong>
                 {{ getRequirementsCount('dependencies', 'dev') }}
             </li>
         </ul>
@@ -52,7 +52,7 @@
             getRequirementVersion(name) {
                 let version;
 
-                version = this.findRequirementVersion(this.getRequirements('essentials', 'core'), name);
+                version = this.findRequirementVersion(this.getRequirements('essentials', 'root'), name);
                 if (version !== null) {
                     return version;
                 }
@@ -62,7 +62,7 @@
                     return version;
                 }
 
-                version = this.findRequirementVersion(this.getRequirements('dependencies', 'core'), name);
+                version = this.findRequirementVersion(this.getRequirements('dependencies', 'root'), name);
                 if (version !== null) {
                     return version;
                 }

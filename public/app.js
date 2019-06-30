@@ -3022,7 +3022,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }(),
     getRequirementVersion: function getRequirementVersion(name) {
       var version;
-      version = this.findRequirementVersion(this.getRequirements('essentials', 'core'), name);
+      version = this.findRequirementVersion(this.getRequirements('essentials', 'root'), name);
 
       if (version !== null) {
         return version;
@@ -3034,7 +3034,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return version;
       }
 
-      version = this.findRequirementVersion(this.getRequirements('dependencies', 'core'), name);
+      version = this.findRequirementVersion(this.getRequirements('dependencies', 'root'), name);
 
       if (version !== null) {
         return version;
@@ -30450,16 +30450,25 @@ var render = function() {
     _vm._v(" "),
     _c("ul", { staticClass: "list-group list-group-flush mt-4" }, [
       _c("li", { staticClass: "list-group-item" }, [
-        _c("strong", [_vm._v("Essential Core:")]),
+        _c("strong", [_vm._v("Root Essentials:")]),
         _vm._v(
           "\n            " +
-            _vm._s(_vm.getRequirementsCount("essentials", "core")) +
+            _vm._s(_vm.getRequirementsCount("essentials", "root")) +
             "\n        "
         )
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "list-group-item" }, [
-        _c("strong", [_vm._v("Essential Development:")]),
+        _c("strong", [_vm._v("Root Dependencies:")]),
+        _vm._v(
+          "\n            " +
+            _vm._s(_vm.getRequirementsCount("dependencies", "root")) +
+            "\n        "
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "list-group-item" }, [
+        _c("strong", [_vm._v("Development Essentials:")]),
         _vm._v(
           "\n            " +
             _vm._s(_vm.getRequirementsCount("essentials", "dev")) +
@@ -30468,16 +30477,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "list-group-item" }, [
-        _c("strong", [_vm._v("Dependency Core:")]),
-        _vm._v(
-          "\n            " +
-            _vm._s(_vm.getRequirementsCount("dependencies", "core")) +
-            "\n        "
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "list-group-item" }, [
-        _c("strong", [_vm._v("Dependency Development:")]),
+        _c("strong", [_vm._v("Development Dependencies:")]),
         _vm._v(
           "\n            " +
             _vm._s(_vm.getRequirementsCount("dependencies", "dev")) +
@@ -30660,12 +30660,12 @@ var render = function() {
       _vm._v(" "),
       _c("h2", { staticClass: "mt-4" }, [_vm._v("Essentials")]),
       _vm._v(" "),
-      _c("h3", { staticClass: "mt-4" }, [_vm._v("Core")]),
+      _c("h3", { staticClass: "mt-4" }, [_vm._v("Root")]),
       _vm._v(" "),
       _c(
         "ul",
         { staticClass: "list-unstyled mb-0" },
-        _vm._l(_vm.getRequirements("essentials", "core"), function(
+        _vm._l(_vm.getRequirements("essentials", "root"), function(
           requirement,
           index
         ) {
@@ -30708,12 +30708,12 @@ var render = function() {
       _vm._v(" "),
       _c("h2", { staticClass: "mt-4" }, [_vm._v("Dependencies")]),
       _vm._v(" "),
-      _c("h3", { staticClass: "mt-4" }, [_vm._v("Core")]),
+      _c("h3", { staticClass: "mt-4" }, [_vm._v("Root")]),
       _vm._v(" "),
       _c(
         "ul",
         { staticClass: "list-unstyled mb-0" },
-        _vm._l(_vm.getRequirements("dependencies", "core"), function(
+        _vm._l(_vm.getRequirements("dependencies", "root"), function(
           requirement,
           index
         ) {
@@ -47715,11 +47715,11 @@ var actions = {
 var getters = {
   isRequirementInstalled: function isRequirementInstalled(state) {
     return function (name) {
-      return state.requirements['essentials']['core'].filter(function (requirement) {
+      return state.requirements['essentials']['root'].filter(function (requirement) {
         return requirement.name === name;
       }).length > 0 || state.requirements['essentials']['dev'].filter(function (requirement) {
         return requirement.name === name;
-      }).length > 0 || state.requirements['dependencies']['core'].filter(function (requirement) {
+      }).length > 0 || state.requirements['dependencies']['root'].filter(function (requirement) {
         return requirement.name === name;
       }).length > 0 || state.requirements['dependencies']['dev'].filter(function (requirement) {
         return requirement.name === name;
