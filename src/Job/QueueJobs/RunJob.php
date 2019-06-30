@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Job\Jobs;
+namespace Cog\Laravel\Paket\Job\QueueJobs;
 
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Cog\Contracts\Paket\Job\Exceptions\JobFailed;
@@ -39,7 +39,7 @@ final class RunJob implements ShouldQueue
 
     public function handle(JobRepositoryContract $jobs, Composer $composer): void
     {
-        $jobs->changeJobStatus($this->paketJob, 'InProgress');
+        $jobs->changeJobStatus($this->paketJob, 'Running');
 
         try {
             switch ($this->paketJob->getType()) {
@@ -54,7 +54,7 @@ final class RunJob implements ShouldQueue
                     throw new RuntimeException('Unknown type of job');
             }
 
-            $jobs->changeJobStatus($this->paketJob, 'Done');
+            $jobs->changeJobStatus($this->paketJob, 'Success');
             $jobs->changeJobExitCode($this->paketJob, 0);
         } catch (JobFailed $exception) {
             $jobs->changeJobStatus($this->paketJob, 'Failed');
