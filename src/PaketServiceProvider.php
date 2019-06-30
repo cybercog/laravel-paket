@@ -16,7 +16,7 @@ namespace Cog\Laravel\Paket;
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Cog\Laravel\Paket\Console\Commands\Setup;
 use Cog\Laravel\Paket\Job\Events\JobHasBeenCreated;
-use Cog\Laravel\Paket\Job\Listeners\JobListener;
+use Cog\Laravel\Paket\Job\Listeners\JobRunner;
 use Cog\Laravel\Paket\Job\Repositories\JobFileRepository;
 use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Filesystem\Filesystem;
@@ -121,6 +121,6 @@ final class PaketServiceProvider extends ServiceProvider
 
     private function registerListeners(): void
     {
-        Event::listen(JobHasBeenCreated::class, JobListener::class);
+        Event::listen(JobHasBeenCreated::class, JobRunner::class);
     }
 }
