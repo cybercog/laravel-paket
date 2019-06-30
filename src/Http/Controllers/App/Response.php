@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Cog\Laravel\Paket\Http\Controllers\App;
 
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response as IlluminateResponse;
 use Illuminate\Support\Facades\Config;
 
@@ -28,10 +27,10 @@ final class Response implements ResponsableContract
      */
     public function toResponse($request)
     {
-        return $this->toHtml($request);
+        return $this->toHtml();
     }
 
-    private function toHtml(Request $request): IlluminateResponse
+    private function toHtml(): IlluminateResponse
     {
         return response()->view('paket::app', [
             'cssFile' => 'app.css',

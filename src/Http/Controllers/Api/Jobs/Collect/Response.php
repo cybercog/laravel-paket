@@ -15,7 +15,6 @@ namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Collect;
 
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 final class Response implements ResponsableContract
 {
@@ -34,10 +33,10 @@ final class Response implements ResponsableContract
      */
     public function toResponse($request)
     {
-        return $this->toJson($request);
+        return $this->toJson();
     }
 
-    private function toJson(Request $request): JsonResponse
+    private function toJson(): JsonResponse
     {
         $jobs = [];
         foreach ($this->jobs as $job) {

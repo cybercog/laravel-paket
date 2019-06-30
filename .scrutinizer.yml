@@ -6,3 +6,5 @@ coding_style:
     spaces:
       before_parentheses:
         closure_definition: true
+      around_operators:
+        concatenation: true
