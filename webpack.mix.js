@@ -13,25 +13,25 @@ const webpack = require('webpack');
  */
 
 mix.options({
-  uglify: {
-    uglifyOptions: {
-      compress: {
-        drop_console: true,
-      },
+    uglify: {
+        uglifyOptions: {
+            compress: {
+                drop_console: true,
+            },
+        },
     },
-  },
 })
-  .setPublicPath('public')
-  .js('resources/js/app.js', 'public')
-  .sass('resources/sass/app.scss', 'public')
-  .version()
-  .copy('public', '../sandbox-laravel-paket/public/vendor/paket')
-  .webpackConfig({
-    resolve: {
-      symlinks: false,
-      alias: {
-        '@': path.resolve(__dirname, 'resources/js/'),
-      },
-    },
-    plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
-  });
+    .setPublicPath('public')
+    .js('resources/js/app.js', 'public')
+    .sass('resources/sass/app.scss', 'public')
+    .version()
+    .copy('public', '../sandbox-laravel-paket/public/vendor/paket')
+    .webpackConfig({
+        resolve: {
+            symlinks: false,
+            alias: {
+                '@': path.resolve(__dirname, 'resources/js/'),
+            },
+        },
+        plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
+    });
