@@ -11,6 +11,8 @@
 
 declare(strict_types=1);
 
+use Cog\Laravel\Paket\Http\Middlewares\Authorize;
+
 return [
 
     /*
@@ -38,6 +40,7 @@ return [
 
     'middlewares' => [
         'web',
+        Authorize::class,
     ],
 
 ];
