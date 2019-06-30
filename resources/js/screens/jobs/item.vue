@@ -7,7 +7,7 @@
         <div class="d-flex mt-4 align-items-center">
             <h4>{{ job.id }}</h4>
             <div class="ml-auto">
-                <job-status-badge :job="job"></job-status-badge>
+                <job-status-badge :status="getStatus(job)"></job-status-badge>
             </div>
         </div>
         <div>
@@ -71,6 +71,18 @@
                 } = job;
 
                 return moment(createdAt).format('YYYY-MM-DD HH:mm:ss');
+            },
+
+            getStatus(job) {
+                if (!job.hasOwnProperty('status')) {
+                    return '';
+                }
+
+                const {
+                    status,
+                } = job;
+
+                return status;
             },
         },
     }
