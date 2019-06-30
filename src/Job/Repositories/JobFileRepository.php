@@ -88,9 +88,9 @@ final class JobFileRepository implements JobRepositoryContract
     public function changeJobStatus(JobContract $job, string $statusName): void
     {
         $names = [
-            'Waiting',
-            'InProgress',
-            'Done',
+            'Pending',
+            'Running',
+            'Success',
             'Failed',
         ];
 

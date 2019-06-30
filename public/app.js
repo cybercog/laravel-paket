@@ -2338,31 +2338,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    job: {
-      type: Object,
+    status: {
+      type: String,
       required: true
     }
   },
   methods: {
     getStatus: function getStatus() {
-      var status = this.job.status;
       var statuses = {
-        Waiting: 'Waiting',
-        InProgress: 'In Progress',
-        Done: 'Done',
+        Pending: 'Pending',
+        Running: 'Running',
+        Success: 'Success',
         Failed: 'Failed'
       };
-      return statuses[status];
+      return statuses[this.status];
     },
     getStatusClass: function getStatusClass() {
-      var status = this.job.status;
       var statusClasses = {
-        Waiting: 'secondary',
-        InProgress: 'primary',
-        Done: 'success',
+        Pending: 'secondary',
+        Running: 'primary',
+        Success: 'success',
         Failed: 'danger'
       };
-      return "badge badge-".concat(statusClasses[status]);
+      return "badge badge-".concat(statusClasses[this.status]);
     }
   }
 });
@@ -3187,6 +3185,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var createdAt = job.createdAt;
       return moment__WEBPACK_IMPORTED_MODULE_1___default()(createdAt).format('YYYY-MM-DD HH:mm:ss');
     },
+    getStatus: function getStatus(job) {
+      if (!job.hasOwnProperty('status')) {
+        return '';
+      }
+
+      var status = job.status;
+      return status;
+    },
     getExecutable: function getExecutable(type) {
       switch (type) {
         case 'RequirementInstall':
@@ -3310,6 +3316,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getCreatedAt: function getCreatedAt(job) {
       var createdAt = job.createdAt;
       return moment__WEBPACK_IMPORTED_MODULE_2___default()(createdAt).format('YYYY-MM-DD HH:mm:ss');
+    },
+    getStatus: function getStatus(job) {
+      if (!job.hasOwnProperty('status')) {
+        return '';
+      }
+
+      var status = job.status;
+      return status;
     }
   }
 });
@@ -30531,7 +30545,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("job-status-badge", {
                   staticClass: "ml-auto",
-                  attrs: { job: job }
+                  attrs: { status: _vm.getStatus(job) }
                 })
               ],
               1
@@ -30580,7 +30594,7 @@ var render = function() {
       _c(
         "div",
         { staticClass: "ml-auto" },
-        [_c("job-status-badge", { attrs: { job: _vm.job } })],
+        [_c("job-status-badge", { attrs: { status: _vm.getStatus(_vm.job) } })],
         1
       )
     ]),

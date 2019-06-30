@@ -11,7 +11,7 @@
                     </div>
                     <div class="text-muted ml-auto">
                         <div v-text="getCreatedAt(job)"></div>
-                        <job-status-badge :job="job" class="ml-auto"></job-status-badge>
+                        <job-status-badge :status="getStatus(job)" class="ml-auto"></job-status-badge>
                     </div>
                 </div>
             </li>
@@ -82,6 +82,18 @@
                 } = job;
 
                 return moment(createdAt).format('YYYY-MM-DD HH:mm:ss');
+            },
+
+            getStatus(job) {
+                if (!job.hasOwnProperty('status')) {
+                    return '';
+                }
+
+                const {
+                    status,
+                } = job;
+
+                return status;
             },
 
             getExecutable(type) {

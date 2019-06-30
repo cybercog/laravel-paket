@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Cog\Laravel\Paket\Job\Listeners;
 
 use Cog\Laravel\Paket\Job\Events\JobHasBeenCreated;
-use Cog\Laravel\Paket\Job\Jobs\RunJob;
+use Cog\Laravel\Paket\Job\QueueJobs\RunJob;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 final class JobListener implements ShouldQueue

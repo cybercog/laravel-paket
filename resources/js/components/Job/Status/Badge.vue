@@ -5,41 +5,33 @@
 <script>
     export default {
         props: {
-            job: {
-                type: Object,
+            status: {
+                type: String,
                 required: true,
             },
         },
 
         methods: {
             getStatus() {
-                const {
-                    status,
-                } = this.job;
-
                 const statuses = {
-                    Waiting: 'Waiting',
-                    InProgress: 'In Progress',
-                    Done: 'Done',
+                    Pending: 'Pending',
+                    Running: 'Running',
+                    Success: 'Success',
                     Failed: 'Failed',
                 };
 
-                return statuses[status];
+                return statuses[this.status];
             },
 
             getStatusClass() {
-                const {
-                    status,
-                } = this.job;
-
                 const statusClasses = {
-                    Waiting: 'secondary',
-                    InProgress: 'primary',
-                    Done: 'success',
+                    Pending: 'secondary',
+                    Running: 'primary',
+                    Success: 'success',
                     Failed: 'danger',
                 };
 
-                return `badge badge-${statusClasses[status]}`;
+                return `badge badge-${statusClasses[this.status]}`;
             },
         },
     }
