@@ -1,6 +1,6 @@
 {
     "name": "cybercog/laravel-paket",
-    "description": "Personal Package Manager.",
+    "description": "Composer personal web interface. Manage Laravel dependencies without switching to command line!",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -18,7 +18,8 @@
         "dependency",
         "artifact",
         "library",
-        "development"
+        "development",
+        "gui"
     ],
     "authors": [
         {
