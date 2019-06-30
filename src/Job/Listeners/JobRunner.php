@@ -17,7 +17,7 @@ use Cog\Laravel\Paket\Job\Events\JobHasBeenCreated;
 use Cog\Laravel\Paket\Job\QueueJobs\RunJob;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-final class JobListener implements ShouldQueue
+final class JobRunner implements ShouldQueue
 {
     public function handle(JobHasBeenCreated $event): void
     {
