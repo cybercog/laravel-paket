@@ -17,7 +17,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Paket base URI
+    | Paket Base URI
     |--------------------------------------------------------------------------
     |
     | This is the URI path where Paket will be accessible from. Feel free
