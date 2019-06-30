@@ -38,11 +38,11 @@ Paket exposes a dashboard at `/paket`. By default, you will only be able to acce
 
 ### Dashboard
 
-![Laravel Paket Dashboard](https://user-images.githubusercontent.com/1849174/60400916-182af400-9b83-11e9-96b5-a481b1aba463.png)
+![Laravel Paket Dashboard](https://user-images.githubusercontent.com/1849174/60401748-80cb9e00-9b8e-11e9-8a38-9d49ab418445.png)
 
 ### Requirements List
 
-![Laravel Paket Requirements](https://user-images.githubusercontent.com/1849174/60400928-355fc280-9b83-11e9-81ed-9c0af2606e58.png)
+![Laravel Paket Requirements](https://user-images.githubusercontent.com/1849174/60401755-9fca3000-9b8e-11e9-86d0-b5c8d26b3238.png)
 
 ### Jobs List
 
