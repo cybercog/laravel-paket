@@ -32,6 +32,26 @@ After installing Paket, publish its assets to `public/vendor/paket` directory & 
 $ php artisan paket:setup
 ```
 
+## Usage
+
+Paket exposes a dashboard at `/paket`. By default, you will only be able to access this dashboard in the `local` environment.
+
+### Dashboard
+
+![Laravel Paket Dashboard](https://user-images.githubusercontent.com/1849174/60400916-182af400-9b83-11e9-96b5-a481b1aba463.png)
+
+### Requirements List
+
+![Laravel Paket Requirements](https://user-images.githubusercontent.com/1849174/60400928-355fc280-9b83-11e9-81ed-9c0af2606e58.png)
+
+### Jobs List
+
+![Laravel Paket Jobs](https://user-images.githubusercontent.com/1849174/60400934-4f99a080-9b83-11e9-8bb6-e3ce3fcce1a4.png)
+
+### Job
+
+![Laravel Paket Job](https://user-images.githubusercontent.com/1849174/60400942-6fc95f80-9b83-11e9-9afd-f82f76980fb4.png)
+
 ## License
 
 - `Laravel Paket` package is open-sourced software licensed under the [MIT License](LICENSE) by [Anton Komarev](https://komarev.com).
