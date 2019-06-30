@@ -6,11 +6,11 @@
 
         <install-form class="mt-4"></install-form>
 
-        <h2 class="mt-4">Essentials</h2>
+        <h2 class="mt-4">Roots</h2>
 
-        <h3 class="mt-4">Root</h3>
+        <h3 class="mt-4">Essential</h3>
         <ul class="list-unstyled mb-0">
-            <li class="mt-2" v-for="(requirement, index) in getRequirements('essentials', 'root')" v-bind:key="`${requirement.name}-${index}`">
+            <li class="mt-2" v-for="(requirement, index) in getRequirements('roots', 'essential')" v-bind:key="`${requirement.name}-${index}`">
                 <requirement
                     :requirement="requirement"
                     :is-dependency="false"
@@ -20,7 +20,7 @@
 
         <h3 class="mt-4">Development</h3>
         <ul class="list-unstyled mb-0">
-            <li class="mt-2" v-for="(requirement, index) in getRequirements('essentials', 'dev')" v-bind:key="`${requirement.name}-${index}`">
+            <li class="mt-2" v-for="(requirement, index) in getRequirements('roots', 'dev')" v-bind:key="`${requirement.name}-${index}`">
                 <requirement
                     :requirement="requirement"
                     :is-dependency="false"
@@ -30,9 +30,9 @@
 
         <h2 class="mt-4">Dependencies</h2>
 
-        <h3 class="mt-4">Root</h3>
+        <h3 class="mt-4">Essential</h3>
         <ul class="list-unstyled mb-0">
-            <li class="mt-2" v-for="(requirement, index) in getRequirements('dependencies', 'root')" v-bind:key="`${requirement.name}-${index}`">
+            <li class="mt-2" v-for="(requirement, index) in getRequirements('dependencies', 'essential')" v-bind:key="`${requirement.name}-${index}`">
                 <requirement
                     :requirement="requirement"
                     :is-dependency="true"

@@ -3018,19 +3018,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }(),
     getRequirementVersion: function getRequirementVersion(name) {
       var version;
-      version = this.findRequirementVersion(this.getRequirements('essentials', 'root'), name);
+      version = this.findRequirementVersion(this.getRequirements('roots', 'essential'), name);
 
       if (version !== null) {
         return version;
       }
 
-      version = this.findRequirementVersion(this.getRequirements('essentials', 'dev'), name);
+      version = this.findRequirementVersion(this.getRequirements('roots', 'dev'), name);
 
       if (version !== null) {
         return version;
       }
 
-      version = this.findRequirementVersion(this.getRequirements('dependencies', 'root'), name);
+      version = this.findRequirementVersion(this.getRequirements('dependencies', 'essential'), name);
 
       if (version !== null) {
         return version;
@@ -30446,12 +30446,12 @@ var render = function() {
     _vm._v(" "),
     _c("ul", { staticClass: "list-group list-group-flush mt-4" }, [
       _c("li", { staticClass: "list-group-item" }, [
-        _c("strong", [_vm._v("Root:")]),
+        _c("strong", [_vm._v("Essential:")]),
         _vm._v(
           "\n            " +
-            _vm._s(_vm.getRequirementsCount("essentials", "root")) +
-            " essentials\n            +\n            " +
-            _vm._s(_vm.getRequirementsCount("dependencies", "root")) +
+            _vm._s(_vm.getRequirementsCount("roots", "essential")) +
+            " roots\n            +\n            " +
+            _vm._s(_vm.getRequirementsCount("dependencies", "essential")) +
             " dependencies\n        "
         )
       ]),
@@ -30460,8 +30460,8 @@ var render = function() {
         _c("strong", [_vm._v("Development:")]),
         _vm._v(
           "\n            " +
-            _vm._s(_vm.getRequirementsCount("essentials", "dev")) +
-            " essentials\n            +\n            " +
+            _vm._s(_vm.getRequirementsCount("roots", "dev")) +
+            " roots\n            +\n            " +
             _vm._s(_vm.getRequirementsCount("dependencies", "dev")) +
             " dependencies\n        "
         )
@@ -30640,14 +30640,14 @@ var render = function() {
       _vm._v(" "),
       _c("install-form", { staticClass: "mt-4" }),
       _vm._v(" "),
-      _c("h2", { staticClass: "mt-4" }, [_vm._v("Essentials")]),
+      _c("h2", { staticClass: "mt-4" }, [_vm._v("Roots")]),
       _vm._v(" "),
-      _c("h3", { staticClass: "mt-4" }, [_vm._v("Root")]),
+      _c("h3", { staticClass: "mt-4" }, [_vm._v("Essential")]),
       _vm._v(" "),
       _c(
         "ul",
         { staticClass: "list-unstyled mb-0" },
-        _vm._l(_vm.getRequirements("essentials", "root"), function(
+        _vm._l(_vm.getRequirements("roots", "essential"), function(
           requirement,
           index
         ) {
@@ -30670,7 +30670,7 @@ var render = function() {
       _c(
         "ul",
         { staticClass: "list-unstyled mb-0" },
-        _vm._l(_vm.getRequirements("essentials", "dev"), function(
+        _vm._l(_vm.getRequirements("roots", "dev"), function(
           requirement,
           index
         ) {
@@ -30690,12 +30690,12 @@ var render = function() {
       _vm._v(" "),
       _c("h2", { staticClass: "mt-4" }, [_vm._v("Dependencies")]),
       _vm._v(" "),
-      _c("h3", { staticClass: "mt-4" }, [_vm._v("Root")]),
+      _c("h3", { staticClass: "mt-4" }, [_vm._v("Essential")]),
       _vm._v(" "),
       _c(
         "ul",
         { staticClass: "list-unstyled mb-0" },
-        _vm._l(_vm.getRequirements("dependencies", "root"), function(
+        _vm._l(_vm.getRequirements("dependencies", "essential"), function(
           requirement,
           index
         ) {
@@ -47697,11 +47697,11 @@ var actions = {
 var getters = {
   isRequirementInstalled: function isRequirementInstalled(state) {
     return function (name) {
-      return state.requirements['essentials']['root'].filter(function (requirement) {
+      return state.requirements['roots']['essential'].filter(function (requirement) {
         return requirement.name === name;
-      }).length > 0 || state.requirements['essentials']['dev'].filter(function (requirement) {
+      }).length > 0 || state.requirements['roots']['dev'].filter(function (requirement) {
         return requirement.name === name;
-      }).length > 0 || state.requirements['dependencies']['root'].filter(function (requirement) {
+      }).length > 0 || state.requirements['dependencies']['essential'].filter(function (requirement) {
         return requirement.name === name;
       }).length > 0 || state.requirements['dependencies']['dev'].filter(function (requirement) {
         return requirement.name === name;

@@ -47,9 +47,9 @@ const actions = {
 
 const getters = {
     isRequirementInstalled: (state) => (name) => {
-        return state.requirements['essentials']['root'].filter(requirement => requirement.name === name).length > 0
-            || state.requirements['essentials']['dev'].filter(requirement => requirement.name === name).length > 0
-            || state.requirements['dependencies']['root'].filter(requirement => requirement.name === name).length > 0
+        return state.requirements['roots']['essential'].filter(requirement => requirement.name === name).length > 0
+            || state.requirements['roots']['dev'].filter(requirement => requirement.name === name).length > 0
+            || state.requirements['dependencies']['essential'].filter(requirement => requirement.name === name).length > 0
             || state.requirements['dependencies']['dev'].filter(requirement => requirement.name === name).length > 0;
     },
 
