@@ -15,7 +15,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Paket URI
+    | Paket base URI
     |--------------------------------------------------------------------------
     |
     | This is the URI path where Paket will be accessible from. Feel free
@@ -23,6 +23,6 @@ return [
     |
     */
 
-    'uri' => env('PAKET_URI', 'paket'),
+    'base_uri' => env('PAKET_BASE_URI', 'paket'),
 
 ];

@@ -45,7 +45,7 @@ final class PaketServiceProvider extends ServiceProvider
     {
         return [
             'namespace' => 'Cog\Laravel\Paket\Http\Controllers',
-            'prefix' => config('paket.uri'),
+            'prefix' => config('paket.base_uri'),
             'middleware' => 'web',
         ];
     }

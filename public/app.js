@@ -3215,13 +3215,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var ansi_to_html__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ansi-to-html */ "./node_modules/ansi-to-html/lib/ansi_to_html.js");
-/* harmony import */ var ansi_to_html__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ansi_to_html__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_Job_Status_Badge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Job/Status/Badge */ "./resources/js/components/Job/Status/Badge.vue");
+/* harmony import */ var ansi_to_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ansi-to-html */ "./node_modules/ansi-to-html/lib/ansi_to_html.js");
+/* harmony import */ var ansi_to_html__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(ansi_to_html__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_Job_Status_Badge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Job/Status/Badge */ "./resources/js/components/Job/Status/Badge.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3253,10 +3251,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    JobStatusBadge: _components_Job_Status_Badge__WEBPACK_IMPORTED_MODULE_4__["default"]
+    JobStatusBadge: _components_Job_Status_Badge__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -3265,6 +3262,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.fetchData();
+  },
+  computed: {
+    processOutput: function processOutput() {
+      if (!this.job.process) {
+        return '';
+      }
+
+      return this.job.process.output;
+    }
   },
   methods: {
     fetchData: function () {
@@ -3277,7 +3283,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/paket/api/jobs/".concat(this.$route.params.id));
+                return this.$store.getters.getJob(this.$route.params.id);
 
               case 2:
                 response = _context.sent;
@@ -3299,11 +3305,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return fetchData;
     }(),
     asHtml: function asHtml(string) {
-      return new ansi_to_html__WEBPACK_IMPORTED_MODULE_2___default.a().toHtml(string).replace(/(?:\r\n|\r|\n)/g, '<br/>');
+      return new ansi_to_html__WEBPACK_IMPORTED_MODULE_1___default.a().toHtml(string).replace(/(?:\r\n|\r|\n)/g, '<br/>');
     },
     getCreatedAt: function getCreatedAt(job) {
       var createdAt = job.createdAt;
-      return moment__WEBPACK_IMPORTED_MODULE_3___default()(createdAt).format('YYYY-MM-DD HH:mm:ss');
+      return moment__WEBPACK_IMPORTED_MODULE_2___default()(createdAt).format('YYYY-MM-DD HH:mm:ss');
     }
   }
 });
@@ -30593,8 +30599,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.job.process.output,
-            expression: "job.process.output"
+            value: _vm.processOutput,
+            expression: "processOutput"
           }
         ],
         staticClass: "p-4 text-nowrap text-left bg-black mt-4"
@@ -30602,7 +30608,7 @@ var render = function() {
       [
         _c("code", {
           staticClass: "bg-black text-white border-0",
-          domProps: { innerHTML: _vm._s(_vm.job.process.output) }
+          domProps: { innerHTML: _vm._s(_vm.processOutput) }
         })
       ]
     )
@@ -46640,11 +46646,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   routes: _routes__WEBPACK_IMPORTED_MODULE_4__["default"],
   mode: 'history',
-  base: '/' + window.Paket.path + '/'
+  base: '/' + window.Paket.baseUri
 });
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('application-screen', __webpack_require__(/*! ./screens/dashboard/index */ "./resources/js/screens/dashboard/index.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('requirements-screen', __webpack_require__(/*! ./screens/requirements/index */ "./resources/js/screens/requirements/index.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('jobs-screen', __webpack_require__(/*! ./screens/jobs/index */ "./resources/js/screens/jobs/index.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.mixin(_globals__WEBPACK_IMPORTED_MODULE_3__["default"]);
 new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   el: '#paket',
@@ -47616,7 +47619,7 @@ var actions = {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/paket/api/requirements");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(this.getters.getUrl('/api/requirements'));
 
             case 2:
               response = _context.sent;
@@ -47645,7 +47648,7 @@ var actions = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/paket/api/jobs", payload);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(this.getters.getUrl('/api/jobs'), payload);
 
             case 2:
               this.dispatch('collectRequirements');
@@ -47674,7 +47677,7 @@ var actions = {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/paket/api/jobs");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(this.getters.getUrl('/api/jobs'));
 
             case 2:
               response = _context3.sent;
@@ -47712,6 +47715,16 @@ var getters = {
   isNotProtectedRequirement: function isNotProtectedRequirement(state) {
     return function (name) {
       return state.protectedRequirements.indexOf(name) === -1;
+    };
+  },
+  getUrl: function getUrl() {
+    return function (uri) {
+      return '/' + window.Paket.baseUri + uri;
+    };
+  },
+  getJob: function getJob(state, getters) {
+    return function (jobId) {
+      return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(getters.getUrl("/api/jobs/".concat(jobId)));
     };
   }
 };

@@ -19,12 +19,8 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     routes: routes,
     mode: 'history',
-    base: '/' + window.Paket.path + '/',
+    base: '/' + window.Paket.baseUri,
 });
-
-Vue.component('application-screen', require('./screens/dashboard/index').default);
-Vue.component('requirements-screen', require('./screens/requirements/index').default);
-Vue.component('jobs-screen', require('./screens/jobs/index').default);
 
 Vue.mixin(globals);
 
