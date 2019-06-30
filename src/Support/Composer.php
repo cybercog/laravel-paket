@@ -62,7 +62,7 @@ final class Composer
     /**
      * Regenerate the Composer autoloader files.
      *
-     * @param array $extra
+     * @param string[] $extra
      * @return void
      */
     public function dumpAutoload(array $extra = []): void
