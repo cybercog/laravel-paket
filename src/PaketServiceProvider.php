@@ -20,6 +20,7 @@ use Cog\Laravel\Paket\Job\Listeners\JobListener;
 use Cog\Laravel\Paket\Job\Repositories\JobFileRepository;
 use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -34,6 +35,7 @@ final class PaketServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->registerMiddlewareGroups();
         $this->registerPublishes();
         $this->registerResources();
         $this->registerRoutes();
@@ -45,8 +47,8 @@ final class PaketServiceProvider extends ServiceProvider
     {
         return [
             'namespace' => 'Cog\Laravel\Paket\Http\Controllers',
-            'prefix' => config('paket.base_uri'),
-            'middleware' => 'web',
+            'prefix' => Config::get('paket.base_uri'),
+            'middleware' => 'paket',
         ];
     }
 
@@ -60,6 +62,11 @@ final class PaketServiceProvider extends ServiceProvider
         if (!$this->app->configurationIsCached()) {
             $this->mergeConfigFrom(__DIR__ . '/../config/paket.php', 'paket');
         }
+    }
+
+    private function registerMiddlewareGroups(): void
+    {
+        Route::middlewareGroup('paket', Config::get('paket.middlewares', []));
     }
 
     private function registerResources(): void
