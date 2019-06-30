@@ -55,7 +55,7 @@ final class Action
 
         $job = new Job(
             $type,
-            Uuid::uuid4()->toString(),
+            strval(Uuid::uuid4()),
             'Pending',
             Carbon::now(),
             new Process(),
