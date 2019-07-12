@@ -15,22 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('api')->namespace('Api')->name('paket.api.')->group(function () {
     Route::get('requirements')
-        ->uses('Requirements\Collect\Action')
+        ->uses('Requirements\CollectAction')
         ->name('requirements.collect');
 
     Route::get('jobs')
-        ->uses('Jobs\Collect\Action')
+        ->uses('Jobs\CollectAction')
         ->name('jobs.collect');
 
     Route::post('jobs')
-        ->uses('Jobs\Post\Action')
+        ->uses('Jobs\PostAction')
         ->name('jobs.post');
 
     Route::get('jobs/{job}')
-        ->uses('Jobs\Get\Action')
+        ->uses('Jobs\GetAction')
         ->name('jobs.get');
 });
 
-Route::get('{view?}', 'App\Action')
+Route::get('{view?}', 'AppAction')
     ->where('view', '(.*)')
     ->name('paket');

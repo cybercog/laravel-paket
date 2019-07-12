@@ -11,25 +11,24 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Post;
+namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs;
 
-use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Http\JsonResponse;
 
-final class Response implements ResponsableContract
+final class CollectResponse implements ResponsableContract
 {
-    private $job;
+    private $jobs;
 
-    public function __construct(JobContract $job)
+    public function __construct(iterable $jobs)
     {
-        $this->job = $job;
+        $this->jobs = $jobs;
     }
 
     /**
      * Create an HTTP response that represents the object.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function toResponse($request)
@@ -39,6 +38,11 @@ final class Response implements ResponsableContract
 
     private function toJson(): JsonResponse
     {
-        return response()->json($this->job->toArray(), 201);
+        $jobs = [];
+        foreach ($this->jobs as $job) {
+            $jobs[] = $job->toArray();
+        }
+
+        return response()->json($jobs);
     }
 }

@@ -11,18 +11,18 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements\Collect;
+namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements;
 
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use MCStreetguy\ComposerParser\Factory as ComposerParser;
 
-final class Action
+final class CollectAction
 {
     public function __invoke(): ResponsableContract
     {
         $requirements = $this->getInstalledRequirements();
 
-        return new Response($requirements);
+        return new CollectResponse($requirements);
     }
 
     private function getInstalledRequirements(): array
