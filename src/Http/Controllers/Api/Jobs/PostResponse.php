@@ -11,13 +11,13 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Get;
+namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs;
 
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 use Illuminate\Http\JsonResponse;
 
-final class Response implements ResponsableContract
+final class PostResponse implements ResponsableContract
 {
     private $job;
 
@@ -29,7 +29,7 @@ final class Response implements ResponsableContract
     /**
      * Create an HTTP response that represents the object.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function toResponse($request)
@@ -39,6 +39,6 @@ final class Response implements ResponsableContract
 
     private function toJson(): JsonResponse
     {
-        return response()->json($this->job->toArray());
+        return response()->json($this->job->toArray(), 201);
     }
 }

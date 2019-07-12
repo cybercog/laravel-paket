@@ -11,20 +11,14 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\Api\Requirements\Collect;
+namespace Cog\Laravel\Paket\Http\Controllers;
 
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response as IlluminateResponse;
+use Illuminate\Support\Facades\Config;
 
-final class Response implements ResponsableContract
+final class AppResponse implements ResponsableContract
 {
-    private $requirements;
-
-    public function __construct(iterable $requirements)
-    {
-        $this->requirements = $requirements;
-    }
-
     /**
      * Create an HTTP response that represents the object.
      *
@@ -33,11 +27,16 @@ final class Response implements ResponsableContract
      */
     public function toResponse($request)
     {
-        return $this->toJson();
+        return $this->toHtml();
     }
 
-    private function toJson(): JsonResponse
+    private function toHtml(): IlluminateResponse
     {
-        return response()->json($this->requirements);
+        return response()->view('paket::app', [
+            'cssFile' => 'app.css',
+            'paketScriptVariables' => [
+                'baseUri' => Config::get('paket.base_uri'),
+            ],
+        ]);
     }
 }

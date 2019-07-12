@@ -11,11 +11,11 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Post;
+namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-final class Request extends FormRequest
+final class PostRequest extends FormRequest
 {
     public function rules(): array
     {

@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs\Post;
+namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs;
 
 use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
@@ -27,7 +27,7 @@ use MCStreetguy\ComposerParser\Factory as ComposerParser;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class Action
+final class PostAction
 {
     private $jobs;
 
@@ -36,7 +36,7 @@ final class Action
         $this->jobs = $jobs;
     }
 
-    public function __invoke(Request $request): ResponsableContract
+    public function __invoke(PostRequest $request): ResponsableContract
     {
         $type = $request->input('type');
         $requirement = Requirement::fromArray($request->input('requirement'));
@@ -66,7 +66,7 @@ final class Action
 
         event(new JobHasBeenCreated($job));
 
-        return new Response($job);
+        return new PostResponse($job);
     }
 
     private function getInstalledRequirements(): array

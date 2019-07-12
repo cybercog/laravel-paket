@@ -11,14 +11,15 @@
 
 declare(strict_types=1);
 
-namespace Cog\Laravel\Paket\Http\Controllers\App;
+namespace Cog\Laravel\Paket\Http\Controllers\Api\Jobs;
 
+use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Illuminate\Contracts\Support\Responsable as ResponsableContract;
 
-final class Action
+final class GetAction
 {
-    public function __invoke(): ResponsableContract
+    public function __invoke(string $id, JobRepositoryContract $jobs): ResponsableContract
     {
-        return new Response();
+        return new GetResponse($jobs->getById($id));
     }
 }
