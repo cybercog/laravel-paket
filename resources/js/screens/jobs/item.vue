@@ -14,7 +14,7 @@
             Started: <time v-text="getCreatedAt(job)"></time>
         </div>
 
-        <div class="p-4 text-nowrap text-left bg-black mt-4" v-show="processOutput">
+        <div class="p-4 text-left bg-black mt-4" v-show="processOutput">
             <code class="bg-black text-white border-0" v-html="processOutput"></code>
         </div>
     </div>
