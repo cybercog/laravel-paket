@@ -16,63 +16,83 @@ namespace Cog\Laravel\Paket\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Console\DetectsApplicationNamespace;
 use Illuminate\Support\Facades\File;
+use Symfony\Component\Console\Input\InputOption;
 
 final class Setup extends Command
 {
     use DetectsApplicationNamespace;
 
-    protected $signature = 'paket:setup {--force : Overwrite any existing files}';
+    protected $name = 'paket:setup';
 
     protected $description = 'Set up all of the Paket resources';
 
     public function handle(): int
     {
+        $this->warn('Paket scaffolding set up starting');
+        $this->publishAssets();
+        $this->createPaketStorage(storage_path('paket'));
+        $this->createPaketJobsStorage(storage_path('paket/jobs'));
+        $this->info('Paket scaffolding set up completed');
+
+        return 0;
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Overwrite any existing files'],
+        ];
+    }
+
+    private function publishAssets(): void
+    {
         if ($this->option('force')) {
-            $this->comment('Force publishing Paket Assets...');
+            $this->warn('Force publishing Paket assets');
             $this->call('vendor:publish', [
                 '--tag' => 'paket-assets',
                 '--force' => $this->option('force'),
             ]);
         } else {
-            $this->comment('Publishing Paket Assets...');
+            $this->warn('Publishing Paket assets');
             $this->call('vendor:publish', [
                 '--tag' => 'paket-assets',
             ]);
         }
-
-        $paketStoragePath = storage_path('paket');
-        $this->comment("Creating `{$paketStoragePath}` Directory...");
-        $this->createPaketStorage($paketStoragePath);
-
-        $paketJobsStoragePath = storage_path('paket/jobs');
-        $this->comment("Creating `{$paketJobsStoragePath}` Directory...");
-        $this->createPaketJobsStorage($paketJobsStoragePath);
-
-        $this->info('Paket scaffolding set up completed.');
-
-        return 0;
+        $this->info('Published Paket assets');
     }
 
     private function createPaketStorage(string $path): void
     {
+        $this->createDirectory($path);
         $this->createGitIgnore($path, "*\n!jobs/\n!.gitignore\n");
     }
 
     private function createPaketJobsStorage(string $path): void
     {
+        $this->createDirectory($path);
         $this->createGitIgnore($path, "*\n!.gitignore\n");
+    }
+
+    private function createDirectory(string $path): void
+    {
+        if (file_exists($path)) {
+            return;
+        }
+
+        $this->warn("Creating `{$path}` directory");
+        mkdir($path);
+        $this->info("Created `{$path}` directory");
     }
 
     private function createGitIgnore(string $path, string $content): void
     {
-        if (!file_exists($path)) {
-            mkdir($path);
-        }
-
         $filepath = sprintf('%s/.gitignore', $path);
-
-        if (!file_exists($filepath)) {
-            File::put($filepath, $content);
+        if (file_exists($filepath)) {
+            return;
         }
+
+        $this->warn("Creating `{$filepath}` file");
+        File::put($filepath, $content);
+        $this->info("Created `{$filepath}` file");
     }
 }
