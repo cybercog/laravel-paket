@@ -54,7 +54,7 @@ Paket exposes a dashboard at `/paket`. By default, you will only be able to acce
 
 ## License
 
-- `Laravel Paket` package is open-sourced software licensed under the [MIT License](LICENSE) by [Anton Komarev](https://komarev.com).
+- `Laravel Paket` package is open-sourced software licensed under the [MIT License](LICENSE) by [Anton Komarev].
 - `Shipping` logo image licensed under [Creative Commons 3.0](https://creativecommons.org/licenses/by/3.0/us/) by Gan Khoon Lay.
 
 ## About CyberCog
@@ -64,3 +64,5 @@ Paket exposes a dashboard at `/paket`. By default, you will only be able to acce
 - [Follow us on Twitter](https://twitter.com/cybercog)
 
 <a href="https://cybercog.ru"><img src="https://cloud.githubusercontent.com/assets/1849174/18418932/e9edb390-7860-11e6-8a43-aa3fad524664.png" alt="CyberCog"></a>
+
+[Anton Komarev]: https://komarev.com
