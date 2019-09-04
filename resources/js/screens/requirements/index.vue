@@ -1,54 +1,44 @@
 <template>
-    <div class="container mt-4">
-        <div class="d-flex mt-4">
-            <h1>Requirements</h1>
-        </div>
+    <div class="container mx-auto mt-6">
+        <h1 class="text-2xl">Requirements</h1>
 
         <install-form class="mt-4"></install-form>
 
-        <h2 class="mt-4">Roots</h2>
+        <h2 class="text-xl mt-4">Roots</h2>
 
-        <h3 class="mt-4">Essential</h3>
-        <ul class="list-unstyled mb-0">
-            <li class="mt-2" v-for="(requirement, index) in getRequirements('roots', 'essential')" v-bind:key="`${requirement.name}-${index}`">
-                <requirement
-                    :requirement="requirement"
-                    :is-dependency="false"
-                ></requirement>
-            </li>
-        </ul>
+        <h3 class="text-lg mt-4">Essential</h3>
+        <div class="rounded overflow-hidden shadow mt-3 p-4" v-for="(requirement, index) in getRequirements('roots', 'essential')" v-bind:key="`${requirement.name}-${index}`">
+            <requirement
+                :requirement="requirement"
+                :is-dependency="false"
+            ></requirement>
+        </div>
 
-        <h3 class="mt-4">Development</h3>
-        <ul class="list-unstyled mb-0">
-            <li class="mt-2" v-for="(requirement, index) in getRequirements('roots', 'dev')" v-bind:key="`${requirement.name}-${index}`">
-                <requirement
-                    :requirement="requirement"
-                    :is-dependency="false"
-                ></requirement>
-            </li>
-        </ul>
+        <h3 class="text-lg mt-4">Development</h3>
+        <div class="rounded overflow-hidden shadow mt-3 p-4" v-for="(requirement, index) in getRequirements('roots', 'dev')" v-bind:key="`${requirement.name}-${index}`">
+            <requirement
+                :requirement="requirement"
+                :is-dependency="false"
+            ></requirement>
+        </div>
 
-        <h2 class="mt-4">Dependencies</h2>
+        <h2 class="text-xl mt-4">Dependencies</h2>
 
-        <h3 class="mt-4">Essential</h3>
-        <ul class="list-unstyled mb-0">
-            <li class="mt-2" v-for="(requirement, index) in getRequirements('dependencies', 'essential')" v-bind:key="`${requirement.name}-${index}`">
-                <requirement
-                    :requirement="requirement"
-                    :is-dependency="true"
-                ></requirement>
-            </li>
-        </ul>
+        <h3 class="text-lg mt-4">Essential</h3>
+        <div class="rounded overflow-hidden shadow mt-3 p-4" v-for="(requirement, index) in getRequirements('dependencies', 'essential')" v-bind:key="`${requirement.name}-${index}`">
+            <requirement
+                :requirement="requirement"
+                :is-dependency="false"
+            ></requirement>
+        </div>
 
-        <h3 class="mt-4">Development</h3>
-        <ul class="list-unstyled mb-0">
-            <li class="mt-2" v-for="(requirement, index) in getRequirements('dependencies', 'dev')" v-bind:key="`${requirement.name}-${index}`">
-                <requirement
-                    :requirement="requirement"
-                    :is-dependency="true"
-                ></requirement>
-            </li>
-        </ul>
+        <h3 class="text-lg mt-4">Development</h3>
+        <div class="rounded overflow-hidden shadow mt-3 p-4" v-for="(requirement, index) in getRequirements('dependencies', 'dev')" v-bind:key="`${requirement.name}-${index}`">
+            <requirement
+                :requirement="requirement"
+                :is-dependency="false"
+            ></requirement>
+        </div>
     </div>
 </template>
 

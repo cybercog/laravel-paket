@@ -1,8 +1,8 @@
 <template>
-    <div class="input-group">
+    <div class="flex">
         <input
             type="text"
-            class="form-control"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             :readonly="isFormDisabled()"
             v-model="command"
             v-on:keyup.enter="install()"
@@ -10,7 +10,7 @@
         <div class="input-group-append">
             <button
                 type="submit"
-                class="btn btn-primary"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 :disabled="isFormDisabled()"
                 v-text="buttonText"
                 v-on:click="install()"

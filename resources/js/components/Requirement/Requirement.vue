@@ -1,22 +1,23 @@
 <template>
-    <div class="card">
-        <div class="card-body d-flex">
+    <div class="flex">
+        <div>
+            <h4 class="text-gray-700 font-mono">{{ requirement.name }}</h4>
+            <div class="mt-2">
+                <span class="bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3">{{ requirement.version }}</span>
+                <span class="bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" v-if="getLicense(requirement)">{{ getLicense(requirement) }}</span>
+            </div>
             <div>
-                <h4 class="mb-0 text-muted">{{ requirement.name }}<span class="ml-2">:{{ requirement.version }}</span></h4>
-                <span class="badge">{{ getLicense(requirement) }}</span>
-                <div>
-                    <suggestions
-                        :requirement="requirement"
-                    ></suggestions>
-                </div>
-            </div>
-            <div class="ml-auto">
-                <uninstall-button
-                    class="btn btn-outline-danger"
+                <suggestions
                     :requirement="requirement"
-                    v-if="isUninstallable()"
-                ></uninstall-button>
+                ></suggestions>
             </div>
+        </div>
+        <div class="ml-auto">
+            <uninstall-button
+                class="btn btn-outline-danger"
+                :requirement="requirement"
+                v-if="isUninstallable()"
+            ></uninstall-button>
         </div>
     </div>
 </template>

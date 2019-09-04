@@ -2,7 +2,7 @@
     <div v-show="hasSuggestions()" class="mt-4">
         <h5>
             <a data-toggle="collapse" :href="`#${getCollapsibleId(requirement.name)}`" role="button" aria-expanded="false">
-                <span class="badge">
+                <span class="text-purple-800 hover:text-purple hover:underline">
                     Suggestions
                     ({{ getInstalledSuggestionsCount() }}/{{ getTotalSuggestionsCount() }})
                 </span>
@@ -21,8 +21,8 @@
                         v-if="isInstallable(suggestion)"
                         :requirement="getRequirementFromSuggestion(suggestion)"
                     ></install-button>
-                    <span class="badge">{{ suggestion }}</span>
-                    {{ description }}
+                    <span class="font-mono">{{ suggestion }}</span>
+                    <span class="text-gray-600">{{ description }}</span>
                 </li>
             </ul>
         </div>

@@ -1,6 +1,7 @@
 <template>
     <button
         type="button"
+        class="bg-red-500 hover:bg-red-700 text-white font-bold px-2 text-sm rounded focus:outline-none focus:shadow-outline"
         :disabled="isFormDisabled()"
         v-text="buttonText"
         v-on:click="uninstall()"
