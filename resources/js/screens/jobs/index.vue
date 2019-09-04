@@ -1,21 +1,19 @@
 <template>
-    <div class="container mt-4">
-        <h1>Jobs</h1>
+    <div class="container mx-auto mt-6">
+        <h1 class="text-2xl">Jobs</h1>
 
-        <ul class="list-group">
-            <li class="list-group-item" v-for="job in getJobs">
-                <div class="d-flex">
-                    <div>
-                        <div class="text-monospace" v-text="getCommandLine(job)"></div>
-                        <router-link class="text-monospace" :to="linkTo(job)" v-text="getId(job)"></router-link>
-                    </div>
-                    <div class="text-muted ml-auto">
-                        <div v-text="getCreatedAt(job)"></div>
-                        <job-status-badge :status="getStatus(job)" class="ml-auto"></job-status-badge>
-                    </div>
+        <div class="rounded overflow-hidden shadow mt-3" v-for="job in getJobs">
+            <div class="flex p-4">
+                <div>
+                    <div class="font-mono" v-text="getCommandLine(job)"></div>
+                    <router-link class="font-mono text-purple-800 hover:text-purple-900 hover:underline" :to="linkTo(job)" v-text="getId(job)"></router-link>
                 </div>
-            </li>
-        </ul>
+                <div class="text-muted ml-auto text-right">
+                    <div class="text-gray-700 text-xs font-mono" v-text="getCreatedAt(job)"></div>
+                    <job-status-badge :status="getStatus(job)"></job-status-badge>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 

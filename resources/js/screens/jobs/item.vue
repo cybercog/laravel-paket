@@ -1,17 +1,17 @@
 <template>
-    <div class="container mt-4">
-        <h1>
+    <div class="container mx-auto mt-6">
+        <h1 class="text-2xl">
             <router-link :to="{name: 'jobs'}">Jobs</router-link>
         </h1>
 
-        <div class="d-flex mt-4 align-items-center">
-            <h4>{{ job.id }}</h4>
-            <div class="ml-auto">
-                <job-status-badge :status="getStatus(job)"></job-status-badge>
-            </div>
+        <div class="flex mt-3">
+            <h4 class="text-xl font-mono">{{ job.id }}</h4>
         </div>
-        <div>
-            Started: <time v-text="getCreatedAt(job)"></time>
+        <div class="flex mt-3">
+            <span class="bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3">
+                Started: <time v-text="getCreatedAt(job)"></time>
+            </span>
+            <job-status-badge :status="getStatus(job)"></job-status-badge>
         </div>
 
         <div class="p-4 text-left bg-black mt-4" v-show="processOutput">

@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto">
-        <div class="rounded overflow-hidden shadow-lg mt-6">
+        <div class="rounded overflow-hidden shadow mt-6">
             <h2 class="text-xl px-6 py-3 bg-gray-200">Environment</h2>
             <div class="flex flex-wrap">
                 <div class="px-6 py-4">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="rounded overflow-hidden shadow-lg mt-6">
+        <div class="rounded overflow-hidden shadow mt-6">
             <h2 class="text-xl px-6 py-3 bg-gray-200">Requirements</h2>
             <div class="flex flex-wrap">
                 <div class="px-6 py-4">
