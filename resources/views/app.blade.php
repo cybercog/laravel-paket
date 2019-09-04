@@ -15,34 +15,58 @@
 
     <!-- Styles -->
     <link href="{{ asset(mix('app.css', 'vendor/paket')) }}" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .lnr {
+            display: inline-block;
+            fill: currentColor;
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.05em;
+        }
+
+        .lnr-rocket {
+            color: white;
+            /* We can use "color" for setting the color
+            of the SVG because we set its "fill" to
+            "currentColor" */
+            font-size: 40px;
+            /* We can use "font-size" for changing the size
+            of the SVG because its width and height were
+            set 1em.
+            To get crisp results, use sizes that are
+            a multiple of 20; because Linearicons was
+            designed on a 20 by 20 grid. */
+        }
+    </style>
 </head>
 <body class="bg-white">
     <div id="paket" v-cloak>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm sticky-top">
-            <router-link to="/" class="navbar-brand">
-                Paket
-            </router-link>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <router-link active-class="active" :to="{name: 'requirements'}" class="nav-link">
-                            Requirements
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link active-class="active" :to="{name: 'jobs'}" class="nav-link">
-                            Jobs
-                        </router-link>
-                    </li>
-                </ul>
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                </ul>
+        <nav class="flex items-center justify-between flex-wrap bg-indigo-800 p-3">
+            <div class="flex items-center flex-shrink-0 text-white mr-6">
+                <span class="font-semibold text-xl tracking-tight">
+                    <router-link to="/" class="navbar-brand">
+                        Paket
+                    </router-link>
+                </span>
+            </div>
+            <div class="block lg:hidden">
+                <button class="flex items-center px-3 py-2 border rounded text-gray-400 border-gray-400 hover:text-white hover:border-white">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                </button>
+            </div>
+            <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+                <div class="text-sm lg:flex-grow">
+                    <router-link active-class="active" :to="{name: 'requirements'}" class="block mt-4 lg:inline-block lg:mt-0 text-gray-400 hover:text-white mr-4">
+                        Requirements
+                    </router-link>
+                    <router-link active-class="active" :to="{name: 'jobs'}" class="block mt-4 lg:inline-block lg:mt-0 text-gray-400 hover:text-white">
+                        Jobs
+                    </router-link>
+                </div>
+                <div class="hidden">
+                    <a href="#console" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-purple-800 hover:bg-white mt-4 lg:mt-0">Console</a>
+                </div>
             </div>
         </nav>
 

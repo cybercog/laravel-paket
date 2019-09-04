@@ -1,30 +1,51 @@
 <template>
-    <div class="container mt-4">
-        <h1>Paket</h1>
+    <div class="container mx-auto">
+        <div class="rounded overflow-hidden shadow-lg mt-6">
+            <h2 class="text-xl px-6 py-3 bg-gray-200">Environment</h2>
+            <div class="flex flex-wrap">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-lg">
+                        Laravel
+                        <span class="bg-gray-200 px-2 py-1 text-sm font-semibold text-gray-700">{{ getRequirementVersion('laravel/framework') }}</span>
+                    </div>
+                </div>
+                <div class="px-6 py-4">
+                    <div class="font-bold text-lg">
+                        Paket
+                        <span class="bg-gray-200 px-2 py-1 text-sm font-semibold text-gray-700">{{ getRequirementVersion('cybercog/laravel-paket') }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rounded overflow-hidden shadow-lg mt-6">
+            <h2 class="text-xl px-6 py-3 bg-gray-200">Requirements</h2>
+            <div class="flex flex-wrap">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-lg">
+                        Essential
+                        <span class="bg-gray-200 px-2 py-1 text-sm font-semibold text-gray-700">{{ getRequirementsCount('roots', 'essential') }} roots
+                        +
+                        {{ getRequirementsCount('dependencies', 'essential') }} dependencies</span>
+                    </div>
+                </div>
+                <div class="px-6 py-4">
+                    <div class="font-bold text-lg">
+                        Development
+                        <span class="bg-gray-200 px-2 py-1 text-sm font-semibold text-gray-700">{{ getRequirementsCount('roots', 'dev') }} roots
+                        +
+                        {{ getRequirementsCount('dependencies', 'dev') }} dependencies</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <ul class="list-group list-group-flush mt-4">
             <li class="list-group-item">
-                <strong>Paket Version:</strong>
-                {{ getRequirementVersion('cybercog/laravel-paket') }}
+
             </li>
             <li class="list-group-item">
-                <strong>Laravel Version:</strong>
-                {{ getRequirementVersion('laravel/framework') }}
-            </li>
-        </ul>
-        <h2 class="mt-4">Requirements</h2>
-        <ul class="list-group list-group-flush mt-4">
-            <li class="list-group-item">
-                <strong>Essential:</strong>
-                {{ getRequirementsCount('roots', 'essential') }} roots
-                +
-                {{ getRequirementsCount('dependencies', 'essential') }} dependencies
-            </li>
-            <li class="list-group-item">
-                <strong>Development:</strong>
-                {{ getRequirementsCount('roots', 'dev') }} roots
-                +
-                {{ getRequirementsCount('dependencies', 'dev') }} dependencies
+
             </li>
         </ul>
     </div>
@@ -92,7 +113,17 @@
             findRequirementVersion(requirements, name) {
                 const results = requirements.filter(requirement => requirement.name === name);
 
-                return results.length > 0 ? results[0].version : null;
+                if (results.length === 0) {
+                    return null;
+                }
+
+                const version = results[0].version;
+
+                if (version.substr(0, 1) === 'v') {
+                    return version;
+                }
+
+                return `v${version}`;
             },
         },
     }
