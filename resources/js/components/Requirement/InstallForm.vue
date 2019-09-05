@@ -1,21 +1,22 @@
 <template>
-    <div class="input-group">
+    <div class="flex">
         <input
             type="text"
-            class="form-control"
+            class="shadow appearance-none border rounded-l w-full py-2 px-3 text-gray-900 placeholder-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             :readonly="isFormDisabled()"
             v-model="command"
             v-on:keyup.enter="install()"
+            placeholder="Type vendor/package OR composer require vendor/package"
         />
-        <div class="input-group-append">
-            <button
-                type="submit"
-                class="btn btn-primary"
-                :disabled="isFormDisabled()"
-                v-text="buttonText"
-                v-on:click="install()"
-            ></button>
-        </div>
+        <button
+            type="submit"
+            class="bg-indigo-600 hover:bg-indigo-800 text-indigo-100 hover:text-white font-semibold py-2 px-4 rounded-r uppercase"
+            :disabled="isFormDisabled()"
+            v-text="buttonText"
+            v-on:click="install()"
+        >
+            Install
+        </button>
     </div>
 </template>
 

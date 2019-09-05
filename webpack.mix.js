@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
 const webpack = require('webpack');
 
 /*
@@ -20,6 +21,8 @@ mix.options({
             },
         },
     },
+    processCssUrls: false,
+    postCss: [tailwindcss('./tailwind.js')],
 })
     .setPublicPath('public')
     .js('resources/js/app.js', 'public')

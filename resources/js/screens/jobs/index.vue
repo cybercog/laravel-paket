@@ -1,21 +1,25 @@
 <template>
-    <div class="container mt-4">
-        <h1>Jobs</h1>
+    <div class="container mx-auto mt-6">
+        <h1 class="text-2xl">Jobs</h1>
 
-        <ul class="list-group">
-            <li class="list-group-item" v-for="job in getJobs">
-                <div class="d-flex">
-                    <div>
-                        <div class="text-monospace" v-text="getCommandLine(job)"></div>
-                        <router-link class="text-monospace" :to="linkTo(job)" v-text="getId(job)"></router-link>
+        <div class="rounded overflow-hidden shadow mt-3" v-for="job in getJobs">
+            <div class="p-4">
+                <div>
+                    <div class="font-mono" v-text="getCommandLine(job)"></div>
+                </div>
+                <div class="flex">
+                    <div class="mt-2">
+                        <router-link class="font-mono text-indigo-800 hover:text-indigo-900 hover:underline" :to="linkTo(job)" v-text="getId(job)"></router-link>
                     </div>
-                    <div class="text-muted ml-auto">
-                        <div v-text="getCreatedAt(job)"></div>
-                        <job-status-badge :status="getStatus(job)" class="ml-auto"></job-status-badge>
+                    <div class="flex mt-3 ml-auto mr-3">
+                        <span class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" title="Execution start time">
+                            <time v-text="getCreatedAt(job)"></time>
+                        </span>
+                        <job-status-badge :status="getStatus(job)"></job-status-badge>
                     </div>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 </template>
 

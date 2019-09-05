@@ -6,8 +6,6 @@ import globals from './globals';
 import routes from './routes';
 import store from './store';
 
-require('bootstrap');
-
 const token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {

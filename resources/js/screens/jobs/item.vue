@@ -1,21 +1,26 @@
 <template>
-    <div class="container mt-4">
-        <h1>
-            <router-link :to="{name: 'jobs'}">Jobs</router-link>
+    <div class="container mx-auto mt-6">
+        <h1 class="text-2xl underline">
+            <router-link class="text-indigo-700 hover:text-indigo-900" :to="{name: 'jobs'}">Jobs</router-link>
         </h1>
 
-        <div class="d-flex mt-4 align-items-center">
-            <h4>{{ job.id }}</h4>
-            <div class="ml-auto">
-                <job-status-badge :status="getStatus(job)"></job-status-badge>
-            </div>
-        </div>
-        <div>
-            Started: <time v-text="getCreatedAt(job)"></time>
-        </div>
+        <div class="rounded overflow-hidden shadow mt-3">
+            <div class="flex">
+                <div class="mt-3 mx-3">
+                    <h4 class="text-xl font-mono" v-text="job.id"></h4>
+                </div>
 
-        <div class="p-4 text-left bg-black mt-4" v-show="processOutput">
-            <code class="bg-black text-white border-0" v-html="processOutput"></code>
+                <div class="flex mt-3 ml-auto mr-3">
+                    <span class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" title="Execution start time">
+                        <time v-text="getCreatedAt(job)"></time>
+                    </span>
+                    <job-status-badge :status="getStatus(job)"></job-status-badge>
+                </div>
+            </div>
+
+            <div class="p-4 text-left bg-black mt-4" v-show="processOutput">
+                <code class="bg-black text-white border-0" v-html="processOutput"></code>
+            </div>
         </div>
     </div>
 </template>

@@ -9,42 +9,43 @@
 
     <title>Paket | {{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link href="//fonts.gstatic.com" rel="dns-prefetch">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
     <link href="{{ asset(mix('app.css', 'vendor/paket')) }}" rel="stylesheet">
 </head>
 <body class="bg-white">
     <div id="paket" v-cloak>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm sticky-top">
-            <router-link to="/" class="navbar-brand">
-                Paket
-            </router-link>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <router-link active-class="active" :to="{name: 'requirements'}" class="nav-link">
+        <div class="bg-white sticky top-0">
+            <nav class="flex items-center justify-between flex-wrap container mx-auto border-b">
+                <div class="flex items-center flex-shrink-0 text-white mr-6">
+                    <span class="text-2xl tracking-tight">
+                        <router-link to="/" class="text-indigo-900 py-2">
+                            Paket
+                        </router-link>
+                    </span>
+                </div>
+                <div class="block lg:hidden">
+                    <button class="flex items-center px-3 py-2 border rounded text-purple-700 border-gray-400 hover:text-white hover:border-white">
+                        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                    </button>
+                </div>
+                <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+                    <div class="lg:flex-grow text-indigo-700">
+                        <router-link active-class="text-indigo-900 border-indigo-700 border-b-2" :to="{name: 'dashboard'}" class="block py-3 lg:inline-block lg:mt-0 hover:text-indigo-900 mr-4">
+                            Dashboard
+                        </router-link>
+                        <router-link active-class="text-indigo-900 border-indigo-700 border-b-2" :to="{name: 'requirements'}" class="block py-3 lg:inline-block lg:mt-0 hover:text-indigo-900 mr-4">
                             Requirements
                         </router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link active-class="active" :to="{name: 'jobs'}" class="nav-link">
+                        <router-link active-class="text-indigo-900 border-indigo-700 border-b-2" :to="{name: 'jobs'}" class="block py-3 lg:inline-block lg:mt-0 hover:text-indigo-900">
                             Jobs
                         </router-link>
-                    </li>
-                </ul>
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                </ul>
-            </div>
-        </nav>
+                    </div>
+                    <div class="hidden">
+                        <a href="#console" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-900 hover:bg-white mt-4 lg:mt-0">Console</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
 
         <main>
             <router-view></router-view>

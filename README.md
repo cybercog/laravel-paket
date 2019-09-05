@@ -38,19 +38,19 @@ Paket exposes a dashboard at `/paket`. By default, you will only be able to acce
 
 ### Dashboard
 
-![Laravel Paket Dashboard](https://user-images.githubusercontent.com/1849174/60401748-80cb9e00-9b8e-11e9-8a38-9d49ab418445.png)
+![Laravel Paket Dashboard](https://user-images.githubusercontent.com/1849174/64376712-90a1ab80-d031-11e9-928e-94b63a0f1d77.png)
 
-### Requirements List
+### Composer Requirements
 
-![Laravel Paket Requirements](https://user-images.githubusercontent.com/1849174/60401755-9fca3000-9b8e-11e9-86d0-b5c8d26b3238.png)
+![Laravel Paket Requirements](https://user-images.githubusercontent.com/1849174/64376736-9b5c4080-d031-11e9-8804-6effc3f31621.png)
 
-### Jobs List
+### Terminal Jobs
 
-![Laravel Paket Jobs](https://user-images.githubusercontent.com/1849174/60400934-4f99a080-9b83-11e9-8bb6-e3ce3fcce1a4.png)
+![Laravel Paket Jobs](https://user-images.githubusercontent.com/1849174/64376752-a1eab800-d031-11e9-8baf-8968cb915ae5.png)
 
-### Job
+### Terminal Job Details
 
-![Laravel Paket Job](https://user-images.githubusercontent.com/1849174/60400942-6fc95f80-9b83-11e9-9afd-f82f76980fb4.png)
+![Laravel Paket Job](https://user-images.githubusercontent.com/1849174/64376758-a616d580-d031-11e9-9a32-bf125d53894f.png)
 
 ## License
 

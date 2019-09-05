@@ -25,13 +25,13 @@
 
             getStatusClass() {
                 const statusClasses = {
-                    Pending: 'secondary',
-                    Running: 'primary',
-                    Success: 'success',
-                    Failed: 'danger',
+                    Pending: 'bg-yellow-200 border-b-2 border-yellow-400 text-yellow-800',
+                    Running: 'bg-blue-200 border-b-2 border-blue-400 text-blue-800',
+                    Success: 'bg-green-200 border-b-2 border-green-400 text-green-800',
+                    Failed: 'bg-red-200 border-b-2 border-red-400 text-red-800',
                 };
 
-                return `badge badge-${statusClasses[this.status]}`;
+                return `px-2 py-1 text-sm inline-block px-2 uppercase font-semibold font-mono tracking-wide ${statusClasses[this.status]}`;
             },
         },
     }
