@@ -32,20 +32,17 @@ After installing Paket, publish its assets to `public/vendor/paket` directory & 
 $ php artisan paket:setup
 ```
 
-## Usage
+## Quick Start
 
-Run Local Development Server
+Run local development server.
     
-If you have PHP installed locally and you would like to use PHP's built-in development server to serve your application,
-you may use the serve Artisan command. This command will start a development server at ``.
-
 ```sh
 php artisan serve 
 ```
 
 Go to URL [http://localhost:8000/paket](http://localhost:8000/paket) in your browser.
 
-By default, you will only be able to access this dashboard in the `local` environment.
+You will only be able to access this dashboard when `APP_ENV=local` is set in `.env` file.
 
 ### Dashboard
 
