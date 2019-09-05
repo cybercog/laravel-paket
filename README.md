@@ -45,7 +45,7 @@ $ php artisan paket:setup --force
 Run local development server.
     
 ```sh
-php artisan serve 
+$ php artisan serve 
 ```
 
 Go to URL [http://localhost:8000/paket](http://localhost:8000/paket) in your browser.
