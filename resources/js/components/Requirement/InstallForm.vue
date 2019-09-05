@@ -10,7 +10,7 @@
         />
         <button
             type="submit"
-            class="bg-indigo-700 hover:bg-indigo-800 text-gray-300 hover:text-white font-semibold py-2 px-4 rounded-r"
+            class="bg-indigo-600 hover:bg-indigo-800 text-indigo-100 hover:text-white font-semibold py-2 px-4 rounded-r"
             :disabled="isFormDisabled()"
             v-text="buttonText"
             v-on:click="install()"

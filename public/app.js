@@ -12585,7 +12585,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("button", {
     staticClass:
-      "bg-blue-500 hover:bg-blue-700 text-white font-semibold px-2 text-sm rounded focus:outline-none focus:shadow-outline",
+      "bg-indigo-600 hover:bg-indigo-800 text-indigo-100 hover:text-white font-semibold px-2 py-1 text-sm rounded focus:outline-none focus:shadow-outline",
     attrs: { type: "button", disabled: _vm.isFormDisabled() },
     domProps: { textContent: _vm._s(_vm.buttonText) },
     on: {
@@ -12658,7 +12658,7 @@ var render = function() {
       "button",
       {
         staticClass:
-          "bg-indigo-700 hover:bg-indigo-800 text-gray-300 hover:text-white font-semibold py-2 px-4 rounded-r",
+          "bg-indigo-600 hover:bg-indigo-800 text-indigo-100 hover:text-white font-semibold py-2 px-4 rounded-r",
         attrs: { type: "submit", disabled: _vm.isFormDisabled() },
         domProps: { textContent: _vm._s(_vm.buttonText) },
         on: {
@@ -12872,7 +12872,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("button", {
     staticClass:
-      "bg-red-500 hover:bg-red-700 text-white font-semibold px-2 text-sm rounded focus:outline-none focus:shadow-outline",
+      "bg-red-600 hover:bg-red-800 text-red-100 hover:text-white font-semibold px-2 py-1 text-sm rounded focus:outline-none focus:shadow-outline",
     attrs: { type: "button", disabled: _vm.isFormDisabled() },
     domProps: { textContent: _vm._s(_vm.buttonText) },
     on: {

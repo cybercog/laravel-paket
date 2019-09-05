@@ -1,7 +1,7 @@
 <template>
     <button
         type="button"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold px-2 text-sm rounded focus:outline-none focus:shadow-outline"
+        class="bg-indigo-600 hover:bg-indigo-800 text-indigo-100 hover:text-white font-semibold px-2 py-1 text-sm rounded focus:outline-none focus:shadow-outline"
         :disabled="isFormDisabled()"
         v-text="buttonText"
         v-on:click="install()"
