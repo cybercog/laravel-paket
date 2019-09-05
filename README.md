@@ -48,7 +48,7 @@ Run local development server.
 $ php artisan serve 
 ```
 
-Go to URL <a href="http://localhost:8000/paket" target="_blank">http://localhost:8000/paket</a> in your browser.
+Go to URL [http://localhost:8000/paket](http://localhost:8000/paket) in your browser.
 
 You will only be able to access this dashboard when `APP_ENV=local` is set in `.env` file.
 
