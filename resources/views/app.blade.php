@@ -57,11 +57,14 @@
                     </button>
                 </div>
                 <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-                    <div class="text-sm lg:flex-grow">
-                        <router-link active-class="active" :to="{name: 'requirements'}" class="block mt-4 lg:inline-block lg:mt-0 text-gray-400 hover:text-white mr-4">
+                    <div class="text-sm lg:flex-grow text-gray-400">
+                        <router-link active-class="text-white underline" :to="{name: 'dashboard'}" class="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 font-semibold">
+                            Dashboard
+                        </router-link>
+                        <router-link active-class="text-white underline" :to="{name: 'requirements'}" class="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 font-semibold">
                             Requirements
                         </router-link>
-                        <router-link active-class="active" :to="{name: 'jobs'}" class="block mt-4 lg:inline-block lg:mt-0 text-gray-400 hover:text-white">
+                        <router-link active-class="text-white underline" :to="{name: 'jobs'}" class="block mt-4 lg:inline-block lg:mt-0 hover:text-white font-semibold">
                             Jobs
                         </router-link>
                     </div>

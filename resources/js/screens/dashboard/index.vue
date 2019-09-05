@@ -1,39 +1,77 @@
 <template>
-    <div class="container mx-auto">
-        <div class="rounded overflow-hidden shadow mt-6">
-            <h2 class="text-xl px-6 py-3 bg-gray-200">Environment</h2>
-            <div class="flex flex-wrap">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-lg">
-                        Laravel
-                        <span class="bg-gray-200 px-2 py-1 text-sm font-semibold text-gray-700">{{ getRequirementVersion('laravel/framework') }}</span>
+    <div class="container mx-auto mt-6">
+        <h1 class="text-2xl">Environment</h1>
+
+        <div class="flex flex-wrap -mx-2">
+            <div class="w-1/4 mx-2">
+                <div class="rounded overflow-hidden shadow mt-6">
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-lg flex items-center">
+                            <img
+                                class="w-10 h-10 rounded mr-4"
+                                src="https://avatars.githubusercontent.com/u/958072?s=200&v=4"
+                                alt="Laravel Logo"
+                            />
+                            Laravel
+                            <span
+                                class="px-2 py-1 text-xl font-semibold text-purple-900"
+                                v-text="getRequirementVersion('laravel/framework')"
+                            ></span>
+                        </div>
                     </div>
                 </div>
-                <div class="px-6 py-4">
-                    <div class="font-bold text-lg">
-                        Paket
-                        <span class="bg-gray-200 px-2 py-1 text-sm font-semibold text-gray-700">{{ getRequirementVersion('cybercog/laravel-paket') }}</span>
+            </div>
+            <div class="w-1/4 mx-2">
+                <div class="rounded overflow-hidden shadow mt-6">
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-lg flex items-center">
+                            <img
+                                class="w-10 h-10 rounded mr-4"
+                                src="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
+                                alt="Paket Logo"
+                            />
+                            Paket
+                            <span
+                                class="px-2 py-1 text-xl font-semibold text-purple-900"
+                                v-text="getRequirementVersion('cybercog/laravel-paket')"
+                            ></span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="rounded overflow-hidden shadow mt-6">
-            <h2 class="text-xl px-6 py-3 bg-gray-200">Requirements</h2>
-            <div class="flex flex-wrap">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-lg">
-                        Essential
-                        <span class="bg-gray-200 px-2 py-1 text-sm font-semibold text-gray-700">{{ getRequirementsCount('roots', 'essential') }} roots
-                        +
-                        {{ getRequirementsCount('dependencies', 'essential') }} dependencies</span>
+
+        <h1 class="text-2xl mt-6">Requirements</h1>
+
+        <div class="flex flex-wrap -mx-2">
+            <div class="w-1/4 mx-2">
+                <div class="rounded overflow-hidden shadow mt-6">
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-lg">
+                            Essential
+                        </div>
+                        <div class="font-semibold text-gray-700 mt-2">
+                            {{ getRequirementsCount('roots', 'essential') }} roots
+                        </div>
+                        <div class="font-semibold text-gray-700 mt-2">
+                            {{ getRequirementsCount('dependencies', 'essential') }} dependencies
+                        </div>
                     </div>
                 </div>
-                <div class="px-6 py-4">
-                    <div class="font-bold text-lg">
-                        Development
-                        <span class="bg-gray-200 px-2 py-1 text-sm font-semibold text-gray-700">{{ getRequirementsCount('roots', 'dev') }} roots
-                        +
-                        {{ getRequirementsCount('dependencies', 'dev') }} dependencies</span>
+            </div>
+            <div class="w-1/4 mx-2">
+                <div class="rounded overflow-hidden shadow mt-6">
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-lg">
+                            Development
+                        </div>
+
+                        <div class="font-semibold text-gray-700 mt-2">
+                            {{ getRequirementsCount('roots', 'dev') }} roots
+                        </div>
+                        <div class="font-semibold text-gray-700 mt-2">
+                            {{ getRequirementsCount('dependencies', 'dev') }} dependencies
+                        </div>
                     </div>
                 </div>
             </div>
