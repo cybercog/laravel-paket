@@ -2,7 +2,7 @@
     <div v-show="hasSuggestions()" class="mt-6 bg-gray-200 -mb-4 -ml-4 -mr-4 p-3">
         <h5 class="flex">
             <button
-                class="text-gray-600 hover:text-gray-800 hover:underline font-mono font-semibold uppercase"
+                :class="getToggleButtonClass()"
                 v-text="getToggleButtonText()"
                 v-on:click="toggle()"
             ></button>
@@ -14,7 +14,7 @@
         </h5>
         <div :class="getListClass()">
             <ul>
-                <li v-for="(description, suggestion) in getSuggestions()" class="mt-2">
+                <li v-for="(description, suggestion) in getSuggestions()" class="mt-3">
                     <uninstall-button
                         class="btn btn-outline-danger btn-sm"
                         v-if="isUninstallable(suggestion)"
@@ -26,7 +26,7 @@
                         :requirement="getRequirementFromSuggestion(suggestion)"
                     ></install-button>
                     <span class="font-mono" v-text="suggestion"></span>
-                    <span class="text-gray-600" v-text="description"></span>
+                    <span class="text-gray-600 text-sm" v-text="description"></span>
                 </li>
             </ul>
         </div>
@@ -95,6 +95,12 @@
                     version: null,
                     isDevelopment: this.requirement.isDevelopment,
                 }
+            },
+
+            getToggleButtonClass() {
+                const classes = 'text-gray-600 hover:text-gray-800 hover:underline font-mono font-semibold uppercase';
+
+                return classes + ` ${this.isOpened ? 'underline text-indigo-900' : ''}`;
             },
 
             getToggleButtonText() {

@@ -50,10 +50,10 @@
                         <div class="font-semibold text-lg">
                             Essential
                         </div>
-                        <div class="font-semibold text-gray-700 mt-2">
+                        <div class="text-gray-700 mt-2">
                             {{ getRequirementsCount('roots', 'essential') }} roots
                         </div>
-                        <div class="font-semibold text-gray-700 mt-2">
+                        <div class="text-gray-700 mt-2">
                             {{ getRequirementsCount('dependencies', 'essential') }} dependencies
                         </div>
                     </div>
@@ -66,10 +66,10 @@
                             Development
                         </div>
 
-                        <div class="font-semibold text-gray-700 mt-2">
+                        <div class="text-gray-700 mt-2">
                             {{ getRequirementsCount('roots', 'dev') }} roots
                         </div>
-                        <div class="font-semibold text-gray-700 mt-2">
+                        <div class="text-gray-700 mt-2">
                             {{ getRequirementsCount('dependencies', 'dev') }} dependencies
                         </div>
                     </div>
