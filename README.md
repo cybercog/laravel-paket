@@ -34,7 +34,18 @@ $ php artisan paket:setup
 
 ## Usage
 
-Paket exposes a dashboard at `/paket`. By default, you will only be able to access this dashboard in the `local` environment.
+Run Local Development Server
+    
+If you have PHP installed locally and you would like to use PHP's built-in development server to serve your application,
+you may use the serve Artisan command. This command will start a development server at ``.
+
+```sh
+php artisan serve 
+```
+
+Go to URL [http://localhost:8000/paket](http://localhost:8000/paket) in your browser.
+
+By default, you will only be able to access this dashboard in the `local` environment.
 
 ### Dashboard
 
