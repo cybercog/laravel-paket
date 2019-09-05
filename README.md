@@ -32,6 +32,14 @@ After installing Paket, publish its assets to `public/vendor/paket` directory & 
 $ php artisan paket:setup
 ```
 
+## Upgrading
+
+When upgrading Paket, you should re-publish Paket's assets to `public/vendor/paket` directory with force setup command.
+
+```sh
+$ php artisan paket:setup --force
+```
+
 ## Quick Start
 
 Run local development server.
