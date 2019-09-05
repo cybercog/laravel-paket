@@ -4,6 +4,12 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 ## [Unreleased]
 
+## [1.2.0]
+
+### Changed
+
+- ([#33]) UI rebuilt with Tailwind CSS
+
 ## [1.1.0] - 2019-09-04
 
 ### Added
@@ -26,9 +32,11 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 - Initial release
 
-[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.1.0...master
+[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.2.0...master
+[1.2.0]: https://github.com/cybercog/laravel-paket/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/cybercog/laravel-paket/compare/1.0.0...1.1.0
 
+[#33]: https://github.com/cybercog/laravel-paket/pull/33
 [#32]: https://github.com/cybercog/laravel-paket/pull/32
 [#28]: https://github.com/cybercog/laravel-paket/pull/28
 [#27]: https://github.com/cybercog/laravel-paket/pull/27
