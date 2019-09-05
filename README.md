@@ -26,7 +26,7 @@ Pull in the package through Composer.
 $ composer require cybercog/laravel-paket --dev
 ```
 
-Run Artisan `paket:setup` command to publish Paket's assets to `public/vendor/paket` directory & create `storage/paket` directory for terminal job logs.
+Run Artisan `paket:setup` command to publish Paket assets to `public/vendor/paket` directory & create `storage/paket` directory for terminal job logs.
 
 ```sh
 $ php artisan paket:setup
