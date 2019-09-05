@@ -14,19 +14,23 @@
         </h5>
         <div :class="getListClass()">
             <ul>
-                <li v-for="(description, suggestion) in getSuggestions()" class="mt-3">
-                    <uninstall-button
-                        class="btn btn-outline-danger btn-sm"
-                        v-if="isUninstallable(suggestion)"
-                        :requirement="getRequirementFromSuggestion(suggestion)"
-                    ></uninstall-button>
-                    <install-button
-                        class="btn btn-primary btn-sm"
-                        v-if="isInstallable(suggestion)"
-                        :requirement="getRequirementFromSuggestion(suggestion)"
-                    ></install-button>
-                    <span class="font-mono" v-text="suggestion"></span>
-                    <span class="text-gray-600 text-xs" v-text="description"></span>
+                <li v-for="(description, suggestion) in getSuggestions()" class="flex hover:bg-gray-300 -mx-4 px-4 py-3">
+                    <div>
+                        <div class="font-mono" v-text="suggestion"></div>
+                        <div class="text-gray-600 text-xs" v-text="description"></div>
+                    </div>
+                    <div class="ml-auto w-1/5 text-right">
+                        <uninstall-button
+                            class="btn btn-outline-danger btn-sm"
+                            v-if="isUninstallable(suggestion)"
+                            :requirement="getRequirementFromSuggestion(suggestion)"
+                        ></uninstall-button>
+                        <install-button
+                            class="btn btn-primary btn-sm"
+                            v-if="isInstallable(suggestion)"
+                            :requirement="getRequirementFromSuggestion(suggestion)"
+                        ></install-button>
+                    </div>
                 </li>
             </ul>
         </div>

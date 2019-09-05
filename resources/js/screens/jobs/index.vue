@@ -12,7 +12,7 @@
                         <router-link class="font-mono text-indigo-800 hover:text-indigo-900 hover:underline" :to="linkTo(job)" v-text="getId(job)"></router-link>
                     </div>
                     <div class="flex mt-3 ml-auto mr-3">
-                        <span class="bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" title="Execution start time">
+                        <span class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" title="Execution start time">
                             <time v-text="getCreatedAt(job)"></time>
                         </span>
                         <job-status-badge :status="getStatus(job)"></job-status-badge>

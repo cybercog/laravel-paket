@@ -4,8 +4,8 @@
             <div>
                 <h4 class="text-gray-700 font-mono" v-text="requirement.name"></h4>
                 <div class="mt-2">
-                    <span class="bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" v-text="requirement.version"></span>
-                    <span class="bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" v-if="getLicense(requirement)" v-text="getLicense(requirement)"></span>
+                    <span class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-2" v-text="requirement.version"></span>
+                    <span class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-2" v-if="getLicense(requirement)" v-text="getLicense(requirement)"></span>
                 </div>
             </div>
             <div class="ml-auto">

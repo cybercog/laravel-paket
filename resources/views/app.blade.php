@@ -17,8 +17,8 @@
         <div class="bg-white sticky top-0">
             <nav class="flex items-center justify-between flex-wrap container mx-auto border-b">
                 <div class="flex items-center flex-shrink-0 text-white mr-6">
-                    <span class="text-xl tracking-tight">
-                        <router-link to="/" class="text-indigo-900">
+                    <span class="text-2xl tracking-tight">
+                        <router-link to="/" class="text-indigo-900 py-2">
                             Paket
                         </router-link>
                     </span>
@@ -30,13 +30,13 @@
                 </div>
                 <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                     <div class="lg:flex-grow text-indigo-700">
-                        <router-link active-class="text-indigo-900 border-indigo-700 border-b-4" :to="{name: 'dashboard'}" class="block py-2 lg:inline-block lg:mt-0 hover:text-indigo-900 mr-4">
+                        <router-link active-class="text-indigo-900 border-indigo-700 border-b-2" :to="{name: 'dashboard'}" class="block py-3 lg:inline-block lg:mt-0 hover:text-indigo-900 mr-4">
                             Dashboard
                         </router-link>
-                        <router-link active-class="text-indigo-900 border-indigo-700 border-b-4" :to="{name: 'requirements'}" class="block py-2 lg:inline-block lg:mt-0 hover:text-indigo-900 mr-4">
+                        <router-link active-class="text-indigo-900 border-indigo-700 border-b-2" :to="{name: 'requirements'}" class="block py-3 lg:inline-block lg:mt-0 hover:text-indigo-900 mr-4">
                             Requirements
                         </router-link>
-                        <router-link active-class="text-indigo-900 border-indigo-700 border-b-4" :to="{name: 'jobs'}" class="block py-2 lg:inline-block lg:mt-0 hover:text-indigo-900">
+                        <router-link active-class="text-indigo-900 border-indigo-700 border-b-2" :to="{name: 'jobs'}" class="block py-3 lg:inline-block lg:mt-0 hover:text-indigo-900">
                             Jobs
                         </router-link>
                     </div>
