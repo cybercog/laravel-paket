@@ -1,7 +1,7 @@
 <template>
     <div class="container mx-auto mt-6">
-        <h1 class="text-2xl">
-            <router-link :to="{name: 'jobs'}">Jobs</router-link>
+        <h1 class="text-2xl underline">
+            <router-link class="text-indigo-700 hover:text-indigo-900" :to="{name: 'jobs'}">Jobs</router-link>
         </h1>
 
         <div class="flex mt-3">

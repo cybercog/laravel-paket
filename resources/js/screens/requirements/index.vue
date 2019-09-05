@@ -4,7 +4,7 @@
 
         <install-form class="mt-4"></install-form>
 
-        <h2 class="text-xl mt-4">Roots</h2>
+        <h2 class="text-xl mt-6">Roots</h2>
 
         <div class="flex flex-wrap">
             <div class="w-1/2 pr-3">
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <h2 class="text-xl mt-4">Dependencies</h2>
+        <h2 class="text-xl mt-6">Dependencies</h2>
 
         <div class="flex flex-wrap">
             <div class="w-1/2 pr-3">
