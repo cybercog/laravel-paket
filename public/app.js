@@ -12585,7 +12585,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("button", {
     staticClass:
-      "bg-indigo-600 hover:bg-indigo-800 text-indigo-100 hover:text-white font-semibold px-2 py-1 text-sm rounded focus:outline-none focus:shadow-outline",
+      "bg-indigo-600 hover:bg-indigo-800 text-indigo-100 hover:text-white font-semibold px-2 py-1 text-xs rounded focus:outline-none focus:shadow-outline uppercase",
     attrs: { type: "button", disabled: _vm.isFormDisabled() },
     domProps: { textContent: _vm._s(_vm.buttonText) },
     on: {
@@ -12658,7 +12658,7 @@ var render = function() {
       "button",
       {
         staticClass:
-          "bg-indigo-600 hover:bg-indigo-800 text-indigo-100 hover:text-white font-semibold py-2 px-4 rounded-r",
+          "bg-indigo-600 hover:bg-indigo-800 text-indigo-100 hover:text-white font-semibold py-2 px-4 rounded-r uppercase",
         attrs: { type: "submit", disabled: _vm.isFormDisabled() },
         domProps: { textContent: _vm._s(_vm.buttonText) },
         on: {
@@ -12872,7 +12872,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("button", {
     staticClass:
-      "bg-red-600 hover:bg-red-800 text-red-100 hover:text-white font-semibold px-2 py-1 text-sm rounded focus:outline-none focus:shadow-outline",
+      "bg-red-600 hover:bg-red-800 text-red-100 hover:text-white font-semibold px-2 py-1 text-xs rounded focus:outline-none focus:shadow-outline uppercase",
     attrs: { type: "button", disabled: _vm.isFormDisabled() },
     domProps: { textContent: _vm._s(_vm.buttonText) },
     on: {
@@ -12911,32 +12911,27 @@ var render = function() {
       _c("div", { staticClass: "w-1/4 mx-2" }, [
         _c("div", { staticClass: "rounded overflow-hidden shadow mt-6" }, [
           _c("div", { staticClass: "px-6 py-4" }, [
-            _c(
-              "div",
-              { staticClass: "font-semibold text-lg flex items-center" },
-              [
-                _c("img", {
-                  staticClass: "w-10 h-10 rounded mr-4",
-                  attrs: {
-                    src:
-                      "https://avatars.githubusercontent.com/u/958072?s=200&v=4",
-                    alt: ""
-                  }
-                }),
-                _vm._v(
-                  "\n                        Laravel\n                        "
-                ),
-                _c("span", {
-                  staticClass:
-                    "px-2 py-1 text-xl font-semibold text-indigo-900",
-                  domProps: {
-                    textContent: _vm._s(
-                      _vm.getRequirementVersion("laravel/framework")
-                    )
-                  }
-                })
-              ]
-            )
+            _c("div", { staticClass: "text-lg flex items-center" }, [
+              _c("img", {
+                staticClass: "w-10 h-10 rounded mr-4",
+                attrs: {
+                  src:
+                    "https://avatars.githubusercontent.com/u/958072?s=200&v=4",
+                  alt: ""
+                }
+              }),
+              _vm._v(
+                "\n                        Laravel\n                        "
+              ),
+              _c("span", {
+                staticClass: "px-2 py-1 text-xl text-indigo-900 font-semibold",
+                domProps: {
+                  textContent: _vm._s(
+                    _vm.getRequirementVersion("laravel/framework")
+                  )
+                }
+              })
+            ])
           ])
         ])
       ]),
@@ -12944,32 +12939,27 @@ var render = function() {
       _c("div", { staticClass: "w-1/4 mx-2" }, [
         _c("div", { staticClass: "rounded overflow-hidden shadow mt-6" }, [
           _c("div", { staticClass: "px-6 py-4" }, [
-            _c(
-              "div",
-              { staticClass: "font-semibold text-lg flex items-center" },
-              [
-                _c("img", {
-                  staticClass: "w-10 h-10 rounded mr-4",
-                  attrs: {
-                    src:
-                      "https://avatars.githubusercontent.com/u/5887416?s=250&v=4",
-                    alt: ""
-                  }
-                }),
-                _vm._v(
-                  "\n                        Paket\n                        "
-                ),
-                _c("span", {
-                  staticClass:
-                    "px-2 py-1 text-xl font-semibold text-indigo-900",
-                  domProps: {
-                    textContent: _vm._s(
-                      _vm.getRequirementVersion("cybercog/laravel-paket")
-                    )
-                  }
-                })
-              ]
-            )
+            _c("div", { staticClass: "text-lg flex items-center" }, [
+              _c("img", {
+                staticClass: "w-10 h-10 rounded mr-4",
+                attrs: {
+                  src:
+                    "https://avatars.githubusercontent.com/u/5887416?s=250&v=4",
+                  alt: ""
+                }
+              }),
+              _vm._v(
+                "\n                        Paket\n                        "
+              ),
+              _c("span", {
+                staticClass: "px-2 py-1 text-xl font-semibold text-indigo-900",
+                domProps: {
+                  textContent: _vm._s(
+                    _vm.getRequirementVersion("cybercog/laravel-paket")
+                  )
+                }
+              })
+            ])
           ])
         ])
       ])
