@@ -1,7 +1,7 @@
 <template>
     <button
         type="button"
-        class="bg-red-600 hover:bg-red-800 text-red-100 hover:text-white font-semibold px-2 py-1 text-sm rounded focus:outline-none focus:shadow-outline"
+        class="bg-red-600 hover:bg-red-800 text-red-100 hover:text-white font-semibold px-2 py-1 text-sm rounded focus:outline-none focus:shadow-outline uppercase"
         :disabled="isFormDisabled()"
         v-text="buttonText"
         v-on:click="uninstall()"
