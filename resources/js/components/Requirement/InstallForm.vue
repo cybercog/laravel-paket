@@ -2,20 +2,21 @@
     <div class="flex">
         <input
             type="text"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="shadow appearance-none border rounded-l w-full py-2 px-3 text-gray-900 placeholder-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             :readonly="isFormDisabled()"
             v-model="command"
             v-on:keyup.enter="install()"
+            placeholder="Type vendor/package OR composer require vendor/package"
         />
-        <div class="input-group-append">
-            <button
-                type="submit"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                :disabled="isFormDisabled()"
-                v-text="buttonText"
-                v-on:click="install()"
-            ></button>
-        </div>
+        <button
+            type="submit"
+            class="bg-indigo-700 hover:bg-indigo-800 text-gray-300 hover:text-white font-semibold py-2 px-4 rounded-r"
+            :disabled="isFormDisabled()"
+            v-text="buttonText"
+            v-on:click="install()"
+        >
+            Install
+        </button>
     </div>
 </template>
 

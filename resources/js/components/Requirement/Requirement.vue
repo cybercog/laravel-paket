@@ -10,7 +10,6 @@
             </div>
             <div class="ml-auto">
                 <uninstall-button
-                    class="btn btn-outline-danger"
                     :requirement="requirement"
                     v-if="isUninstallable()"
                 ></uninstall-button>

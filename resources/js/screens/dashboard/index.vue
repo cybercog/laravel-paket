@@ -14,7 +14,7 @@
                             />
                             Laravel
                             <span
-                                class="px-2 py-1 text-xl font-semibold text-purple-900"
+                                class="px-2 py-1 text-xl font-semibold text-indigo-900"
                                 v-text="getRequirementVersion('laravel/framework')"
                             ></span>
                         </div>
@@ -32,7 +32,7 @@
                             />
                             Paket
                             <span
-                                class="px-2 py-1 text-xl font-semibold text-purple-900"
+                                class="px-2 py-1 text-xl font-semibold text-indigo-900"
                                 v-text="getRequirementVersion('cybercog/laravel-paket')"
                             ></span>
                         </div>

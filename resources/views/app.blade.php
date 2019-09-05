@@ -69,7 +69,7 @@
                         </router-link>
                     </div>
                     <div class="hidden">
-                        <a href="#console" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-purple-800 hover:bg-white mt-4 lg:mt-0">Console</a>
+                        <a href="#console" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-800 hover:bg-white mt-4 lg:mt-0">Console</a>
                     </div>
                 </div>
             </nav>

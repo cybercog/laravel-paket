@@ -6,7 +6,7 @@
             <div class="flex p-4">
                 <div>
                     <div class="font-mono" v-text="getCommandLine(job)"></div>
-                    <router-link class="font-mono text-purple-800 hover:text-purple-900 hover:underline" :to="linkTo(job)" v-text="getId(job)"></router-link>
+                    <router-link class="font-mono text-indigo-800 hover:text-indigo-900 hover:underline" :to="linkTo(job)" v-text="getId(job)"></router-link>
                 </div>
                 <div class="text-muted ml-auto text-right">
                     <div class="text-gray-700 text-xs font-mono" v-text="getCreatedAt(job)"></div>
