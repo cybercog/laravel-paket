@@ -26,7 +26,7 @@
                         :requirement="getRequirementFromSuggestion(suggestion)"
                     ></install-button>
                     <span class="font-mono" v-text="suggestion"></span>
-                    <span class="text-gray-600 text-sm" v-text="description"></span>
+                    <span class="text-gray-600 text-xs" v-text="description"></span>
                 </li>
             </ul>
         </div>

@@ -2606,8 +2606,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Suggestions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Suggestions */ "./resources/js/components/Requirement/Suggestions.vue");
-/* harmony import */ var _UninstallButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UninstallButton */ "./resources/js/components/Requirement/UninstallButton.vue");
+/* harmony import */ var _UninstallButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UninstallButton */ "./resources/js/components/Requirement/UninstallButton.vue");
 //
 //
 //
@@ -2628,15 +2627,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Suggestions: _Suggestions__WEBPACK_IMPORTED_MODULE_0__["default"],
-    UninstallButton: _UninstallButton__WEBPACK_IMPORTED_MODULE_1__["default"]
+    UninstallButton: _UninstallButton__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     requirement: {
@@ -2715,6 +2709,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2728,10 +2728,12 @@ __webpack_require__.r(__webpack_exports__);
       required: true
     }
   },
+  data: function data() {
+    return {
+      isOpened: false
+    };
+  },
   methods: {
-    getCollapsibleId: function getCollapsibleId(name) {
-      return "collapseSuggestions-" + name.replace('/', '');
-    },
     getInstalledSuggestionsCount: function getInstalledSuggestionsCount() {
       var _this = this;
 
@@ -2764,6 +2766,16 @@ __webpack_require__.r(__webpack_exports__);
         isDevelopment: this.requirement.isDevelopment
       };
     },
+    getToggleButtonClass: function getToggleButtonClass() {
+      var classes = 'text-gray-600 hover:text-gray-800 hover:underline font-mono font-semibold uppercase';
+      return classes + " ".concat(this.isOpened ? 'underline text-indigo-900' : '');
+    },
+    getToggleButtonText: function getToggleButtonText() {
+      return this.isOpened ? 'Hide Suggestions' : 'Show Suggestions';
+    },
+    getListClass: function getListClass() {
+      return this.isOpened ? 'mt-3' : 'hidden';
+    },
     isInstalled: function isInstalled(suggestionName) {
       return this.$store.getters.isRequirementInstalled(suggestionName);
     },
@@ -2780,6 +2792,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return this.$store.getters.isNotProtectedRequirement(suggestion);
+    },
+    toggle: function toggle() {
+      this.isOpened = !this.isOpened;
     }
   }
 });
@@ -3137,6 +3152,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3275,6 +3296,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -3364,6 +3390,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Requirement_InstallForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Requirement/InstallForm */ "./resources/js/components/Requirement/InstallForm.vue");
 /* harmony import */ var _components_Requirement_Requirement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Requirement/Requirement */ "./resources/js/components/Requirement/Requirement.vue");
+/* harmony import */ var _components_Requirement_Suggestions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Requirement/Suggestions */ "./resources/js/components/Requirement/Suggestions.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3424,12 +3451,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     InstallForm: _components_Requirement_InstallForm__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Requirement: _components_Requirement_Requirement__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Requirement: _components_Requirement_Requirement__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Suggestions: _components_Requirement_Suggestions__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   mounted: function mounted() {
     this.fetchData();
@@ -12544,7 +12585,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("button", {
     staticClass:
-      "bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 text-sm rounded focus:outline-none focus:shadow-outline",
+      "bg-blue-500 hover:bg-blue-700 text-white font-semibold px-2 text-sm rounded focus:outline-none focus:shadow-outline",
     attrs: { type: "button", disabled: _vm.isFormDisabled() },
     domProps: { textContent: _vm._s(_vm.buttonText) },
     on: {
@@ -12652,53 +12693,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("div", { staticClass: "flex" }, [
-        _c("div", [
-          _c("h4", {
-            staticClass: "text-gray-700 font-mono",
-            domProps: { textContent: _vm._s(_vm.requirement.name) }
+  return _c("div", [
+    _c("div", { staticClass: "flex" }, [
+      _c("div", [
+        _c("h4", {
+          staticClass: "text-gray-700 font-mono",
+          domProps: { textContent: _vm._s(_vm.requirement.name) }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "mt-2" }, [
+          _c("span", {
+            staticClass:
+              "bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3",
+            domProps: { textContent: _vm._s(_vm.requirement.version) }
           }),
           _vm._v(" "),
-          _c("div", { staticClass: "mt-2" }, [
-            _c("span", {
-              staticClass:
-                "bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3",
-              domProps: { textContent: _vm._s(_vm.requirement.version) }
-            }),
-            _vm._v(" "),
-            _vm.getLicense(_vm.requirement)
-              ? _c("span", {
-                  staticClass:
-                    "bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3",
-                  domProps: {
-                    textContent: _vm._s(_vm.getLicense(_vm.requirement))
-                  }
-                })
-              : _vm._e()
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "ml-auto" },
-          [
-            _vm.isUninstallable()
-              ? _c("uninstall-button", {
-                  attrs: { requirement: _vm.requirement }
-                })
-              : _vm._e()
-          ],
-          1
-        )
+          _vm.getLicense(_vm.requirement)
+            ? _c("span", {
+                staticClass:
+                  "bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3",
+                domProps: {
+                  textContent: _vm._s(_vm.getLicense(_vm.requirement))
+                }
+              })
+            : _vm._e()
+        ])
       ]),
       _vm._v(" "),
-      _c("suggestions", { attrs: { requirement: _vm.requirement } })
-    ],
-    1
-  )
+      _c(
+        "div",
+        { staticClass: "ml-auto" },
+        [
+          _vm.isUninstallable()
+            ? _c("uninstall-button", {
+                attrs: { requirement: _vm.requirement }
+              })
+            : _vm._e()
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -12733,89 +12768,83 @@ var render = function() {
           expression: "hasSuggestions()"
         }
       ],
-      staticClass: "mt-4"
+      staticClass: "mt-6 bg-gray-200 -mb-4 -ml-4 -mr-4 p-3"
     },
     [
-      _c("h5", { staticClass: "bg-gray-200 p-2 mt-6 -mb-4 -ml-4 -mr-4 flex" }, [
-        _c(
-          "a",
-          {
-            staticClass:
-              "text-gray-600 hover:text-gray-800 hover:underline font-mono font-semibold uppercase",
-            attrs: {
-              "data-toggle": "collapse",
-              href: "#" + _vm.getCollapsibleId(_vm.requirement.name),
-              role: "button",
-              "aria-expanded": "false"
+      _c("h5", { staticClass: "flex" }, [
+        _c("button", {
+          class: _vm.getToggleButtonClass(),
+          domProps: { textContent: _vm._s(_vm.getToggleButtonText()) },
+          on: {
+            click: function($event) {
+              return _vm.toggle()
             }
-          },
-          [_vm._v("\n            Show Suggestions\n        ")]
-        ),
+          }
+        }),
         _vm._v(" "),
         _c(
           "span",
           { staticClass: "ml-auto font-mono font-semibold text-gray-600" },
           [
-            _vm._v(
-              _vm._s(_vm.getInstalledSuggestionsCount()) +
-                "/" +
-                _vm._s(_vm.getTotalSuggestionsCount())
-            )
+            _c("span", {
+              domProps: {
+                textContent: _vm._s(_vm.getInstalledSuggestionsCount())
+              }
+            }),
+            _vm._v("\n            /\n            "),
+            _c("span", {
+              domProps: { textContent: _vm._s(_vm.getTotalSuggestionsCount()) }
+            })
           ]
         )
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "collapse hidden",
-          attrs: { id: "" + _vm.getCollapsibleId(_vm.requirement.name) }
-        },
-        [
-          _c(
-            "ul",
-            _vm._l(_vm.getSuggestions(), function(description, suggestion) {
-              return _c(
-                "li",
-                { staticClass: "mt-2" },
-                [
-                  _vm.isUninstallable(suggestion)
-                    ? _c("uninstall-button", {
-                        staticClass: "btn btn-outline-danger btn-sm",
-                        attrs: {
-                          requirement: _vm.getRequirementFromSuggestion(
-                            suggestion
-                          )
-                        }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.isInstallable(suggestion)
-                    ? _c("install-button", {
-                        staticClass: "btn btn-primary btn-sm",
-                        attrs: {
-                          requirement: _vm.getRequirementFromSuggestion(
-                            suggestion
-                          )
-                        }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "font-mono" }, [
-                    _vm._v(_vm._s(suggestion))
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-gray-600" }, [
-                    _vm._v(_vm._s(description))
-                  ])
-                ],
-                1
-              )
-            }),
-            0
-          )
-        ]
-      )
+      _c("div", { class: _vm.getListClass() }, [
+        _c(
+          "ul",
+          _vm._l(_vm.getSuggestions(), function(description, suggestion) {
+            return _c(
+              "li",
+              { staticClass: "mt-3" },
+              [
+                _vm.isUninstallable(suggestion)
+                  ? _c("uninstall-button", {
+                      staticClass: "btn btn-outline-danger btn-sm",
+                      attrs: {
+                        requirement: _vm.getRequirementFromSuggestion(
+                          suggestion
+                        )
+                      }
+                    })
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isInstallable(suggestion)
+                  ? _c("install-button", {
+                      staticClass: "btn btn-primary btn-sm",
+                      attrs: {
+                        requirement: _vm.getRequirementFromSuggestion(
+                          suggestion
+                        )
+                      }
+                    })
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "font-mono",
+                  domProps: { textContent: _vm._s(suggestion) }
+                }),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "text-gray-600 text-xs",
+                  domProps: { textContent: _vm._s(description) }
+                })
+              ],
+              1
+            )
+          }),
+          0
+        )
+      ])
     ]
   )
 }
@@ -12843,7 +12872,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("button", {
     staticClass:
-      "bg-red-500 hover:bg-red-700 text-white font-bold px-2 text-sm rounded focus:outline-none focus:shadow-outline",
+      "bg-red-500 hover:bg-red-700 text-white font-semibold px-2 text-sm rounded focus:outline-none focus:shadow-outline",
     attrs: { type: "button", disabled: _vm.isFormDisabled() },
     domProps: { textContent: _vm._s(_vm.buttonText) },
     on: {
@@ -12882,27 +12911,32 @@ var render = function() {
       _c("div", { staticClass: "w-1/4 mx-2" }, [
         _c("div", { staticClass: "rounded overflow-hidden shadow mt-6" }, [
           _c("div", { staticClass: "px-6 py-4" }, [
-            _c("div", { staticClass: "font-bold text-lg flex items-center" }, [
-              _c("img", {
-                staticClass: "w-10 h-10 rounded mr-4",
-                attrs: {
-                  src:
-                    "https://avatars.githubusercontent.com/u/958072?s=200&v=4",
-                  alt: "Laravel Logo"
-                }
-              }),
-              _vm._v(
-                "\n                        Laravel\n                        "
-              ),
-              _c("span", {
-                staticClass: "px-2 py-1 text-xl font-semibold text-indigo-900",
-                domProps: {
-                  textContent: _vm._s(
-                    _vm.getRequirementVersion("laravel/framework")
-                  )
-                }
-              })
-            ])
+            _c(
+              "div",
+              { staticClass: "font-semibold text-lg flex items-center" },
+              [
+                _c("img", {
+                  staticClass: "w-10 h-10 rounded mr-4",
+                  attrs: {
+                    src:
+                      "https://avatars.githubusercontent.com/u/958072?s=200&v=4",
+                    alt: ""
+                  }
+                }),
+                _vm._v(
+                  "\n                        Laravel\n                        "
+                ),
+                _c("span", {
+                  staticClass:
+                    "px-2 py-1 text-xl font-semibold text-indigo-900",
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.getRequirementVersion("laravel/framework")
+                    )
+                  }
+                })
+              ]
+            )
           ])
         ])
       ]),
@@ -12910,27 +12944,32 @@ var render = function() {
       _c("div", { staticClass: "w-1/4 mx-2" }, [
         _c("div", { staticClass: "rounded overflow-hidden shadow mt-6" }, [
           _c("div", { staticClass: "px-6 py-4" }, [
-            _c("div", { staticClass: "font-bold text-lg flex items-center" }, [
-              _c("img", {
-                staticClass: "w-10 h-10 rounded mr-4",
-                attrs: {
-                  src:
-                    "https://avatars.githubusercontent.com/u/5887416?s=250&v=4",
-                  alt: "Paket Logo"
-                }
-              }),
-              _vm._v(
-                "\n                        Paket\n                        "
-              ),
-              _c("span", {
-                staticClass: "px-2 py-1 text-xl font-semibold text-indigo-900",
-                domProps: {
-                  textContent: _vm._s(
-                    _vm.getRequirementVersion("cybercog/laravel-paket")
-                  )
-                }
-              })
-            ])
+            _c(
+              "div",
+              { staticClass: "font-semibold text-lg flex items-center" },
+              [
+                _c("img", {
+                  staticClass: "w-10 h-10 rounded mr-4",
+                  attrs: {
+                    src:
+                      "https://avatars.githubusercontent.com/u/5887416?s=250&v=4",
+                    alt: ""
+                  }
+                }),
+                _vm._v(
+                  "\n                        Paket\n                        "
+                ),
+                _c("span", {
+                  staticClass:
+                    "px-2 py-1 text-xl font-semibold text-indigo-900",
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.getRequirementVersion("cybercog/laravel-paket")
+                    )
+                  }
+                })
+              ]
+            )
           ])
         ])
       ])
@@ -12942,13 +12981,13 @@ var render = function() {
       _c("div", { staticClass: "w-1/4 mx-2" }, [
         _c("div", { staticClass: "rounded overflow-hidden shadow mt-6" }, [
           _c("div", { staticClass: "px-6 py-4" }, [
-            _c("div", { staticClass: "font-bold text-lg" }, [
+            _c("div", { staticClass: "font-semibold text-lg" }, [
               _vm._v(
                 "\n                        Essential\n                    "
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "font-semibold text-gray-700 mt-2" }, [
+            _c("div", { staticClass: "text-gray-700 mt-2" }, [
               _vm._v(
                 "\n                        " +
                   _vm._s(_vm.getRequirementsCount("roots", "essential")) +
@@ -12956,7 +12995,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "font-semibold text-gray-700 mt-2" }, [
+            _c("div", { staticClass: "text-gray-700 mt-2" }, [
               _vm._v(
                 "\n                        " +
                   _vm._s(
@@ -12972,13 +13011,13 @@ var render = function() {
       _c("div", { staticClass: "w-1/4 mx-2" }, [
         _c("div", { staticClass: "rounded overflow-hidden shadow mt-6" }, [
           _c("div", { staticClass: "px-6 py-4" }, [
-            _c("div", { staticClass: "font-bold text-lg" }, [
+            _c("div", { staticClass: "font-semibold text-lg" }, [
               _vm._v(
                 "\n                        Development\n                    "
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "font-semibold text-gray-700 mt-2" }, [
+            _c("div", { staticClass: "text-gray-700 mt-2" }, [
               _vm._v(
                 "\n                        " +
                   _vm._s(_vm.getRequirementsCount("roots", "dev")) +
@@ -12986,7 +13025,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "font-semibold text-gray-700 mt-2" }, [
+            _c("div", { staticClass: "text-gray-700 mt-2" }, [
               _vm._v(
                 "\n                        " +
                   _vm._s(_vm.getRequirementsCount("dependencies", "dev")) +
@@ -13045,40 +13084,56 @@ var render = function() {
           "div",
           { staticClass: "rounded overflow-hidden shadow mt-3" },
           [
-            _c("div", { staticClass: "flex p-4" }, [
-              _c(
-                "div",
-                [
-                  _c("div", {
-                    staticClass: "font-mono",
-                    domProps: { textContent: _vm._s(_vm.getCommandLine(job)) }
-                  }),
-                  _vm._v(" "),
-                  _c("router-link", {
-                    staticClass:
-                      "font-mono text-indigo-800 hover:text-indigo-900 hover:underline",
-                    attrs: { to: _vm.linkTo(job) },
-                    domProps: { textContent: _vm._s(_vm.getId(job)) }
-                  })
-                ],
-                1
-              ),
+            _c("div", { staticClass: "p-4" }, [
+              _c("div", [
+                _c("div", {
+                  staticClass: "font-mono",
+                  domProps: { textContent: _vm._s(_vm.getCommandLine(job)) }
+                })
+              ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "text-muted ml-auto text-right" },
-                [
-                  _c("div", {
-                    staticClass: "text-gray-700 text-xs font-mono",
-                    domProps: { textContent: _vm._s(_vm.getCreatedAt(job)) }
-                  }),
-                  _vm._v(" "),
-                  _c("job-status-badge", {
-                    attrs: { status: _vm.getStatus(job) }
-                  })
-                ],
-                1
-              )
+              _c("div", { staticClass: "flex" }, [
+                _c(
+                  "div",
+                  { staticClass: "mt-2" },
+                  [
+                    _c("router-link", {
+                      staticClass:
+                        "font-mono text-indigo-800 hover:text-indigo-900 hover:underline",
+                      attrs: { to: _vm.linkTo(job) },
+                      domProps: { textContent: _vm._s(_vm.getId(job)) }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "flex mt-3 ml-auto mr-3" },
+                  [
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3",
+                        attrs: { title: "Execution start time" }
+                      },
+                      [
+                        _c("time", {
+                          domProps: {
+                            textContent: _vm._s(_vm.getCreatedAt(job))
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("job-status-badge", {
+                      attrs: { status: _vm.getStatus(job) }
+                    })
+                  ],
+                  1
+                )
+              ])
             ])
           ]
         )
@@ -13126,55 +13181,62 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "flex mt-3" }, [
-      _c("h4", { staticClass: "text-xl font-mono" }, [
-        _vm._v(_vm._s(_vm.job.id))
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "flex mt-3" },
-      [
-        _c(
-          "span",
-          {
-            staticClass:
-              "bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3"
-          },
-          [
-            _vm._v("\n            Started: "),
-            _c("time", {
-              domProps: { textContent: _vm._s(_vm.getCreatedAt(_vm.job)) }
-            })
-          ]
-        ),
+    _c("div", { staticClass: "rounded overflow-hidden shadow mt-3" }, [
+      _c("div", { staticClass: "flex" }, [
+        _c("div", { staticClass: "mt-3 mx-3" }, [
+          _c("h4", {
+            staticClass: "text-xl font-mono",
+            domProps: { textContent: _vm._s(_vm.job.id) }
+          })
+        ]),
         _vm._v(" "),
-        _c("job-status-badge", { attrs: { status: _vm.getStatus(_vm.job) } })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.processOutput,
-            expression: "processOutput"
-          }
-        ],
-        staticClass: "p-4 text-left bg-black mt-4"
-      },
-      [
-        _c("code", {
-          staticClass: "bg-black text-white border-0",
-          domProps: { innerHTML: _vm._s(_vm.processOutput) }
-        })
-      ]
-    )
+        _c(
+          "div",
+          { staticClass: "flex mt-3 ml-auto mr-3" },
+          [
+            _c(
+              "span",
+              {
+                staticClass:
+                  "bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3",
+                attrs: { title: "Execution start time" }
+              },
+              [
+                _c("time", {
+                  domProps: { textContent: _vm._s(_vm.getCreatedAt(_vm.job)) }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c("job-status-badge", {
+              attrs: { status: _vm.getStatus(_vm.job) }
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.processOutput,
+              expression: "processOutput"
+            }
+          ],
+          staticClass: "p-4 text-left bg-black mt-4"
+        },
+        [
+          _c("code", {
+            staticClass: "bg-black text-white border-0",
+            domProps: { innerHTML: _vm._s(_vm.processOutput) }
+          })
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -13229,7 +13291,9 @@ var render = function() {
                 [
                   _c("requirement", {
                     attrs: { requirement: requirement, "is-dependency": false }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c("suggestions", { attrs: { requirement: requirement } })
                 ],
                 1
               )
@@ -13257,7 +13321,9 @@ var render = function() {
                 [
                   _c("requirement", {
                     attrs: { requirement: requirement, "is-dependency": false }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c("suggestions", { attrs: { requirement: requirement } })
                 ],
                 1
               )
@@ -13288,8 +13354,10 @@ var render = function() {
                 },
                 [
                   _c("requirement", {
-                    attrs: { requirement: requirement, "is-dependency": false }
-                  })
+                    attrs: { requirement: requirement, "is-dependency": true }
+                  }),
+                  _vm._v(" "),
+                  _c("suggestions", { attrs: { requirement: requirement } })
                 ],
                 1
               )
@@ -13316,8 +13384,10 @@ var render = function() {
                 },
                 [
                   _c("requirement", {
-                    attrs: { requirement: requirement, "is-dependency": false }
-                  })
+                    attrs: { requirement: requirement, "is-dependency": true }
+                  }),
+                  _vm._v(" "),
+                  _c("suggestions", { attrs: { requirement: requirement } })
                 ],
                 1
               )
