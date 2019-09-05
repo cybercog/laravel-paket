@@ -15,19 +15,14 @@
                 ></uninstall-button>
             </div>
         </div>
-        <suggestions
-            :requirement="requirement"
-        ></suggestions>
     </div>
 </template>
 
 <script>
-    import Suggestions from './Suggestions';
     import UninstallButton from './UninstallButton';
 
     export default {
         components: {
-            Suggestions,
             UninstallButton,
         },
 

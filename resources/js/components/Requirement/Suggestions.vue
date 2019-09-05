@@ -1,6 +1,6 @@
 <template>
-    <div v-show="hasSuggestions()" class="mt-4">
-        <h5 class="bg-gray-200 p-2 mt-6 -mb-4 -ml-4 -mr-4 flex">
+    <div v-show="hasSuggestions()" class="mt-6">
+        <h5 class="bg-gray-200 p-3 -mb-4 -ml-4 -mr-4 flex">
             <a data-toggle="collapse" class="text-gray-600 hover:text-gray-800 hover:underline font-mono font-semibold uppercase" :href="`#${getCollapsibleId(requirement.name)}`" role="button" aria-expanded="false">
                 Show Suggestions
             </a>

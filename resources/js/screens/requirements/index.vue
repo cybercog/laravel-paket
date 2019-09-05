@@ -14,6 +14,9 @@
                         :requirement="requirement"
                         :is-dependency="false"
                     ></requirement>
+                    <suggestions
+                        :requirement="requirement"
+                    ></suggestions>
                 </div>
             </div>
             <div class="w-1/2 pl-3">
@@ -23,6 +26,9 @@
                         :requirement="requirement"
                         :is-dependency="false"
                     ></requirement>
+                    <suggestions
+                        :requirement="requirement"
+                ></suggestions>
                 </div>
             </div>
         </div>
@@ -37,6 +43,9 @@
                         :requirement="requirement"
                         :is-dependency="false"
                     ></requirement>
+                    <suggestions
+                        :requirement="requirement"
+                    ></suggestions>
                 </div>
             </div>
             <div class="w-1/2 pl-3">
@@ -46,6 +55,9 @@
                         :requirement="requirement"
                         :is-dependency="false"
                     ></requirement>
+                    <suggestions
+                        :requirement="requirement"
+                    ></suggestions>
                 </div>
             </div>
         </div>
@@ -55,11 +67,13 @@
 <script>
     import InstallForm from '../../components/Requirement/InstallForm';
     import Requirement from '../../components/Requirement/Requirement';
+    import Suggestions from '../../components/Requirement/Suggestions';
 
     export default {
         components: {
             InstallForm,
             Requirement,
+            Suggestions,
         },
 
         mounted() {
