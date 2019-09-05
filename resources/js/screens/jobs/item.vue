@@ -6,8 +6,8 @@
 
         <div class="rounded overflow-hidden shadow mt-3">
             <div class="flex">
-                <div class="flex mt-3 mx-3">
-                    <h4 class="text-xl font-mono">{{ job.id }}</h4>
+                <div class="mt-3 mx-3">
+                    <h4 class="text-xl font-mono" v-text="job.id"></h4>
                 </div>
 
                 <div class="flex mt-3 ml-auto mr-3">

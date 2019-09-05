@@ -3,16 +3,20 @@
         <h1 class="text-2xl">Jobs</h1>
 
         <div class="rounded overflow-hidden shadow mt-3" v-for="job in getJobs">
-            <div class="flex p-4">
+            <div class="p-4">
                 <div>
                     <div class="font-mono" v-text="getCommandLine(job)"></div>
+                </div>
+                <div class="flex">
                     <div class="mt-2">
                         <router-link class="font-mono text-indigo-800 hover:text-indigo-900 hover:underline" :to="linkTo(job)" v-text="getId(job)"></router-link>
                     </div>
-                </div>
-                <div class="text-muted ml-auto text-right">
-                    <div class="text-gray-700 text-sm font-mono" v-text="getCreatedAt(job)"></div>
-                    <job-status-badge class="mt-2" :status="getStatus(job)"></job-status-badge>
+                    <div class="flex mt-3 ml-auto mr-3">
+                        <span class="bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" title="Execution start time">
+                            <time v-text="getCreatedAt(job)"></time>
+                        </span>
+                        <job-status-badge :status="getStatus(job)"></job-status-badge>
+                    </div>
                 </div>
             </div>
         </div>

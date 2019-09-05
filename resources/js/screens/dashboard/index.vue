@@ -10,7 +10,7 @@
                             <img
                                 class="w-10 h-10 rounded mr-4"
                                 src="https://avatars.githubusercontent.com/u/958072?s=200&v=4"
-                                alt="Laravel Logo"
+                                alt=""
                             />
                             Laravel
                             <span
@@ -28,7 +28,7 @@
                             <img
                                 class="w-10 h-10 rounded mr-4"
                                 src="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
-                                alt="Paket Logo"
+                                alt=""
                             />
                             Paket
                             <span
