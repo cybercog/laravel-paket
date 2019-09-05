@@ -6,11 +6,13 @@
             <div class="flex p-4">
                 <div>
                     <div class="font-mono" v-text="getCommandLine(job)"></div>
-                    <router-link class="font-mono text-indigo-800 hover:text-indigo-900 hover:underline" :to="linkTo(job)" v-text="getId(job)"></router-link>
+                    <div class="mt-2">
+                        <router-link class="font-mono text-indigo-800 hover:text-indigo-900 hover:underline" :to="linkTo(job)" v-text="getId(job)"></router-link>
+                    </div>
                 </div>
                 <div class="text-muted ml-auto text-right">
-                    <div class="text-gray-700 text-xs font-mono" v-text="getCreatedAt(job)"></div>
-                    <job-status-badge :status="getStatus(job)"></job-status-badge>
+                    <div class="text-gray-700 text-sm font-mono" v-text="getCreatedAt(job)"></div>
+                    <job-status-badge class="mt-2" :status="getStatus(job)"></job-status-badge>
                 </div>
             </div>
         </div>

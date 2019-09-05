@@ -11,7 +11,7 @@
 
     <!-- Fonts -->
     <link href="//fonts.gstatic.com" rel="dns-prefetch">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono|IBM+Plex+Mono:400,600,700" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset(mix('app.css', 'vendor/paket')) }}" rel="stylesheet">

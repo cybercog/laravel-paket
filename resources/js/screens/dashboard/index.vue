@@ -6,7 +6,7 @@
             <div class="w-1/4 mx-2">
                 <div class="rounded overflow-hidden shadow mt-6">
                     <div class="px-6 py-4">
-                        <div class="font-bold text-lg flex items-center">
+                        <div class="font-semibold text-lg flex items-center">
                             <img
                                 class="w-10 h-10 rounded mr-4"
                                 src="https://avatars.githubusercontent.com/u/958072?s=200&v=4"
@@ -24,7 +24,7 @@
             <div class="w-1/4 mx-2">
                 <div class="rounded overflow-hidden shadow mt-6">
                     <div class="px-6 py-4">
-                        <div class="font-bold text-lg flex items-center">
+                        <div class="font-semibold text-lg flex items-center">
                             <img
                                 class="w-10 h-10 rounded mr-4"
                                 src="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
@@ -47,7 +47,7 @@
             <div class="w-1/4 mx-2">
                 <div class="rounded overflow-hidden shadow mt-6">
                     <div class="px-6 py-4">
-                        <div class="font-bold text-lg">
+                        <div class="font-semibold text-lg">
                             Essential
                         </div>
                         <div class="font-semibold text-gray-700 mt-2">
@@ -62,7 +62,7 @@
             <div class="w-1/4 mx-2">
                 <div class="rounded overflow-hidden shadow mt-6">
                     <div class="px-6 py-4">
-                        <div class="font-bold text-lg">
+                        <div class="font-semibold text-lg">
                             Development
                         </div>
 
