@@ -15,7 +15,6 @@
 
     <!-- Styles -->
     <link href="{{ asset(mix('app.css', 'vendor/paket')) }}" rel="stylesheet">
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .lnr {
             display: inline-block;
