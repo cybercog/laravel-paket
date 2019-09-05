@@ -41,7 +41,7 @@
                 <div class="rounded overflow-hidden shadow mt-3 p-4" v-for="(requirement, index) in getRequirements('dependencies', 'essential')" v-bind:key="`${requirement.name}-${index}`">
                     <requirement
                         :requirement="requirement"
-                        :is-dependency="false"
+                        :is-dependency="true"
                     ></requirement>
                     <suggestions
                         :requirement="requirement"
@@ -53,7 +53,7 @@
                 <div class="rounded overflow-hidden shadow mt-3 p-4" v-for="(requirement, index) in getRequirements('dependencies', 'dev')" v-bind:key="`${requirement.name}-${index}`">
                     <requirement
                         :requirement="requirement"
-                        :is-dependency="false"
+                        :is-dependency="true"
                     ></requirement>
                     <suggestions
                         :requirement="requirement"
