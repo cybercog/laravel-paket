@@ -1,12 +1,18 @@
 <template>
-    <div v-show="hasSuggestions()" class="mt-6">
-        <h5 class="bg-gray-200 p-3 -mb-4 -ml-4 -mr-4 flex">
-            <a data-toggle="collapse" class="text-gray-600 hover:text-gray-800 hover:underline font-mono font-semibold uppercase" :href="`#${getCollapsibleId(requirement.name)}`" role="button" aria-expanded="false">
-                Show Suggestions
-            </a>
-            <span class="ml-auto font-mono font-semibold text-gray-600">{{ getInstalledSuggestionsCount() }}/{{ getTotalSuggestionsCount() }}</span>
+    <div v-show="hasSuggestions()" class="mt-6 bg-gray-200 -mb-4 -ml-4 -mr-4 p-3">
+        <h5 class="flex">
+            <button
+                class="text-gray-600 hover:text-gray-800 hover:underline font-mono font-semibold uppercase"
+                v-text="getToggleButtonText()"
+                v-on:click="toggle()"
+            ></button>
+            <span class="ml-auto font-mono font-semibold text-gray-600">
+                <span v-text="getInstalledSuggestionsCount()"></span>
+                /
+                <span v-text="getTotalSuggestionsCount()"></span>
+            </span>
         </h5>
-        <div class="collapse hidden" :id="`${getCollapsibleId(requirement.name)}`">
+        <div :class="getListClass()">
             <ul>
                 <li v-for="(description, suggestion) in getSuggestions()" class="mt-2">
                     <uninstall-button
@@ -19,8 +25,8 @@
                         v-if="isInstallable(suggestion)"
                         :requirement="getRequirementFromSuggestion(suggestion)"
                     ></install-button>
-                    <span class="font-mono">{{ suggestion }}</span>
-                    <span class="text-gray-600">{{ description }}</span>
+                    <span class="font-mono" v-text="suggestion"></span>
+                    <span class="text-gray-600" v-text="description"></span>
                 </li>
             </ul>
         </div>
@@ -44,11 +50,13 @@
             },
         },
 
-        methods: {
-            getCollapsibleId(name) {
-                return `collapseSuggestions-` + name.replace('/', '');
-            },
+        data() {
+            return {
+              isOpened: false,
+            };
+        },
 
+        methods: {
             getInstalledSuggestionsCount() {
                 let count = 0;
 
@@ -89,6 +97,14 @@
                 }
             },
 
+            getToggleButtonText() {
+                return this.isOpened ? 'Hide Suggestions' : 'Show Suggestions';
+            },
+
+            getListClass() {
+                return this.isOpened ? 'mt-3' : 'hidden';
+            },
+
             isInstalled(suggestionName) {
                 return this.$store.getters.isRequirementInstalled(suggestionName);
             },
@@ -107,6 +123,10 @@
                 }
 
                 return this.$store.getters.isNotProtectedRequirement(suggestion);
+            },
+
+            toggle() {
+                this.isOpened = !this.isOpened;
             },
         },
     }

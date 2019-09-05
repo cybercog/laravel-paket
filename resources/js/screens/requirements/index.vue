@@ -28,7 +28,7 @@
                     ></requirement>
                     <suggestions
                         :requirement="requirement"
-                ></suggestions>
+                    ></suggestions>
                 </div>
             </div>
         </div>
