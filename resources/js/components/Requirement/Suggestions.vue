@@ -1,14 +1,12 @@
 <template>
     <div v-show="hasSuggestions()" class="mt-4">
-        <h5>
-            <a data-toggle="collapse" :href="`#${getCollapsibleId(requirement.name)}`" role="button" aria-expanded="false">
-                <span class="text-purple-800 hover:text-purple hover:underline">
-                    Suggestions
-                    ({{ getInstalledSuggestionsCount() }}/{{ getTotalSuggestionsCount() }})
-                </span>
+        <h5 class="bg-gray-200 p-2 mt-6 -mb-4 -ml-4 -mr-4 flex">
+            <a data-toggle="collapse" class="text-gray-600 hover:text-gray-800 hover:underline font-mono font-semibold uppercase" :href="`#${getCollapsibleId(requirement.name)}`" role="button" aria-expanded="false">
+                Show Suggestions
             </a>
+            <span class="ml-auto font-mono font-semibold text-gray-600">{{ getInstalledSuggestionsCount() }}/{{ getTotalSuggestionsCount() }}</span>
         </h5>
-        <div class="collapse" :id="`${getCollapsibleId(requirement.name)}`">
+        <div class="collapse hidden" :id="`${getCollapsibleId(requirement.name)}`">
             <ul>
                 <li v-for="(description, suggestion) in getSuggestions()" class="mt-2">
                     <uninstall-button

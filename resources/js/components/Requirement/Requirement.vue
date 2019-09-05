@@ -1,24 +1,24 @@
 <template>
-    <div class="flex">
-        <div>
-            <h4 class="text-gray-700 font-mono">{{ requirement.name }}</h4>
-            <div class="mt-2">
-                <span class="bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3">{{ requirement.version }}</span>
-                <span class="bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" v-if="getLicense(requirement)">{{ getLicense(requirement) }}</span>
-            </div>
+    <div>
+        <div class="flex">
             <div>
-                <suggestions
+                <h4 class="text-gray-700 font-mono" v-text="requirement.name"></h4>
+                <div class="mt-2">
+                    <span class="bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" v-text="requirement.version"></span>
+                    <span class="bg-gray-200 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" v-if="getLicense(requirement)" v-text="getLicense(requirement)"></span>
+                </div>
+            </div>
+            <div class="ml-auto">
+                <uninstall-button
+                    class="btn btn-outline-danger"
                     :requirement="requirement"
-                ></suggestions>
+                    v-if="isUninstallable()"
+                ></uninstall-button>
             </div>
         </div>
-        <div class="ml-auto">
-            <uninstall-button
-                class="btn btn-outline-danger"
-                :requirement="requirement"
-                v-if="isUninstallable()"
-            ></uninstall-button>
-        </div>
+        <suggestions
+            :requirement="requirement"
+        ></suggestions>
     </div>
 </template>
 
