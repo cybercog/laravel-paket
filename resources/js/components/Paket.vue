@@ -1,13 +1,13 @@
 <template>
     <div class="flex align-top">
         <img
-            class="w-10 h-10 rounded mr-4"
-            src="https://avatars.githubusercontent.com/u/958072?s=200&v=4"
+            class="w-10 h-10 rounded mr-4 bg-gray-700 p-1"
+            :src="this.icon"
             alt=""
         />
         <div>
-            <h4 class="text-gray-700 font-mono" v-text="title"></h4>
-            <div class="text-gray-500 font-mono text-xs" v-text="description"></div>
+            <h4 class="text-gray-900 font-mono" v-text="title"></h4>
+            <div class="text-gray-600 font-mono text-xs" v-text="description"></div>
         </div>
 
         <div class="ml-auto text-right">
