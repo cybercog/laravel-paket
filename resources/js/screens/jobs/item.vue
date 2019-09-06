@@ -83,8 +83,7 @@
 
                 await Swal.fire({
                     type: 'success',
-                    title: 'Job Deletion',
-                    text: 'Job has been deleted!',
+                    title: 'Job Deleted!',
                 });
 
                 window.location.href = this.$store.getters.getUrl('/jobs');
