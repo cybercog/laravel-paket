@@ -62,7 +62,7 @@ const getters = {
     },
 
     getUrl: () => (uri) => {
-        return '/' + window.Paket.baseUri + uri;
+        return window.location.origin + '/' + window.Paket.baseUri + uri;
     },
 
     getJob: (state, getters) => (jobId) => {
