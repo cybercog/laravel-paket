@@ -6,7 +6,7 @@
             :readonly="isFormDisabled()"
             v-model="command"
             v-on:keyup.enter="install()"
-            placeholder="Type vendor/package OR composer require vendor/package"
+            placeholder="Type in vendor/package OR composer require vendor/package"
         />
         <button
             type="submit"
