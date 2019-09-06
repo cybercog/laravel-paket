@@ -2,6 +2,7 @@
     <div class="flex align-top">
         <img
             class="w-10 h-10 rounded mr-4 bg-gray-700 p-1"
+            :style="`background-color: ${this.iconBg}`"
             :src="this.icon"
             alt=""
         />
@@ -54,6 +55,11 @@
             icon: {
                 type: String,
                 required: false,
+            },
+            iconBg: {
+                type: String,
+                required: false,
+                default: '#4a5568',
             },
             isDevelopment: {
                 type: Boolean,

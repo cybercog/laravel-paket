@@ -11,6 +11,7 @@
                             :title="paket.title"
                             :description="paket.description"
                             :icon="paket.icon"
+                            :iconBg="paket.iconBg"
                             :isDevelopment="paket.isDevelopment"
                         ></Paket>
                     </div>
@@ -36,6 +37,7 @@
                         title: 'Horizon',
                         description: 'Queue Monitoring',
                         icon: 'https://laravel.com/img/ecosystem/horizon.min.svg',
+                        iconBg: '#8c6ed3',
                         isDevelopment: false,
                     },
                     {
@@ -43,12 +45,14 @@
                         title: 'Telescope',
                         description: 'Debug Assistant',
                         icon: 'https://laravel.com/img/ecosystem/telescope.min.svg',
+                        iconBg: '#4040c8',
                         isDevelopment: false,
                     },
                     {
                         name: 'laravel/passport',
                         title: 'Passport',
                         description: 'OAuth Server',
+                        iconBg: '#7dd9f2',
                         icon: 'https://laravel.com/img/ecosystem/passport.min.svg',
                         isDevelopment: false,
                     },
@@ -57,6 +61,7 @@
                         title: 'Socialite',
                         description: 'OAuth Authentication',
                         icon: 'https://laravel.com/img/ecosystem/socialite.min.svg',
+                        iconBg: '#e394ba',
                         isDevelopment: false,
                     },
                     {
@@ -64,6 +69,7 @@
                         title: 'Scout',
                         description: 'Full-Text Search',
                         icon: 'https://laravel.com/img/ecosystem/scout.min.svg',
+                        iconBg: '#f55d5c',
                         isDevelopment: false,
                     },
                     {
@@ -71,6 +77,7 @@
                         title: 'Dusk',
                         description: 'Browser Testing and Automation',
                         icon: 'https://laravel.com/img/ecosystem/dusk.min.svg',
+                        iconBg: '#bb358b',
                         isDevelopment: true,
                     },
                     {
@@ -78,6 +85,7 @@
                         title: 'Tinker',
                         description: 'Interactive REPL',
                         icon: 'https://laravel.com/img/ecosystem/tinker.min.svg',
+                        iconBg: '#ec7658',
                         isDevelopment: false,
                     },
                 ],
