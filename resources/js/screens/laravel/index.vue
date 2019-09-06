@@ -6,14 +6,7 @@
             <div class="w-1/3" v-for="paket in pakets">
                 <div class="rounded overflow-hidden shadow mt-6 mx-2">
                     <div class="px-6 py-4">
-                        <Paket
-                            :name="paket.name"
-                            :title="paket.title"
-                            :description="paket.description"
-                            :icon="paket.icon"
-                            :iconBg="paket.iconBg"
-                            :isDevelopment="paket.isDevelopment"
-                        ></Paket>
+                        <Paket :paket="paket"/>
                     </div>
                 </div>
             </div>

@@ -2,13 +2,13 @@
     <div class="flex align-top">
         <img
             class="w-10 h-10 rounded mr-4 bg-gray-700 p-1"
-            :style="`background-color: ${iconBg}`"
-            :src="icon"
+            :style="`background-color: ${paket.iconBg || '#4a5568'}`"
+            :src="paket.icon"
             alt=""
         />
         <div>
-            <h4 class="text-gray-900 font-mono" v-text="title"></h4>
-            <div class="text-gray-600 font-mono text-xs" v-text="description"></div>
+            <h4 class="text-gray-900 font-mono" v-text="paket.title"></h4>
+            <div class="text-gray-600 font-mono text-xs" v-text="paket.description"></div>
         </div>
 
         <div class="ml-auto text-right">
@@ -40,39 +40,17 @@
         },
 
         props: {
-            name: {
-                type: String,
+            paket: {
+                type: Object,
                 required: true,
-            },
-            title: {
-                type: String,
-                required: false,
-            },
-            description: {
-                type: String,
-                required: false,
-            },
-            icon: {
-                type: String,
-                required: false,
-            },
-            iconBg: {
-                type: String,
-                required: false,
-                default: '#4a5568',
-            },
-            isDevelopment: {
-                type: Boolean,
-                required: false,
-                default: false,
-            },
+            }
         },
 
         methods: {
             getRequirement() {
                 return {
-                    name: this.name,
-                    isDevelopment: this.isDevelopment,
+                    name: this.paket.name,
+                    isDevelopment: this.paket.isDevelopment || false,
                 };
             },
 
@@ -94,23 +72,24 @@
 
             getVersion() {
                 let version;
+                const name = this.paket.name;
 
-                version = this.findRequirementVersion(this.getRequirements('roots', 'essential'), this.name);
+                version = this.findRequirementVersion(this.getRequirements('roots', 'essential'), name);
                 if (version !== null) {
                     return version;
                 }
 
-                version = this.findRequirementVersion(this.getRequirements('roots', 'dev'), this.name);
+                version = this.findRequirementVersion(this.getRequirements('roots', 'dev'), name);
                 if (version !== null) {
                     return version;
                 }
 
-                version = this.findRequirementVersion(this.getRequirements('dependencies', 'essential'), this.name);
+                version = this.findRequirementVersion(this.getRequirements('dependencies', 'essential'), name);
                 if (version !== null) {
                     return version;
                 }
 
-                version = this.findRequirementVersion(this.getRequirements('dependencies', 'dev'), this.name);
+                version = this.findRequirementVersion(this.getRequirements('dependencies', 'dev'), name);
                 if (version !== null) {
                     return version;
                 }
