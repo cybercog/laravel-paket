@@ -54,7 +54,7 @@ You will only be able to access this dashboard when `APP_ENV=local` is set in `.
 
 ### Dashboard
 
-![Laravel Paket Dashboard](https://user-images.githubusercontent.com/1849174/64429858-9fcf3a80-d0bf-11e9-8edf-0f1dda30b1ad.png)
+![Laravel Paket Dashboard](https://user-images.githubusercontent.com/1849174/64434687-ca25f580-d0c9-11e9-95c4-8df1f2bd02ff.png)
 
 ### Laravel Ecosystem
 
