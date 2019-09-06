@@ -7,6 +7,7 @@
         />
         <div>
             <h4 class="text-gray-700 font-mono" v-text="title"></h4>
+            <div class="text-gray-500 font-mono text-xs" v-text="description"></div>
         </div>
 
         <div class="ml-auto text-right">
@@ -43,6 +44,10 @@
                 required: true,
             },
             title: {
+                type: String,
+                required: false,
+            },
+            description: {
                 type: String,
                 required: false,
             },

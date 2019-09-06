@@ -3,80 +3,15 @@
         <h1 class="text-2xl">Laravel Ecosystem</h1>
 
         <div class="flex flex-wrap -mx-2">
-            <div class="w-1/3">
+            <div class="w-1/3" v-for="paket in pakets">
                 <div class="rounded overflow-hidden shadow mt-6 mx-2">
                     <div class="px-6 py-4">
-                        <Package
-                            name="laravel/horizon"
-                            title="Horizon"
-                            icon="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
-                        ></Package>
-                    </div>
-                </div>
-            </div>
-            <div class="w-1/3">
-                <div class="rounded overflow-hidden shadow mt-6 mx-2">
-                    <div class="px-6 py-4">
-                        <Package
-                            name="laravel/telescope"
-                            title="Telescope"
-                            icon="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
-                        ></Package>
-                    </div>
-                </div>
-            </div>
-            <div class="w-1/3">
-                <div class="rounded overflow-hidden shadow mt-6 mx-2">
-                    <div class="px-6 py-4">
-                        <Package
-                            name="laravel/passport"
-                            title="Passport"
-                            icon="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
-                        ></Package>
-                    </div>
-                </div>
-            </div>
-            <div class="w-1/3">
-                <div class="rounded overflow-hidden shadow mt-6 mx-2">
-                    <div class="px-6 py-4">
-                        <Package
-                            name="laravel/socialite"
-                            title="Socialite"
-                            icon="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
-                        ></Package>
-                    </div>
-                </div>
-            </div>
-            <div class="w-1/3">
-                <div class="rounded overflow-hidden shadow mt-6 mx-2">
-                    <div class="px-6 py-4">
-                        <Package
-                            name="laravel/cashier"
-                            title="Cashier"
-                            icon="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
-                        ></Package>
-                    </div>
-                </div>
-            </div>
-            <div class="w-1/3">
-                <div class="rounded overflow-hidden shadow mt-6 mx-2">
-                    <div class="px-6 py-4">
-                        <Package
-                            name="laravel/scout"
-                            title="Scout"
-                            icon="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
-                        ></Package>
-                    </div>
-                </div>
-            </div>
-            <div class="w-1/3">
-                <div class="rounded overflow-hidden shadow mt-6 mx-2">
-                    <div class="px-6 py-4">
-                        <Package
-                            name="laravel/tinker"
-                            title="Tinker"
-                            icon="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
-                        ></Package>
+                        <Paket
+                            :name="paket.name"
+                            :title="paket.title"
+                            :description="paket.description"
+                            :icon="paket.icon"
+                        ></Paket>
                     </div>
                 </div>
             </div>
@@ -85,15 +20,54 @@
 </template>
 
 <script>
-    import Package from '../../components/Package';
+    import Paket from '../../components/Paket';
 
     export default {
         components: {
-            Package,
+            Paket,
         },
 
         data() {
-            return {};
+            return {
+                pakets: [
+                    {
+                        name: 'laravel/horizon',
+                        title: 'Horizon',
+                        description: 'Queue Monitoring',
+                        icon: 'https://avatars.githubusercontent.com/u/5887416?s=250&v=4',
+                    },
+                    {
+                        name: 'laravel/telescope',
+                        title: 'Telescope',
+                        description: 'Debug Assistant',
+                        icon: 'https://avatars.githubusercontent.com/u/5887416?s=250&v=4',
+                    },
+                    {
+                        name: 'laravel/passport',
+                        title: 'Passport',
+                        description: 'OAuth Server',
+                        icon: 'https://avatars.githubusercontent.com/u/5887416?s=250&v=4',
+                    },
+                    {
+                        name: 'laravel/socialite',
+                        title: 'Socialite',
+                        description: 'OAuth Authentication',
+                        icon: 'https://avatars.githubusercontent.com/u/5887416?s=250&v=4',
+                    },
+                    {
+                        name: 'laravel/scout',
+                        title: 'Scout',
+                        description: 'Full-Text Search',
+                        icon: 'https://avatars.githubusercontent.com/u/5887416?s=250&v=4',
+                    },
+                    {
+                        name: 'laravel/tinker',
+                        title: 'Tinker',
+                        description: 'Interactive REPL',
+                        icon: 'https://avatars.githubusercontent.com/u/5887416?s=250&v=4',
+                    },
+                ],
+            };
         },
 
         mounted() {
