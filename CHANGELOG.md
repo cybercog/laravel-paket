@@ -4,6 +4,12 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 ## [Unreleased]
 
+## [1.3.0]
+
+### Added
+
+- ([#35]) Tab with Laravel Packages
+
 ## [1.2.0]
 
 ### Changed
@@ -32,10 +38,12 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 - Initial release
 
-[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.2.0...master
+[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.3.0...master
+[1.3.0]: https://github.com/cybercog/laravel-paket/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/cybercog/laravel-paket/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/cybercog/laravel-paket/compare/1.0.0...1.1.0
 
+[#35]: https://github.com/cybercog/laravel-paket/pull/35
 [#33]: https://github.com/cybercog/laravel-paket/pull/33
 [#32]: https://github.com/cybercog/laravel-paket/pull/32
 [#28]: https://github.com/cybercog/laravel-paket/pull/28

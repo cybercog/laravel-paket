@@ -9,13 +9,13 @@
                         <div class="text-lg flex items-center">
                             <img
                                 class="w-10 h-10 rounded mr-4"
-                                src="https://avatars.githubusercontent.com/u/958072?s=200&v=4"
+                                src="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
                                 alt=""
                             />
-                            Laravel
+                            Paket
                             <span
-                                class="px-2 py-1 text-xl text-indigo-900 font-semibold"
-                                v-text="getRequirementVersion('laravel/framework')"
+                                class="px-2 py-1 text-xl font-semibold text-indigo-900"
+                                v-text="getRequirementVersion('cybercog/laravel-paket')"
                             ></span>
                         </div>
                     </div>
@@ -27,13 +27,13 @@
                         <div class="text-lg flex items-center">
                             <img
                                 class="w-10 h-10 rounded mr-4"
-                                src="https://avatars.githubusercontent.com/u/5887416?s=250&v=4"
+                                src="https://avatars.githubusercontent.com/u/958072?s=200&v=4"
                                 alt=""
                             />
-                            Paket
+                            Laravel
                             <span
-                                class="px-2 py-1 text-xl font-semibold text-indigo-900"
-                                v-text="getRequirementVersion('cybercog/laravel-paket')"
+                                class="px-2 py-1 text-xl text-indigo-900 font-semibold"
+                                v-text="getRequirementVersion('laravel/framework')"
                             ></span>
                         </div>
                     </div>
@@ -76,16 +76,6 @@
                 </div>
             </div>
         </div>
-
-
-        <ul class="list-group list-group-flush mt-4">
-            <li class="list-group-item">
-
-            </li>
-            <li class="list-group-item">
-
-            </li>
-        </ul>
     </div>
 </template>
 

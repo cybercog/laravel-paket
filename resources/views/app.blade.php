@@ -33,6 +33,9 @@
                         <router-link active-class="text-indigo-900 border-indigo-700 border-b-2" :to="{name: 'dashboard'}" class="block py-3 lg:inline-block lg:mt-0 hover:text-indigo-900 mr-4">
                             Dashboard
                         </router-link>
+                        <router-link active-class="text-indigo-900 border-indigo-700 border-b-2" :to="{name: 'laravel'}" class="block py-3 lg:inline-block lg:mt-0 hover:text-indigo-900 mr-4">
+                            Laravel
+                        </router-link>
                         <router-link active-class="text-indigo-900 border-indigo-700 border-b-2" :to="{name: 'requirements'}" class="block py-3 lg:inline-block lg:mt-0 hover:text-indigo-900 mr-4">
                             Requirements
                         </router-link>

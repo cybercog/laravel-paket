@@ -11,6 +11,12 @@ export default [
     },
 
     {
+        path: '/laravel',
+        name: 'laravel',
+        component: require('./screens/laravel/index').default,
+    },
+
+    {
         path: '/requirements',
         name: 'requirements',
         component: require('./screens/requirements/index').default,
