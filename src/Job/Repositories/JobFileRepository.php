@@ -76,6 +76,30 @@ final class JobFileRepository implements JobRepositoryContract
         throw new NotFoundHttpException("Job with id `{$id}` not found.");
     }
 
+    // TODO: [v2.0] Add to contract
+    public function deleteById(string $id): void
+    {
+        $index = $this->getIndex();
+
+        foreach ($index as $key => $job) {
+            if ($job['id'] === $id) {
+                $jobKey = $key;
+                break;
+            }
+        }
+
+        if (!isset($jobKey)) {
+            throw new NotFoundHttpException("Job with id `{$id}` not found.");
+        }
+
+        unset($index[$jobKey]);
+        $index = array_values($index);
+
+        $this->deleteJobProcessOutput($id);
+
+        $this->putIndex($index);
+    }
+
     public function store(JobContract $job): void
     {
         $index = $this->getIndex();
@@ -148,6 +172,12 @@ final class JobFileRepository implements JobRepositoryContract
         } catch (FileNotFoundException $exception) {
             return '';
         }
+    }
+
+    private function deleteJobProcessOutput(string $jobId): void
+    {
+        $path = sprintf('%s/jobs/%s.log', $this->storagePath, $jobId);
+        $this->files->delete($path);
     }
 
     private function getIndexFilePath(): string

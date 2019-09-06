@@ -4,21 +4,22 @@
             <router-link class="text-indigo-700 hover:text-indigo-900" :to="{name: 'jobs'}">Jobs</router-link>
         </h1>
 
-        <div class="rounded overflow-hidden shadow mt-3">
+        <div class="rounded overflow-hidden shadow mt-3 py-3">
             <div class="flex">
-                <div class="mt-3 mx-3">
+                <div class="mx-3">
                     <h4 class="text-xl font-mono" v-text="job.id"></h4>
                 </div>
 
-                <div class="flex mt-3 ml-auto mr-3">
+                <div class="flex ml-auto">
                     <span class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-3" title="Execution start time">
                         <time v-text="getCreatedAt(job)"></time>
                     </span>
-                    <job-status-badge :status="getStatus(job)"></job-status-badge>
+                    <job-status-badge class="mr-3" :status="getStatus(job)"></job-status-badge>
+                    <job-options-menu class="mr-3" :job="job"></job-options-menu>
                 </div>
             </div>
 
-            <div class="p-4 text-left bg-black mt-4" v-show="processOutput">
+            <div class="p-4 text-left bg-black mt-4 -mb-3" v-show="processOutput">
                 <code class="bg-black text-white border-0" v-html="processOutput"></code>
             </div>
         </div>
@@ -28,11 +29,13 @@
 <script>
     import AnsiConverter from 'ansi-to-html';
     import moment from 'moment';
-    import JobStatusBadge from '../../components/Job/Status/Badge';
+    import JobStatusBadge from '../../components/Job/StatusBadge';
+    import JobOptionsMenu from '../../components/Job/OptionsMenu';
 
     export default {
         components: {
             JobStatusBadge,
+            JobOptionsMenu,
         },
 
         data() {

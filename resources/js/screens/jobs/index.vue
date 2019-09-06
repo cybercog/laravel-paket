@@ -4,8 +4,9 @@
 
         <div class="rounded overflow-hidden shadow mt-3" v-for="job in getJobs">
             <div class="p-4">
-                <div>
+                <div class="flex">
                     <div class="font-mono" v-text="getCommandLine(job)"></div>
+                    <job-options-menu class="ml-auto mr-3" :job="job"></job-options-menu>
                 </div>
                 <div class="flex">
                     <div class="mt-2">
@@ -25,11 +26,13 @@
 
 <script>
     import moment from 'moment';
-    import JobStatusBadge from '../../components/Job/Status/Badge';
+    import JobStatusBadge from '../../components/Job/StatusBadge';
+    import JobOptionsMenu from '../../components/Job/OptionsMenu';
 
     export default {
         components: {
             JobStatusBadge,
+            JobOptionsMenu,
         },
 
         data() {
