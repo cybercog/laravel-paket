@@ -49,6 +49,14 @@
                         isDevelopment: false,
                     },
                     {
+                        name: 'laravel/scout',
+                        title: 'Scout',
+                        description: 'Full-Text Search',
+                        icon: 'https://laravel.com/img/ecosystem/scout.min.svg',
+                        iconBg: '#f55d5c',
+                        isDevelopment: false,
+                    },
+                    {
                         name: 'laravel/passport',
                         title: 'Passport',
                         description: 'OAuth Server',
@@ -62,14 +70,6 @@
                         description: 'OAuth Authentication',
                         icon: 'https://laravel.com/img/ecosystem/socialite.min.svg',
                         iconBg: '#e394ba',
-                        isDevelopment: false,
-                    },
-                    {
-                        name: 'laravel/scout',
-                        title: 'Scout',
-                        description: 'Full-Text Search',
-                        icon: 'https://laravel.com/img/ecosystem/scout.min.svg',
-                        iconBg: '#f55d5c',
                         isDevelopment: false,
                     },
                     {
