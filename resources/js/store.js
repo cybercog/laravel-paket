@@ -38,6 +38,10 @@ const actions = {
         this.dispatch('collectRequirements');
     },
 
+    async deleteJobs(context, payload) {
+        await Axios.delete(this.getters.getUrl(`/api/jobs/${payload.id}`));
+    },
+
     async collectJobs() {
         const response = await Axios.get(this.getters.getUrl('/api/jobs'));
 

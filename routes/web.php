@@ -29,6 +29,10 @@ Route::prefix('api')->namespace('Api')->name('paket.api.')->group(function () {
     Route::get('jobs/{job}')
         ->uses('Jobs\GetAction')
         ->name('jobs.get');
+
+    Route::delete('jobs/{job}')
+        ->uses('Jobs\DeleteAction')
+        ->name('jobs.delete');
 });
 
 Route::get('{view?}', 'AppAction')
