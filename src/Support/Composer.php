@@ -150,7 +150,7 @@ final class Composer
     private function executeCommand(JobContract $job, string $command): void
     {
         $jobLogFile = sprintf('%s/%s.log', $this->loggingPath, $job->getId());
-        $this->addLineToLogFile($jobLogFile, "$ {$command}\n");
+        $this->writeLineToLogFile($jobLogFile, "$ {$command}\n");
 
         $commands = [
             sprintf('export COMPOSER_HOME=%s', '~/.composer'),
@@ -168,10 +168,10 @@ final class Composer
         $process->start();
 
         foreach ($process as $type => $data) {
-            $this->addLineToLogFile($jobLogFile, trim($data));
+            $this->writeLineToLogFile($jobLogFile, trim($data));
         }
 
-        $this->addLineToLogFile($jobLogFile, "\n\nDone. Job exited with {$process->getExitCode()}.");
+        $this->writeLineToLogFile($jobLogFile, "\n\nDone. Job exited with {$process->getExitCode()}.");
 
         if ($process->getExitCode() !== 0) {
             throw JobFailed::withExitCode($job, $process->getExitCode());
@@ -197,7 +197,7 @@ final class Composer
         return (new Process($command, $this->workingPath))->setTimeout(null);
     }
 
-    private function addLineToLogFile(string $jobLogFile, string $line): void
+    private function writeLineToLogFile(string $jobLogFile, string $line): void
     {
         $this->files->append($jobLogFile, $line . "\n");
     }

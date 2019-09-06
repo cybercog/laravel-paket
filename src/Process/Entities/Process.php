@@ -17,9 +17,9 @@ use Cog\Contracts\Paket\Process\Entities\Process as ProcessContract;
 
 final class Process implements ProcessContract
 {
-    private $exitCode;
-
     private $output;
+
+    private $exitCode;
 
     public function __construct(?string $output = null, ?int $exitCode = null)
     {
