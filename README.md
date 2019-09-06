@@ -56,6 +56,10 @@ You will only be able to access this dashboard when `APP_ENV=local` is set in `.
 
 ![Laravel Paket Dashboard](https://user-images.githubusercontent.com/1849174/64376712-90a1ab80-d031-11e9-928e-94b63a0f1d77.png)
 
+### Laravel Ecosystem
+
+![Laravel Ecosystem](https://user-images.githubusercontent.com/1849174/64427431-e4f06e00-d0b9-11e9-81d0-ffdf8cbeb18a.png)
+
 ### Composer Requirements
 
 ![Laravel Paket Requirements](https://user-images.githubusercontent.com/1849174/64376736-9b5c4080-d031-11e9-8804-6effc3f31621.png)
