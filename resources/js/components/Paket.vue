@@ -13,7 +13,7 @@
         <div class="ml-auto text-right">
             <div v-if="isInstalled()">
                 <uninstall-button
-                    :requirement="{name: this.name}"
+                    :requirement="{name: this.name, isDevelopment: this.isDevelopment}"
                 ></uninstall-button>
                 <div class="mt-2">
                     <span class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700" v-text="getVersion()"></span>
@@ -21,7 +21,7 @@
             </div>
             <div v-if="!isInstalled()">
                 <install-button
-                    :requirement="{name: this.name}"
+                    :requirement="{name: this.name, isDevelopment: this.isDevelopment}"
                 ></install-button>
             </div>
         </div>
@@ -54,6 +54,11 @@
             icon: {
                 type: String,
                 required: false,
+            },
+            isDevelopment: {
+                type: Boolean,
+                required: false,
+                default: false,
             },
         },
 
