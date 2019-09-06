@@ -4,6 +4,10 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- ([#39]) Add jobs deletion
+
 ## [1.3.0]
 
 ### Added
