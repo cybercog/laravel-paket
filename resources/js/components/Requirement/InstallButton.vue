@@ -2,7 +2,7 @@
     <button
         type="button"
         :class="getClass()"
-        :disabled="isDisabled"
+        :disabled="hasActiveJobs()"
         v-text="getText()"
         v-on:click="install()"
     ></button>
@@ -14,16 +14,6 @@
             requirement: {
                 type: Object,
                 required: true,
-            },
-            isRunning: {
-                type: Boolean,
-                required: false,
-                default: false,
-            },
-            isDisabled: {
-                type: Boolean,
-                required: false,
-                default: false,
             },
         },
 
@@ -45,13 +35,21 @@
                 const runningClasses = 'bg-indigo-800 text-white';
                 const lockedClasses = 'bg-gray-400 text-black';
 
-                const disabledClasses = this.isRunning ? runningClasses : lockedClasses;
+                const disabledClasses = this.isInProgress() ? runningClasses : lockedClasses;
 
-                return `${classes} ${this.isDisabled ? disabledClasses : activeClasses}`;
+                return `${classes} ${this.hasActiveJobs() ? disabledClasses : activeClasses}`;
             },
 
             getText() {
-                return this.isRunning ? 'Installing' : 'Install';
+                return this.isInProgress() ? 'Installing' : 'Install';
+            },
+
+            hasActiveJobs() {
+                return this.$store.getters.getActiveJobs().length > 0;
+            },
+
+            isInProgress() {
+                return this.$store.getters.getRequirementActiveJobs(this.requirement).length > 0;
             },
         },
     }

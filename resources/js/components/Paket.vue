@@ -15,8 +15,6 @@
             <div v-if="isInstalled()">
                 <uninstall-button
                     :requirement="getRequirement()"
-                    :is-running="isInProgress()"
-                    :is-disabled="hasActiveJobs()"
                 ></uninstall-button>
                 <div class="mt-2">
                     <span class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700" v-text="getVersion()"></span>
@@ -25,8 +23,6 @@
             <div v-if="!isInstalled()">
                 <install-button
                     :requirement="getRequirement()"
-                    :is-running="isInProgress()"
-                    :is-disabled="hasActiveJobs()"
                 ></install-button>
             </div>
         </div>
