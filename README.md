@@ -54,7 +54,7 @@ You will only be able to access this dashboard when `APP_ENV=local` is set in `.
 
 ### Dashboard
 
-![Laravel Paket Dashboard](https://user-images.githubusercontent.com/1849174/64376712-90a1ab80-d031-11e9-928e-94b63a0f1d77.png)
+![Laravel Paket Dashboard](https://user-images.githubusercontent.com/1849174/64429858-9fcf3a80-d0bf-11e9-8edf-0f1dda30b1ad.png)
 
 ### Laravel Ecosystem
 
@@ -62,15 +62,15 @@ You will only be able to access this dashboard when `APP_ENV=local` is set in `.
 
 ### Composer Requirements
 
-![Laravel Paket Requirements](https://user-images.githubusercontent.com/1849174/64376736-9b5c4080-d031-11e9-8804-6effc3f31621.png)
+![Laravel Paket Requirements](https://user-images.githubusercontent.com/1849174/64429876-aa89cf80-d0bf-11e9-939e-20107f6bab62.png)
 
 ### Terminal Jobs
 
-![Laravel Paket Jobs](https://user-images.githubusercontent.com/1849174/64376752-a1eab800-d031-11e9-8baf-8968cb915ae5.png)
+![Laravel Paket Jobs](https://user-images.githubusercontent.com/1849174/64429896-b4abce00-d0bf-11e9-8c8b-4dff92740146.png)
 
 ### Terminal Job Details
 
-![Laravel Paket Job](https://user-images.githubusercontent.com/1849174/64376758-a616d580-d031-11e9-9a32-bf125d53894f.png)
+![Laravel Paket Job](https://user-images.githubusercontent.com/1849174/64429914-bc6b7280-d0bf-11e9-95be-8de111295838.png)
 
 ## License
 
