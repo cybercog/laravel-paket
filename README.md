@@ -58,7 +58,7 @@ You will only be able to access this dashboard when `APP_ENV=local` is set in `.
 
 ### Laravel Ecosystem
 
-![Laravel Ecosystem](https://user-images.githubusercontent.com/1849174/64427431-e4f06e00-d0b9-11e9-81d0-ffdf8cbeb18a.png)
+![Laravel Ecosystem](https://user-images.githubusercontent.com/1849174/64430016-005e7780-d0c0-11e9-8929-7667dcfc985e.png)
 
 ### Composer Requirements
 
