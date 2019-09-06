@@ -2,8 +2,8 @@
     <div class="flex align-top">
         <img
             class="w-10 h-10 rounded mr-4 bg-gray-700 p-1"
-            :style="`background-color: ${this.iconBg}`"
-            :src="this.icon"
+            :style="`background-color: ${iconBg}`"
+            :src="icon"
             alt=""
         />
         <div>
@@ -14,7 +14,9 @@
         <div class="ml-auto text-right">
             <div v-if="isInstalled()">
                 <uninstall-button
-                    :requirement="{name: this.name, isDevelopment: this.isDevelopment}"
+                    :requirement="getRequirement()"
+                    :is-running="isInProgress()"
+                    :is-disabled="hasActiveJobs()"
                 ></uninstall-button>
                 <div class="mt-2">
                     <span class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700" v-text="getVersion()"></span>
@@ -22,7 +24,9 @@
             </div>
             <div v-if="!isInstalled()">
                 <install-button
-                    :requirement="{name: this.name, isDevelopment: this.isDevelopment}"
+                    :requirement="getRequirement()"
+                    :is-running="isInProgress()"
+                    :is-disabled="hasActiveJobs()"
                 ></install-button>
             </div>
         </div>
@@ -68,13 +72,24 @@
             },
         },
 
-        mounted() {
-            this.fetchData();
-        },
-
         methods: {
-            async fetchData() {
-                await this.$store.dispatch('collectRequirements');
+            getRequirement() {
+                return {
+                    name: this.name,
+                    isDevelopment: this.isDevelopment,
+                };
+            },
+
+            hasActiveJobs() {
+                return this.$store.getters.getActiveJobs().length > 0;
+            },
+
+            isInProgress() {
+                const jobs = this.$store.getters.getRequirementActiveJobs(
+                    this.getRequirement()
+                );
+
+                return jobs.length > 0;
             },
 
             isInstalled() {
