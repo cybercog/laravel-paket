@@ -40,6 +40,8 @@ const actions = {
 
         this.dispatch('collectRequirements');
         this.dispatch('collectJobs');
+
+        // TODO: Remove to avoid blinking button glitch
         this.state.currentJob = null;
         context.commit('stopComposer');
     },
