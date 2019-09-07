@@ -36,12 +36,13 @@ const actions = {
     async postJobs(context, payload) {
         context.commit('runComposer');
         this.state.currentJob = payload;
+
         await Axios.post(this.getters.getUrl('/api/jobs'), payload);
 
         this.dispatch('collectRequirements');
         this.dispatch('collectJobs');
 
-        // TODO: Remove to avoid blinking button glitch
+        // TODO: Move to JobHasBeenTerminated event listener
         this.state.currentJob = null;
         context.commit('stopComposer');
     },
