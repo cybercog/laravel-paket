@@ -5,8 +5,8 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const state = {
-    isComposerBusy: false,
-    currentJob: null,
+    isInstallerLocked: false,
+    installerCurrentJob: null,
     requirements: [],
     jobs: [],
     protectedRequirements: [
@@ -17,12 +17,14 @@ const state = {
 };
 
 const mutations = {
-    runComposer(state) {
-        state.isComposerBusy = true;
+    lockInstaller(state, job) {
+        state.isInstallerLocked = true;
+        state.installerCurrentJob = job;
     },
 
-    stopComposer(state) {
-        state.isComposerBusy = false;
+    unlockInstaller(state) {
+        state.isInstallerLocked = false;
+        state.installerCurrentJob = null;
     },
 };
 
@@ -34,8 +36,7 @@ const actions = {
     },
 
     async postJobs(context, payload) {
-        context.commit('runComposer');
-        this.state.currentJob = payload;
+        context.commit('lockInstaller', payload);
 
         await Axios.post(this.getters.getUrl('/api/jobs'), payload);
 
@@ -43,8 +44,7 @@ const actions = {
         this.dispatch('collectJobs');
 
         // TODO: Move to JobHasBeenTerminated event listener
-        this.state.currentJob = null;
-        context.commit('stopComposer');
+        context.commit('unlockInstaller');
     },
 
     async deleteJobs(context, payload) {
@@ -101,11 +101,11 @@ const getters = {
     },
 
     isProcessingRequirement: (state, getters) => (requirement) => {
-        if (state.currentJob === null) {
+        if (state.installerCurrentJob === null) {
             return false;
         }
 
-        return state.currentJob.requirement.name === requirement.name;
+        return state.installerCurrentJob.requirement.name === requirement.name;
     },
 };
 
