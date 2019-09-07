@@ -2,19 +2,19 @@
     <div class="flex align-top">
         <img
             class="w-10 h-10 rounded mr-4 bg-gray-700 p-1"
-            :style="`background-color: ${this.iconBg}`"
-            :src="this.icon"
+            :style="`background-color: ${paket.iconBg || '#4a5568'}`"
+            :src="paket.icon"
             alt=""
         />
         <div>
-            <h4 class="text-gray-900 font-mono" v-text="title"></h4>
-            <div class="text-gray-600 font-mono text-xs" v-text="description"></div>
+            <h4 class="text-gray-900 font-mono" v-text="paket.title"></h4>
+            <div class="text-gray-600 font-mono text-xs" v-text="paket.description"></div>
         </div>
 
         <div class="ml-auto text-right">
             <div v-if="isInstalled()">
                 <uninstall-button
-                    :requirement="{name: this.name, isDevelopment: this.isDevelopment}"
+                    :requirement="getRequirement()"
                 ></uninstall-button>
                 <div class="mt-2">
                     <span class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700" v-text="getVersion()"></span>
@@ -22,7 +22,7 @@
             </div>
             <div v-if="!isInstalled()">
                 <install-button
-                    :requirement="{name: this.name, isDevelopment: this.isDevelopment}"
+                    :requirement="getRequirement()"
                 ></install-button>
             </div>
         </div>
@@ -40,41 +40,30 @@
         },
 
         props: {
-            name: {
-                type: String,
+            paket: {
+                type: Object,
                 required: true,
-            },
-            title: {
-                type: String,
-                required: false,
-            },
-            description: {
-                type: String,
-                required: false,
-            },
-            icon: {
-                type: String,
-                required: false,
-            },
-            iconBg: {
-                type: String,
-                required: false,
-                default: '#4a5568',
-            },
-            isDevelopment: {
-                type: Boolean,
-                required: false,
-                default: false,
-            },
-        },
-
-        mounted() {
-            this.fetchData();
+            }
         },
 
         methods: {
-            async fetchData() {
-                await this.$store.dispatch('collectRequirements');
+            getRequirement() {
+                return {
+                    name: this.paket.name,
+                    isDevelopment: this.paket.isDevelopment || false,
+                };
+            },
+
+            hasActiveJobs() {
+                return this.$store.getters.getActiveJobs().length > 0;
+            },
+
+            isInProgress() {
+                const jobs = this.$store.getters.getRequirementActiveJobs(
+                    this.getRequirement()
+                );
+
+                return jobs.length > 0;
             },
 
             isInstalled() {
@@ -83,23 +72,24 @@
 
             getVersion() {
                 let version;
+                const name = this.paket.name;
 
-                version = this.findRequirementVersion(this.getRequirements('roots', 'essential'), this.name);
+                version = this.findRequirementVersion(this.getRequirements('roots', 'essential'), name);
                 if (version !== null) {
                     return version;
                 }
 
-                version = this.findRequirementVersion(this.getRequirements('roots', 'dev'), this.name);
+                version = this.findRequirementVersion(this.getRequirements('roots', 'dev'), name);
                 if (version !== null) {
                     return version;
                 }
 
-                version = this.findRequirementVersion(this.getRequirements('dependencies', 'essential'), this.name);
+                version = this.findRequirementVersion(this.getRequirements('dependencies', 'essential'), name);
                 if (version !== null) {
                     return version;
                 }
 
-                version = this.findRequirementVersion(this.getRequirements('dependencies', 'dev'), this.name);
+                version = this.findRequirementVersion(this.getRequirements('dependencies', 'dev'), name);
                 if (version !== null) {
                     return version;
                 }

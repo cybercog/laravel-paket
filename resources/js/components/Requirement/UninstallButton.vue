@@ -1,9 +1,9 @@
 <template>
     <button
         type="button"
-        :class="getClasses()"
-        :disabled="isFormDisabled()"
-        v-text="buttonText"
+        :class="getClass()"
+        :disabled="isDisabled()"
+        v-text="getText()"
         v-on:click="uninstall()"
     ></button>
 </template>
@@ -17,64 +17,41 @@
             },
         },
 
-        data() {
-            return {
-                buttonText: 'Uninstall',
-                isInvoker: false,
-            };
-        },
-
         methods: {
             async uninstall() {
-                this.disableForm();
-
                 try {
-                    this.alertInfo({
-                        title: `Uninstalling\n${this.requirement.name}`,
-                        showConfirmButton: false,
-                    });
-
                     await this.$store.dispatch('postJobs', {
                         type: 'RequirementUninstall',
                         requirement: this.requirement,
                     });
-
-                    this.alertSuccess({
-                        title: `Uninstalled\n${this.requirement.name}`,
-                    });
                 } catch (exception) {
                     this.alertError(exception);
                 }
-
-                this.enableForm();
             },
 
-            getClasses() {
-                const activeClasses = 'bg-red-600 hover:bg-red-800 text-red-100 hover:text-white';
-                const invokerClasses = 'bg-red-800 text-white';
-                const othersClasses = 'bg-gray-400 text-black';
-
-                const inactiveClasses = this.isInvoker ? invokerClasses : othersClasses;
-
+            getClass() {
                 const classes = 'font-semibold px-2 py-1 text-xs rounded focus:outline-none focus:shadow-outline uppercase';
+                const activeClasses = 'bg-red-600 hover:bg-red-800 text-red-100 hover:text-white';
+                const runningClasses = 'bg-red-800 text-white';
+                const lockedClasses = 'bg-gray-400 text-black';
 
-                return `${classes} ${this.isFormDisabled() ? inactiveClasses : activeClasses}`;
+                const disabledClasses = this.isInProgress() ? runningClasses : lockedClasses;
+
+                return `${classes} ${this.isDisabled() ? disabledClasses : activeClasses}`;
             },
 
-            isFormDisabled() {
-                return this.$store.state.isComposerBusy;
+            getText() {
+                return this.isInProgress() ? 'Uninstalling' : 'Uninstall';
             },
 
-            disableForm() {
-                this.buttonText = 'Uninstalling';
-                this.isInvoker = true;
-                this.$store.commit('runComposer');
+            isDisabled() {
+                return this.$store.state.isComposerBusy
+                    || this.$store.getters.getActiveJobs().length > 0;
             },
 
-            enableForm() {
-                this.buttonText = 'Uninstall';
-                this.isInvoker = false;
-                this.$store.commit('stopComposer');
+            isInProgress() {
+                return this.$store.getters.isProcessingRequirement(this.requirement)
+                    || this.$store.getters.getRequirementActiveJobs(this.requirement).length > 0;
             },
         },
     }

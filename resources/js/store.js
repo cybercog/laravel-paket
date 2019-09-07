@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 const state = {
     isComposerBusy: false,
+    currentJob: null,
     requirements: [],
     jobs: [],
     protectedRequirements: [
@@ -33,9 +34,17 @@ const actions = {
     },
 
     async postJobs(context, payload) {
+        context.commit('runComposer');
+        this.state.currentJob = payload;
+
         await Axios.post(this.getters.getUrl('/api/jobs'), payload);
 
         this.dispatch('collectRequirements');
+        this.dispatch('collectJobs');
+
+        // TODO: Move to JobHasBeenTerminated event listener
+        this.state.currentJob = null;
+        context.commit('stopComposer');
     },
 
     async deleteJobs(context, payload) {
@@ -65,8 +74,38 @@ const getters = {
         return window.location.origin + '/' + window.Paket.baseUri + uri;
     },
 
+    getJobs: (state, getters) => () => {
+        return state.jobs;
+    },
+
     getJob: (state, getters) => (jobId) => {
         return Axios.get(getters.getUrl(`/api/jobs/${jobId}`));
+    },
+
+    getRequirementJobs: (state, getters) => (requirement) => {
+        return getters
+            .getJobs()
+            .filter(job => requirement && job.requirement && job.requirement.name === requirement.name);
+    },
+
+    getRequirementActiveJobs: (state, getters) => (requirement) => {
+        return getters
+            .getRequirementJobs(requirement)
+            .filter(job => job.status === 'Pending' || job.status === 'Running');
+    },
+
+    getActiveJobs: (state, getters) => (requirement) => {
+        return getters
+            .getJobs()
+            .filter(job => job.status === 'Pending' || job.status === 'Running');
+    },
+
+    isProcessingRequirement: (state, getters) => (requirement) => {
+        if (state.currentJob === null) {
+            return false;
+        }
+
+        return state.currentJob.requirement.name === requirement.name;
     },
 };
 
