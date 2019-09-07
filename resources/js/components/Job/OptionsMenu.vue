@@ -67,11 +67,7 @@
                         title: 'Job Deleted!',
                     });
 
-                    const jobsListUrl = this.$store.getters.getUrl('/jobs');
-                    const currentUrl = window.location.href;
-                    if (currentUrl !== jobsListUrl) {
-                        window.location.href = jobsListUrl;
-                    }
+                    await this.$router.replace('/jobs');
                 }
             },
         },
