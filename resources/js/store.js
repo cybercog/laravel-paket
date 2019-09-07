@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 const state = {
     isComposerBusy: false,
+    currentJob: null,
     requirements: [],
     jobs: [],
     protectedRequirements: [
@@ -34,10 +35,12 @@ const actions = {
 
     async postJobs(context, payload) {
         context.commit('runComposer');
+        this.state.currentJob = payload;
         await Axios.post(this.getters.getUrl('/api/jobs'), payload);
 
         this.dispatch('collectRequirements');
         this.dispatch('collectJobs');
+        this.state.currentJob = null;
         context.commit('stopComposer');
     },
 
@@ -92,6 +95,14 @@ const getters = {
         return getters
             .getJobs()
             .filter(job => job.status === 'Pending' || job.status === 'Running');
+    },
+
+    isProcessingRequirement: (state, getters) => (requirement) => {
+        if (state.currentJob === null) {
+            return false;
+        }
+
+        return state.currentJob.requirement.name === requirement.name;
     },
 };
 

@@ -2,7 +2,7 @@
     <button
         type="button"
         :class="getClass()"
-        :disabled="hasActiveJobs()"
+        :disabled="isDisabled()"
         v-text="getText()"
         v-on:click="uninstall()"
     ></button>
@@ -37,19 +37,21 @@
 
                 const disabledClasses = this.isInProgress() ? runningClasses : lockedClasses;
 
-                return `${classes} ${this.hasActiveJobs() ? disabledClasses : activeClasses}`;
+                return `${classes} ${this.isDisabled() ? disabledClasses : activeClasses}`;
             },
 
             getText() {
                 return this.isInProgress() ? 'Uninstalling' : 'Uninstall';
             },
 
-            hasActiveJobs() {
-                return this.$store.getters.getActiveJobs().length > 0;
+            isDisabled() {
+                return this.$store.state.isComposerBusy
+                    || this.$store.getters.getActiveJobs().length > 0;
             },
 
             isInProgress() {
-                return this.$store.getters.getRequirementActiveJobs(this.requirement).length > 0;
+                return this.$store.getters.isProcessingRequirement(this.requirement)
+                    || this.$store.getters.getRequirementActiveJobs(this.requirement).length > 0;
             },
         },
     }
