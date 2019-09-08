@@ -36,9 +36,9 @@ const actions = {
     },
 
     async postJobs(context, payload) {
-        context.commit('lockInstaller', payload);
+        const response = await Axios.post(this.getters.getUrl('/api/jobs'), payload);
 
-        await Axios.post(this.getters.getUrl('/api/jobs'), payload);
+        context.commit('lockInstaller', response.data);
 
         this.dispatch('collectRequirements');
         this.dispatch('collectJobs');
