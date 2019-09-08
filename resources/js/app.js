@@ -20,6 +20,8 @@ const router = new VueRouter({
     base: '/' + window.Paket.baseUri,
 });
 
+Vue.component('top-menu', require('./components/TopMenu.vue').default);
+
 Vue.mixin(globals);
 
 new Vue({
