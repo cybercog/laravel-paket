@@ -67,7 +67,11 @@
                         title: 'Job Deleted!',
                     });
 
-                    await this.$router.replace('/jobs');
+                    if (this.$router.currentRoute.name !== 'jobs') {
+                        await this.$router.replace({
+                            name: 'jobs',
+                        });
+                    }
                 }
             },
         },
