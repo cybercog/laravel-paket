@@ -9,6 +9,7 @@ const state = {
     isInstallerLocked: false,
     installerCurrentJob: null,
     requirements: [],
+    repositories: [],
     jobs: [],
     protectedRequirements: [
         'php',
@@ -50,6 +51,20 @@ const actions = {
 
     async deleteJobs(context, payload) {
         await Axios.delete(this.getters.getUrl(`/api/jobs/${payload.id}`));
+    },
+
+    async collectRepositories() {
+        const url = this.getters.getUrl('/api/repositories');
+
+        try {
+            const response = await Axios.get(url);
+
+            if (response.status === 200) {
+                this.state.repositories = response.data;
+            }
+        } catch (exception) {
+            console.warn(`Cannot fetch ${url}`);
+        }
     },
 
     async collectJobs() {
@@ -101,6 +116,10 @@ const getters = {
 
     getUrl: () => (uri) => {
         return window.location.origin + '/' + window.Paket.baseUri + uri;
+    },
+
+    getRepositories: (state, getters) => () => {
+        return state.repositories;
     },
 
     getJobs: (state, getters) => () => {

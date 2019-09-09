@@ -23,6 +23,12 @@ export default [
     },
 
     {
+        path: '/repositories',
+        name: 'repositories',
+        component: require('./screens/repositories/index').default,
+    },
+
+    {
         path: '/jobs',
         name: 'jobs',
         component: require('./screens/jobs/index').default,
