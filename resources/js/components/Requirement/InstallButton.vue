@@ -24,6 +24,8 @@
                         type: 'RequirementInstall',
                         requirement: this.requirement,
                     });
+
+                    await this.$store.dispatch('autoRefreshJobs');
                 } catch (exception) {
                     this.alertError(exception);
                 }
@@ -45,7 +47,7 @@
             },
 
             isDisabled() {
-                return this.$store.state.isComposerBusy
+                return this.$store.state.isInstallerLocked
                     || this.$store.getters.getActiveJobs().length > 0;
             },
 

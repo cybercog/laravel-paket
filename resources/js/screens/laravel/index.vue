@@ -6,7 +6,7 @@
             <div class="w-1/3" v-for="paket in pakets">
                 <div class="rounded overflow-hidden shadow mt-6 mx-2">
                     <div class="px-6 py-4">
-                        <Paket :paket="paket"/>
+                        <paket-card :paket="paket"/>
                     </div>
                 </div>
             </div>
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-    import Paket from '../../components/Paket';
+    import PaketCard from '../../components/PaketCard';
 
     export default {
         components: {
-            Paket,
+            PaketCard,
         },
 
         data() {
@@ -85,16 +85,7 @@
             };
         },
 
-        beforeMount() {
-            this.fetchData();
-        },
-
         methods: {
-            async fetchData() {
-                await this.$store.dispatch('collectRequirements');
-                await this.$store.dispatch('collectJobs');
-            },
-
             getRequirements(level, environment) {
                 const requirements = this.$store.state.requirements;
 

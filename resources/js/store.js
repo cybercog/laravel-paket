@@ -5,8 +5,9 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const state = {
-    isComposerBusy: false,
-    currentJob: null,
+    isAutoRefreshingJobs: false,
+    isInstallerLocked: false,
+    installerCurrentJob: null,
     requirements: [],
     jobs: [],
     protectedRequirements: [
@@ -17,12 +18,14 @@ const state = {
 };
 
 const mutations = {
-    runComposer(state) {
-        state.isComposerBusy = true;
+    lockInstaller(state, job) {
+        state.isInstallerLocked = true;
+        state.installerCurrentJob = job;
     },
 
-    stopComposer(state) {
-        state.isComposerBusy = false;
+    unlockInstaller(state) {
+        state.isInstallerLocked = false;
+        state.installerCurrentJob = null;
     },
 };
 
@@ -34,17 +37,15 @@ const actions = {
     },
 
     async postJobs(context, payload) {
-        context.commit('runComposer');
-        this.state.currentJob = payload;
+        // Need this pre-lock to work with `sync` queue
+        context.commit('lockInstaller', payload);
 
-        await Axios.post(this.getters.getUrl('/api/jobs'), payload);
+        const response = await Axios.post(this.getters.getUrl('/api/jobs'), payload);
+
+        context.commit('lockInstaller', response.data);
 
         this.dispatch('collectRequirements');
         this.dispatch('collectJobs');
-
-        // TODO: Move to JobHasBeenTerminated event listener
-        this.state.currentJob = null;
-        context.commit('stopComposer');
     },
 
     async deleteJobs(context, payload) {
@@ -52,9 +53,37 @@ const actions = {
     },
 
     async collectJobs() {
-        const response = await Axios.get(this.getters.getUrl('/api/jobs'));
+        const url = this.getters.getUrl('/api/jobs');
 
-        this.state.jobs = response.data.reverse();
+        try {
+            const response = await Axios.get(url);
+
+            if (response.status === 200) {
+                this.state.jobs = response.data.reverse();
+            }
+        } catch (exception) {
+            console.warn(`Cannot fetch ${url}`);
+        }
+    },
+
+    async autoRefreshJobs(context) {
+        if (context.isAutoRefreshingJobs) {
+            return;
+        }
+
+        context.isAutoRefreshingJobs = true;
+
+        setTimeout(async () => {
+            await context.dispatch('collectJobs');
+
+            if (context.getters.getActiveJobs().length > 0) {
+                await context.dispatch('autoRefreshJobs');
+            } else {
+                await context.dispatch('collectRequirements');
+                context.commit('unlockInstaller');
+                context.isAutoRefreshingJobs = false;
+            }
+        }, 1000);
     },
 };
 
@@ -101,11 +130,11 @@ const getters = {
     },
 
     isProcessingRequirement: (state, getters) => (requirement) => {
-        if (state.currentJob === null) {
+        if (state.installerCurrentJob === null) {
             return false;
         }
 
-        return state.currentJob.requirement.name === requirement.name;
+        return state.installerCurrentJob.requirement.name === requirement.name;
     },
 };
 

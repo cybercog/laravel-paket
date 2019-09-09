@@ -81,19 +81,7 @@
 
 <script>
     export default {
-        data() {
-            return {};
-        },
-
-        mounted() {
-            this.fetchData();
-        },
-
         methods: {
-            async fetchData() {
-                await this.$store.dispatch('collectRequirements');
-            },
-
             getRequirementVersion(name) {
                 let version;
 

@@ -1,16 +1,9 @@
-import Axios from 'axios';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import globals from './globals';
 import routes from './routes';
 import store from './store';
-
-const token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-    Axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-}
 
 Vue.use(VueRouter);
 
@@ -20,6 +13,8 @@ const router = new VueRouter({
     base: '/' + window.Paket.baseUri,
 });
 
+Vue.component('top-menu', require('./components/TopMenu.vue').default);
+
 Vue.mixin(globals);
 
 new Vue({
@@ -28,4 +23,16 @@ new Vue({
     router,
 
     store,
+
+    created() {
+        this.fetchData();
+    },
+
+    methods: {
+        async fetchData() {
+            // Need it to run jobs state checker after page reload
+            await this.$store.dispatch('autoRefreshJobs');
+            await this.$store.dispatch('collectRequirements');
+        },
+    },
 });

@@ -7,10 +7,12 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 ### Added
 
 - ([#39]) Add jobs deletion
+- ([#47]) Add job status badge in top menu
 
 ### Fixed
 
-- ([#42]) Lock UI when Job in progress
+- ([#42]) Lock installer when Job in progress
+- ([#47]) Unlock installer when Job in progress
 
 ## [1.3.0]
 
@@ -51,7 +53,9 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 [1.2.0]: https://github.com/cybercog/laravel-paket/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/cybercog/laravel-paket/compare/1.0.0...1.1.0
 
+[#47]: https://github.com/cybercog/laravel-paket/pull/47
 [#42]: https://github.com/cybercog/laravel-paket/pull/42
+[#39]: https://github.com/cybercog/laravel-paket/pull/39
 [#35]: https://github.com/cybercog/laravel-paket/pull/35
 [#33]: https://github.com/cybercog/laravel-paket/pull/33
 [#32]: https://github.com/cybercog/laravel-paket/pull/32
