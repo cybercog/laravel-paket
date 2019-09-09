@@ -14,9 +14,7 @@
             :disabled="isDisabled()"
             v-text="getButtonText()"
             v-on:click="install()"
-        >
-            Install
-        </button>
+        ></button>
     </div>
 </template>
 

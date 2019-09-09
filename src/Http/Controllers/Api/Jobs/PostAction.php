@@ -41,16 +41,19 @@ final class PostAction
         $type = $request->input('type');
         $requirement = Requirement::fromArray($request->input('requirement'));
 
-        if ($type === 'RequirementInstall') {
-            if ($this->isRequirementInstalled($requirement)) {
-                throw ValidationException::withMessages([
-                    'name' => [
-                        "Package `{$requirement}` already installed",
-                    ],
-                ]);
-            }
-        } else {
-            $requirement = $this->getInstalledRequirement($requirement);
+        switch ($type) {
+            case 'RequirementInstall':
+                if ($this->isRequirementInstalled($requirement)) {
+                    throw ValidationException::withMessages([
+                        'name' => [
+                            "Package `{$requirement}` already installed",
+                        ],
+                    ]);
+                }
+                break;
+            case 'RequirementUninstall':
+                $requirement = $this->getInstalledRequirement($requirement);
+                break;
         }
 
         $job = new Job(
