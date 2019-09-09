@@ -17,10 +17,10 @@
         </div>
         <div v-if="package">
             <div v-for="(distValue, distKey) in package.dist" class="text-sm mt-4">
-                <span class="font-semibold">dist.{{ distKey }}:</span> {{ distValue }}
+                <span class="font-semibold">package.dist.{{ distKey }}:</span> {{ distValue }}
             </div>
             <div v-for="(sourceValue, sourceKey) in package.source" class="text-sm mt-4">
-                <span class="font-semibold">source.{{ sourceKey }}:</span> {{ sourceValue }}
+                <span class="font-semibold">package.source.{{ sourceKey }}:</span> {{ sourceValue }}
             </div>
         </div>
     </div>
