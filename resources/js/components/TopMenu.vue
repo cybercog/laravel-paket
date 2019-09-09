@@ -39,16 +39,7 @@
 
 <script>
     export default {
-        beforeMount() {
-            this.fetchData();
-        },
-
         methods: {
-            async fetchData() {
-                // Need it to run jobs state checker after page reload
-                await this.$store.dispatch('autoRefreshJobs');
-            },
-
             getJobsBadgeClass() {
                 const activeJobs = this.$store.getters.getActiveJobs();
 

@@ -53,20 +53,33 @@ const actions = {
     },
 
     async collectJobs() {
-        const response = await Axios.get(this.getters.getUrl('/api/jobs'));
+        const url = this.getters.getUrl('/api/jobs');
 
-        this.state.jobs = response.data.reverse();
+        try {
+            const response = await Axios.get(url);
+
+            if (response.status === 200) {
+                this.state.jobs = response.data.reverse();
+            }
+        } catch (exception) {
+            console.warn(`Cannot fetch ${url}`);
+        }
     },
 
     async autoRefreshJobs(context) {
+        if (context.isAutoRefreshingJobs) {
+            return;
+        }
+
         context.isAutoRefreshingJobs = true;
 
-        setTimeout(() => {
-            context.dispatch('collectJobs');
+        setTimeout(async () => {
+            await context.dispatch('collectJobs');
+
             if (context.getters.getActiveJobs().length > 0) {
-                context.dispatch('autoRefreshJobs');
+                await context.dispatch('autoRefreshJobs');
             } else {
-                context.dispatch('collectRequirements');
+                await context.dispatch('collectRequirements');
                 context.commit('unlockInstaller');
                 context.isAutoRefreshingJobs = false;
             }

@@ -23,4 +23,16 @@ new Vue({
     router,
 
     store,
+
+    created() {
+        this.fetchData();
+    },
+
+    methods: {
+        async fetchData() {
+            // Need it to run jobs state checker after page reload
+            await this.$store.dispatch('autoRefreshJobs');
+            await this.$store.dispatch('collectRequirements');
+        },
+    },
 });

@@ -85,16 +85,7 @@
             };
         },
 
-        beforeMount() {
-            this.fetchData();
-        },
-
         methods: {
-            async fetchData() {
-                await this.$store.dispatch('collectRequirements');
-                await this.$store.dispatch('collectJobs');
-            },
-
             getRequirements(level, environment) {
                 const requirements = this.$store.state.requirements;
 
