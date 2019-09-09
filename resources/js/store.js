@@ -36,15 +36,15 @@ const actions = {
     },
 
     async postJobs(context, payload) {
+        // Need this pre-lock to work with `sync` queue
+        context.commit('lockInstaller', payload);
+
         const response = await Axios.post(this.getters.getUrl('/api/jobs'), payload);
 
         context.commit('lockInstaller', response.data);
 
         this.dispatch('collectRequirements');
         this.dispatch('collectJobs');
-
-        // TODO: Move to JobHasBeenTerminated event listener
-        context.commit('unlockInstaller');
     },
 
     async deleteJobs(context, payload) {
@@ -55,6 +55,18 @@ const actions = {
         const response = await Axios.get(this.getters.getUrl('/api/jobs'));
 
         this.state.jobs = response.data.reverse();
+    },
+
+    async autoRefreshJobs(context) {
+        setTimeout(() => {
+            context.dispatch('collectJobs');
+            if (context.getters.getActiveJobs().length > 0) {
+                context.dispatch('autoRefreshJobs');
+            } else {
+                context.dispatch('collectRequirements');
+                context.commit('unlockInstaller');
+            }
+        }, 1000);
     },
 };
 

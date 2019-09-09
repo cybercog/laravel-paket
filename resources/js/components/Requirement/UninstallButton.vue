@@ -24,6 +24,8 @@
                         type: 'RequirementUninstall',
                         requirement: this.requirement,
                     });
+
+                    await this.$store.dispatch('autoRefreshJobs');
                 } catch (exception) {
                     this.alertError(exception);
                 }
