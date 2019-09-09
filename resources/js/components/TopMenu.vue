@@ -45,7 +45,8 @@
 
         methods: {
             async fetchData() {
-                await this.$store.dispatch('collectJobs');
+                // Need it to run jobs state checker after page reload
+                await this.$store.dispatch('autoRefreshJobs');
             },
 
             getJobsBadgeClass() {

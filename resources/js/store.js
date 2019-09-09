@@ -5,6 +5,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const state = {
+    isAutoRefreshingJobs: false,
     isInstallerLocked: false,
     installerCurrentJob: null,
     requirements: [],
@@ -58,6 +59,8 @@ const actions = {
     },
 
     async autoRefreshJobs(context) {
+        context.isAutoRefreshingJobs = true;
+
         setTimeout(() => {
             context.dispatch('collectJobs');
             if (context.getters.getActiveJobs().length > 0) {
@@ -65,6 +68,7 @@ const actions = {
             } else {
                 context.dispatch('collectRequirements');
                 context.commit('unlockInstaller');
+                context.isAutoRefreshingJobs = false;
             }
         }, 1000);
     },
