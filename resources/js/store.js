@@ -41,9 +41,12 @@ const actions = {
         // Need this pre-lock to work with `sync` queue
         context.commit('lockInstaller', payload);
 
-        const response = await Axios.post(this.getters.getUrl('/api/jobs'), payload);
-
-        context.commit('lockInstaller', response.data);
+        try {
+            const response = await Axios.post(this.getters.getUrl('/api/jobs'), payload);
+            context.commit('lockInstaller', response.data);
+        } catch (exception) {
+            context.commit('unlockInstaller');
+        }
 
         this.dispatch('collectRequirements');
         this.dispatch('collectJobs');
