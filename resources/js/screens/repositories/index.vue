@@ -10,8 +10,11 @@
             <span>{{ getTitle(repository) }}</span>
             <div>
                 <div v-for="(option, optionName) in repository.options">
-                    <div v-for="(optionValue, optionKey) in option" class="text-sm mt-4">
-                        <span class="font-semibold">{{ optionName }}.{{ optionKey }}:</span> {{ optionValue }}
+                    <div v-if="typeof option === 'object'" v-for="(optionValue, optionKey) in option" class="text-sm mt-4">
+                        <span class="font-semibold">options.{{ optionName }}.{{ optionKey }}:</span> {{ optionValue }}
+                    </div>
+                    <div v-if="typeof option !== 'object'" class="text-sm mt-4">
+                        <span class="font-semibold">options.{{ optionName }}:</span> {{ option }}
                     </div>
                 </div>
             </div>
