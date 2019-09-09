@@ -33,12 +33,13 @@ final class CollectAction
         $output = [];
 
         foreach ($repositories as $repository) {
+            $package = $repository->getPackage();
+
             $output[] = [
                 'type' => $repository->getType(),
                 'url' => $repository->getUrl(),
-                // TODO: Add options & package
-//                'options' => $repository->getOptions(),
-//                'package' => $repository->getPackage(),
+                'options' => $repository->getOptions(),
+                'package' => is_null($package) ? null : $package->toArray(),
             ];
         }
 
