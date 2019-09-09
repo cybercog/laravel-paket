@@ -32,10 +32,10 @@ final class CollectAction
         $repositories = $jsonFile->getRepositories();
         $output = [];
 
-        foreach ($repositories as $repository) {
+        foreach ($repositories as $key => $repository) {
             $package = $repository->getPackage();
 
-            $output[] = [
+            $output[$key] = [
                 'type' => $repository->getType(),
                 'url' => $repository->getUrl(),
                 'options' => $repository->getOptions(),
@@ -43,6 +43,40 @@ final class CollectAction
             ];
         }
 
+        $output = $this->addDefaultRepository($output);
+
         return $output;
+    }
+
+    // TODO: Remove after fix: https://github.com/MCStreetguy/ComposerParser/issues/4
+    private function addDefaultRepository(array $repositories): array
+    {
+        $isPackagistOrgDisabled = false;
+        foreach ($repositories as $key => $repository) {
+            // This hacky temporary solution the only way to determine `{"packagist.org": false}` repository object
+            // But in fact it will display that packagist ignored even with any empty object
+            if ($repository['type'] === '' && $repository['url'] === '' && $repository['options'] === [] && is_null($repository['package'])) {
+                $isPackagistOrgDisabled = true;
+                unset($repositories[$key]);
+            }
+        }
+
+        if ($isPackagistOrgDisabled) {
+            return $repositories;
+        }
+
+        $defaultRepository = [
+            'type' => 'composer',
+            'url' => 'https?://repo.packagist.org',
+            'allow_ssl_downgrade' => true,
+        ];
+
+        if (!isset($repositories['packagist.org'])) {
+            $repositories['packagist.org'] = [];
+        }
+
+        $repositories['packagist.org'] = array_merge($defaultRepository, $repositories['packagist.org']);
+
+        return $repositories;
     }
 }
