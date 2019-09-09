@@ -21,7 +21,15 @@
             Repository,
         },
 
+        mounted() {
+            this.fetchData();
+        },
+
         methods: {
+            async fetchData() {
+                await this.$store.dispatch('collectRepositories');
+            },
+
             getRepositories() {
                 return this.$store.getters.getRepositories();
             },
