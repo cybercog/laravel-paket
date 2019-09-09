@@ -66,11 +66,11 @@ You will only be able to access this dashboard when `APP_ENV=local` is set in `.
 
 ### Terminal Jobs
 
-![Laravel Paket Jobs](https://user-images.githubusercontent.com/1849174/64429896-b4abce00-d0bf-11e9-8c8b-4dff92740146.png)
+![Laravel Paket Jobs](https://user-images.githubusercontent.com/1849174/64499584-4c790a00-d2c2-11e9-902d-cfed49be1d98.png)
 
 ### Terminal Job Details
 
-![Laravel Paket Job](https://user-images.githubusercontent.com/1849174/64429914-bc6b7280-d0bf-11e9-95be-8de111295838.png)
+![Laravel Paket Job](https://user-images.githubusercontent.com/1849174/64499560-38cda380-d2c2-11e9-9ea9-11491865ec6f.png)
 
 ## License
 
