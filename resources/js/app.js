@@ -33,6 +33,7 @@ new Vue({
             // Need it to run jobs state checker after page reload
             await this.$store.dispatch('autoRefreshJobs');
             await this.$store.dispatch('collectRequirements');
+            await this.$store.dispatch('collectRepositories');
         },
     },
 });

@@ -14,6 +14,10 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('api')->namespace('Api')->name('paket.api.')->group(function () {
+    Route::get('repositories')
+        ->uses('Repositories\CollectAction')
+        ->name('repositories.collect');
+
     Route::get('requirements')
         ->uses('Requirements\CollectAction')
         ->name('requirements.collect');
