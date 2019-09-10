@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="relative">
         <div class="flex">
             <input
                 type="text"
@@ -18,9 +18,10 @@
                 v-on:click="install()"
             ></button>
         </div>
-        <div class="border absolute" v-if="getSuggestions().length > 0">
-            <div v-for="suggestion in getSuggestions()" class="bg-white hover:bg-gray-100 p-2" v-on:click="suggestionSelect(suggestion)">
-                <span v-text="suggestion.name" :title="suggestion.description"></span>
+        <div class="border absolute w-full" v-if="getSuggestions().length > 0">
+            <div v-for="suggestion in getSuggestions()" class="bg-white hover:bg-gray-200 p-2 cursor-pointer" v-on:click="suggestionSelect(suggestion)">
+                <div v-text="suggestion.name"></div>
+                <div v-text="suggestion.description" class="text-xs text-gray-600"></div>
             </div>
         </div>
     </div>
