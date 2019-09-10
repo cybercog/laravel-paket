@@ -45,6 +45,7 @@
         },
 
         mounted() {
+            this.fetchData();
             this.autoRefreshData();
         },
 
@@ -59,12 +60,11 @@
         },
 
         methods: {
-            autoRefreshData() {
+            async autoRefreshData() {
                 setTimeout(async () => {
-                    await this.fetchData();
-
                     if (this.job.status === 'Pending' || this.job.status === 'Running') {
-                        this.autoRefreshData();
+                        await this.fetchData();
+                        await this.autoRefreshData();
                     }
                 }, 1000);
             },
