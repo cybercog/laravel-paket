@@ -1,20 +1,28 @@
 <template>
-    <div class="flex">
-        <input
-            type="text"
-            :class="getInputClass()"
-            :readonly="isDisabled()"
-            v-model="command"
-            v-on:keyup.enter="install()"
-            placeholder="Type in vendor/package OR composer require vendor/package"
-        />
-        <button
-            type="submit"
-            :class="getButtonClass()"
-            :disabled="isDisabled()"
-            v-text="getButtonText()"
-            v-on:click="install()"
-        ></button>
+    <div>
+        <div class="flex">
+            <input
+                type="text"
+                :class="getInputClass()"
+                :readonly="isDisabled()"
+                v-model="command"
+                v-on:keyup.enter="install()"
+                v-on:input="searchSuggestions"
+                placeholder="Type in vendor/package OR composer require vendor/package"
+            />
+            <button
+                type="submit"
+                :class="getButtonClass()"
+                :disabled="isDisabled()"
+                v-text="getButtonText()"
+                v-on:click="install()"
+            ></button>
+        </div>
+        <div class="border absolute" v-if="getSuggestions().length > 0">
+            <div v-for="suggestion in getSuggestions()" class="bg-white hover:bg-gray-100 p-2" v-on:click="suggestionSelect(suggestion)">
+                <span v-text="suggestion.name" :title="suggestion.description"></span>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -58,6 +66,28 @@
                 }
 
                 this.forgetInput();
+            },
+
+            async searchSuggestions(input) {
+                const query = input.target.value;
+
+                if (query === '') {
+                    await this.$store.dispatch('clearRequirementSuggestions');
+                    return;
+                }
+
+                await this.$store.dispatch('collectRequirementSuggestions', {
+                    query: query,
+                });
+            },
+
+            suggestionSelect(suggestion) {
+                this.command = suggestion.name;
+                this.$store.dispatch('clearRequirementSuggestions');
+            },
+
+            getSuggestions() {
+                return this.$store.state.requirementSuggestions;
             },
 
             isDisabled() {
