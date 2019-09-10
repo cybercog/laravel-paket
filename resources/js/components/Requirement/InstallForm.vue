@@ -7,7 +7,6 @@
                 :readonly="isDisabled()"
                 v-model="command"
                 v-on:keyup.enter="install()"
-                v-on:input="searchSuggestions"
                 placeholder="Type in vendor/package OR composer require vendor/package"
             />
             <button
@@ -28,11 +27,14 @@
 </template>
 
 <script>
+    import debounce from 'lodash/debounce';
+
     export default {
         data() {
             return {
                 buttonText: 'Install',
                 command: '',
+                selectedSuggestion: null,
                 requirement: {
                     name: '',
                     version: null,
@@ -41,6 +43,23 @@
                 isInputInvalid: false,
                 isProcessing: false,
             };
+        },
+
+        watch: {
+            command(value, oldValue) {
+                if (this.selectedSuggestion !== null) {
+                    this.selectedSuggestion = null;
+                    return;
+                }
+
+                if (oldValue.trim() !== value.trim()) {
+                    this.debouncedSearchSuggestions(value);
+                }
+            },
+        },
+
+        created() {
+            this.debouncedSearchSuggestions = debounce(this.searchSuggestions, 500);
         },
 
         methods: {
@@ -69,11 +88,24 @@
                 this.forgetInput();
             },
 
-            async searchSuggestions(input) {
-                const query = input.target.value;
-
+            async searchSuggestions(query) {
                 if (query === '') {
                     await this.$store.dispatch('clearRequirementSuggestions');
+                    return;
+                }
+
+                // Ignore search if fully qualified console command
+                if (query.includes('composer require')) {
+                    return;
+                }
+
+                // Ignore search if version already specified
+                if (query.includes(':')) {
+                    return;
+                }
+
+                // Ignore search if adding flags like --dev
+                if (query.includes('--')) {
                     return;
                 }
 
@@ -83,11 +115,17 @@
             },
 
             suggestionSelect(suggestion) {
+                this.selectedSuggestion = suggestion;
                 this.command = suggestion.name;
                 this.$store.dispatch('clearRequirementSuggestions');
             },
 
             getSuggestions() {
+                // Need to avoid bug with quick full delete command with holding backspace button
+                if (this.command === '') {
+                    return [];
+                }
+
                 return this.$store.state.requirementSuggestions;
             },
 
