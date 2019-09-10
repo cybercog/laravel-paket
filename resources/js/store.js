@@ -9,6 +9,7 @@ const state = {
     isInstallerLocked: false,
     installerCurrentJob: null,
     requirements: [],
+    requirementSuggestions: [],
     repositories: [],
     jobs: [],
     protectedRequirements: [
@@ -102,6 +103,16 @@ const actions = {
                 context.isAutoRefreshingJobs = false;
             }
         }, 1000);
+    },
+
+    async collectRequirementSuggestions(context, payload) {
+        const response = await Axios.get(`https://packagist.org/search.json?q=${payload.query}`);
+
+        context.state.requirementSuggestions = response.data.results;
+    },
+
+    clearRequirementSuggestions(context) {
+        context.state.requirementSuggestions = [];
     },
 };
 

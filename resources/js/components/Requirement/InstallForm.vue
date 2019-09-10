@@ -1,29 +1,40 @@
 <template>
-    <div class="flex">
-        <input
-            type="text"
-            :class="getInputClass()"
-            :readonly="isDisabled()"
-            v-model="command"
-            v-on:keyup.enter="install()"
-            placeholder="Type in vendor/package OR composer require vendor/package"
-        />
-        <button
-            type="submit"
-            :class="getButtonClass()"
-            :disabled="isDisabled()"
-            v-text="getButtonText()"
-            v-on:click="install()"
-        ></button>
+    <div class="relative">
+        <div class="flex">
+            <input
+                type="text"
+                :class="getInputClass()"
+                :readonly="isDisabled()"
+                v-model="command"
+                v-on:keyup.enter="install()"
+                placeholder="Type in vendor/package OR composer require vendor/package"
+            />
+            <button
+                type="submit"
+                :class="getButtonClass()"
+                :disabled="isDisabled()"
+                v-text="getButtonText()"
+                v-on:click="install()"
+            ></button>
+        </div>
+        <div class="border absolute w-full" v-if="getSuggestions().length > 0">
+            <div v-for="suggestion in getSuggestions()" class="bg-white hover:bg-gray-200 p-2 cursor-pointer" v-on:click="suggestionSelect(suggestion)">
+                <div v-text="suggestion.name"></div>
+                <div v-text="suggestion.description" class="text-xs text-gray-600"></div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+    import debounce from 'lodash/debounce';
+
     export default {
         data() {
             return {
                 buttonText: 'Install',
                 command: '',
+                selectedSuggestion: null,
                 requirement: {
                     name: '',
                     version: null,
@@ -32,6 +43,23 @@
                 isInputInvalid: false,
                 isProcessing: false,
             };
+        },
+
+        watch: {
+            command(value, oldValue) {
+                if (this.selectedSuggestion !== null) {
+                    this.selectedSuggestion = null;
+                    return;
+                }
+
+                if (oldValue.trim() !== value.trim()) {
+                    this.debouncedSearchSuggestions(value);
+                }
+            },
+        },
+
+        created() {
+            this.debouncedSearchSuggestions = debounce(this.searchSuggestions, 500);
         },
 
         methods: {
@@ -58,6 +86,47 @@
                 }
 
                 this.forgetInput();
+            },
+
+            async searchSuggestions(query) {
+                if (query === '') {
+                    await this.$store.dispatch('clearRequirementSuggestions');
+                    return;
+                }
+
+                // Ignore search if fully qualified console command
+                if (query.includes('composer require')) {
+                    return;
+                }
+
+                // Ignore search if version already specified
+                if (query.includes(':')) {
+                    return;
+                }
+
+                // Ignore search if adding flags like --dev
+                if (query.includes('--')) {
+                    return;
+                }
+
+                await this.$store.dispatch('collectRequirementSuggestions', {
+                    query: query,
+                });
+            },
+
+            suggestionSelect(suggestion) {
+                this.selectedSuggestion = suggestion;
+                this.command = suggestion.name;
+                this.$store.dispatch('clearRequirementSuggestions');
+            },
+
+            getSuggestions() {
+                // Need to avoid bug with quick full delete command with holding backspace button
+                if (this.command === '') {
+                    return [];
+                }
+
+                return this.$store.state.requirementSuggestions;
             },
 
             isDisabled() {
