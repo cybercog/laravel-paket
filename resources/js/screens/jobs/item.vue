@@ -45,7 +45,7 @@
         },
 
         mounted() {
-            this.fetchData();
+            this.autoRefreshData();
         },
 
         computed: {
@@ -59,12 +59,24 @@
         },
 
         methods: {
+            autoRefreshData() {
+                setTimeout(async () => {
+                    await this.fetchData();
+
+                    if (this.job.status === 'Running' || this.job.status === 'Pending') {
+                        this.autoRefreshData();
+                    }
+                }, 1000);
+            },
+
             async fetchData() {
                 const response = await this.$store.getters.getJob(this.$route.params.id);
 
-                this.job = response.data;
+                if (typeof response !== 'undefined') {
+                    this.job = response.data;
 
-                this.job.process.output = this.asHtml(this.job.process.output);
+                    this.job.process.output = this.asHtml(this.job.process.output);
+                }
             },
 
             asHtml(string) {

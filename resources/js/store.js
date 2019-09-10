@@ -129,8 +129,14 @@ const getters = {
         return state.jobs;
     },
 
-    getJob: (state, getters) => (jobId) => {
-        return Axios.get(getters.getUrl(`/api/jobs/${jobId}`));
+    getJob: (state, getters) => async (jobId) => {
+        const url = getters.getUrl(`/api/jobs/${jobId}`);
+
+        try {
+            return await Axios.get(url);
+        } catch (exception) {
+            console.warn(`Cannot fetch ${url}`);
+        }
     },
 
     getRequirementJobs: (state, getters) => (requirement) => {
