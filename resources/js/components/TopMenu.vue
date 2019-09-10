@@ -32,8 +32,12 @@
                         <span :class="getJobsBadgeClass()"></span>
                     </router-link>
                 </div>
-                <div class="hidden">
-                    <a href="#console" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-900 hover:bg-white mt-4 lg:mt-0">Console</a>
+                <div>
+                    <button class="p-2 rounded bg-indigo-500 text-indigo-100 hover:bg-indigo-700 hover:text-white" v-on:click="refetchData()" title="Refetch data">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-4 h-4">
+                            <path d="M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </nav>
@@ -43,6 +47,12 @@
 <script>
     export default {
         methods: {
+            async refetchData() {
+                await this.$store.dispatch('collectRequirements');
+                await this.$store.dispatch('collectRepositories');
+                await this.$store.dispatch('collectJobs');
+            },
+
             getJobsBadgeClass() {
                 const activeJobs = this.$store.getters.getActiveJobs();
 

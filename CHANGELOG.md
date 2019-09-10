@@ -7,6 +7,7 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 ### Added
 
 - ([#48]) Added repositories tab
+- ([#51]) Added refetch data button in top menu
 
 ## [1.4.0]
 
@@ -57,6 +58,7 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 [1.2.0]: https://github.com/cybercog/laravel-paket/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/cybercog/laravel-paket/compare/1.0.0...1.1.0
 
+[#51]: https://github.com/cybercog/laravel-paket/pull/51
 [#48]: https://github.com/cybercog/laravel-paket/pull/48
 [#47]: https://github.com/cybercog/laravel-paket/pull/47
 [#42]: https://github.com/cybercog/laravel-paket/pull/42
