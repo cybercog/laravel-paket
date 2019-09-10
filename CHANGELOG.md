@@ -8,6 +8,7 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 - ([#48]) Added repositories tab
 - ([#51]) Added refetch data button in top menu
+- ([#52]) Added polling to get realtime job output
 
 ## [1.4.0]
 
@@ -58,6 +59,7 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 [1.2.0]: https://github.com/cybercog/laravel-paket/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/cybercog/laravel-paket/compare/1.0.0...1.1.0
 
+[#52]: https://github.com/cybercog/laravel-paket/pull/52
 [#51]: https://github.com/cybercog/laravel-paket/pull/51
 [#48]: https://github.com/cybercog/laravel-paket/pull/48
 [#47]: https://github.com/cybercog/laravel-paket/pull/47

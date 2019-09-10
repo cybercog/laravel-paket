@@ -63,7 +63,7 @@
                 setTimeout(async () => {
                     await this.fetchData();
 
-                    if (this.job.status === 'Running' || this.job.status === 'Pending') {
+                    if (this.job.status === 'Pending' || this.job.status === 'Running') {
                         this.autoRefreshData();
                     }
                 }, 1000);
