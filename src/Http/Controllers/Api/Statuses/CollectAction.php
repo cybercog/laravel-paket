@@ -31,11 +31,22 @@ final class CollectAction
 
     private function resolveQueueStatus(): array
     {
+        $queueConnection = config('queue.default');
+
+        if ($queueConnection === 'sync') {
+            return [
+                'handler' => 'Illuminate',
+                'connection' => $queueConnection,
+                'status' => 'inactive',
+            ];
+        }
+
         if (interface_exists(MasterSupervisorRepository::class)) {
             $horizonQueueStatus = $this->resolveHorizonQueueStatus();
             if ($horizonQueueStatus !== 'inactive') {
                 return [
                     'handler' => 'Horizon',
+                    'connection' => $queueConnection,
                     'status' => $horizonQueueStatus,
                 ];
             }
@@ -43,6 +54,7 @@ final class CollectAction
 
         return [
             'handler' => 'Illuminate',
+            'connection' => $queueConnection,
             'status' => $this->resolveIlluminateQueueStatus(),
         ];
     }
