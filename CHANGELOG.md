@@ -10,6 +10,7 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 - ([#51]) Added refetch data button in top menu
 - ([#52]) Added polling to get realtime job output
 - ([#53]) Added requirement suggestions from Packagist.org
+- ([#55]) Trim first slash in .env PAKET_BASE_URI
 
 ## [1.4.0]
 
