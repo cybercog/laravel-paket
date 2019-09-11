@@ -41,12 +41,17 @@
         data() {
             return {
                 job: {},
+                isMounted: true,
             };
         },
 
         mounted() {
             this.fetchData();
             this.autoRefreshData();
+        },
+
+        beforeDestroy() {
+            this.isMounted = false;
         },
 
         computed: {
@@ -62,6 +67,10 @@
         methods: {
             async autoRefreshData() {
                 setTimeout(async () => {
+                    if (this.isMounted === false) {
+                        return;
+                    }
+
                     if (this.job.status === 'Pending' || this.job.status === 'Running') {
                         await this.fetchData();
                         await this.autoRefreshData();
