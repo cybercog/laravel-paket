@@ -1,10 +1,12 @@
 <template>
     <div>
-        <span
-            class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-2"
-            v-text="type"
-        ></span>
-        <span v-text="getTitle()"></span>
+        <div>
+            <span
+                class="bg-gray-200 border-b-2 border-gray-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-gray-700 mr-2"
+                v-text="type"
+            ></span>
+            <span v-text="getTitle()"></span>
+        </div>
         <div>
             <div v-for="(option, optionName) in options">
                 <div v-if="typeof option === 'object'" v-for="(optionValue, optionKey) in option" class="text-sm mt-4">
