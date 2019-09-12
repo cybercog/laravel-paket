@@ -6,9 +6,6 @@
                 v-text="type"
             ></span>
             <span v-text="getTitle()"></span>
-            <span v-if="isSslDowngradeAllowed" class="bg-yellow-200 border-b-2 border-yellow-400 px-2 py-1 text-sm font-semibold font-mono tracking-wide text-yellow-700 mr-2">
-                SSL Downgrade Allowed
-            </span>
         </div>
         <div>
             <div v-for="(option, optionName) in options">
@@ -45,7 +42,6 @@
             this.url = this.repository.url || null;
             this.options = this.repository.options || [];
             this.package = this.repository.package || null;
-            this.isSslDowngradeAllowed = this.repository.isSslDowngradeAllowed || false;
         },
 
         data() {
@@ -54,7 +50,6 @@
                 url: null,
                 options: [],
                 package: null,
-                isSslDowngradeAllowed: false,
             }
         },
 
