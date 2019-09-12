@@ -40,7 +40,6 @@ final class CollectAction
                 'url' => $repository->getUrl(),
                 'options' => $repository->getOptions(),
                 'package' => is_null($package) ? null : $package->toArray(),
-                'isSslDowngradeAllowed' => $repository->isSslDowngradeAllowed(),
             ];
         }
 
