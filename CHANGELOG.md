@@ -6,7 +6,7 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 ### Fixed
 
-- ([#57]) Fix fallback Base URI value
+- ([#58]) Fix fallback Base URI value
 
 ## [1.5.0]
 
@@ -68,7 +68,7 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 [1.2.0]: https://github.com/cybercog/laravel-paket/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/cybercog/laravel-paket/compare/1.0.0...1.1.0
 
-[#57]: https://github.com/cybercog/laravel-paket/pull/57
+[#58]: https://github.com/cybercog/laravel-paket/pull/58
 [#55]: https://github.com/cybercog/laravel-paket/pull/55
 [#53]: https://github.com/cybercog/laravel-paket/pull/53
 [#52]: https://github.com/cybercog/laravel-paket/pull/52

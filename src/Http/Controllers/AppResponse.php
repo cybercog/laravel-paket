@@ -35,7 +35,7 @@ final class AppResponse implements ResponsableContract
         return response()->view('paket::app', [
             'cssFile' => 'app.css',
             'paketScriptVariables' => [
-                'baseUri' => ltrim(Config::get('paket.base_uri'), 'paket'),
+                'baseUri' => ltrim(Config::get('paket.base_uri', 'paket'), '/'),
             ],
         ]);
     }
