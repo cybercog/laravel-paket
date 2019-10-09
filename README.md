@@ -1,3 +1,7 @@
+<p align="center">
+<img width="400" height="130" src="https://raw.githubusercontent.com/cybercog/laravel-paket/master/art/logo.png" alt="Laravel Paket logo" />
+</p>
+
 # Laravel Paket
 
 ![cog-laravel-paket](https://user-images.githubusercontent.com/1849174/55282087-15cfb880-534e-11e9-9187-a99215bd8c4d.png)
@@ -43,9 +47,9 @@ $ php artisan paket:setup --force
 ## Quick Start
 
 Run local development server.
-    
+
 ```sh
-$ php artisan serve 
+$ php artisan serve
 ```
 
 Go to URL [http://localhost:8000/paket](http://localhost:8000/paket) in your browser.
@@ -75,7 +79,8 @@ You will only be able to access this dashboard when `APP_ENV=local` is set in `.
 ## License
 
 - `Laravel Paket` package is open-sourced software licensed under the [MIT License](LICENSE) by [Anton Komarev].
-- `Shipping` logo image licensed under [Creative Commons 3.0](https://creativecommons.org/licenses/by/3.0/us/) by Gan Khoon Lay.
+- `Laravel Paket` logo by [Caneco](http://twitter.com/caneco).
+- Old `Shipping` logo image licensed under [Creative Commons 3.0](https://creativecommons.org/licenses/by/3.0/us/) by Gan Khoon Lay.
 
 ## About CyberCog
 
