@@ -1,6 +1,6 @@
-<p align="center">
-    <img width="400" height="143" src="art/logo.png?v2" alt="Laravel Paket logo" />
-</p>
+# Laravel Paket
+
+![cog-laravel-paket](https://user-images.githubusercontent.com/1849174/67785136-d7ce7a80-fa7d-11e9-8217-eb1c8e0d4d7f.png)
 
 <p align="center">
     <a href="https://github.com/cybercog/laravel-paket/releases"><img src="https://img.shields.io/github/release/cybercog/laravel-paket.svg?style=flat-square" alt="Releases"></a>
@@ -16,7 +16,7 @@ Laravel Paket satisfies application requirements. Manage Laravel dependencies wi
 
 ## Official Documentation
 
-Documentation can be found in [Laravel Paket Guide](https://laravel-paket.readme.io/docs).
+Documentation can be found in [Laravel Paket Guide].
 
 ## Installation
 
@@ -75,15 +75,17 @@ You will only be able to access this dashboard when `APP_ENV=local` is set in `.
 ## License
 
 - `Laravel Paket` package is open-sourced software licensed under the [MIT License](LICENSE) by [Anton Komarev].
-- `Laravel Paket` logo by [Caneco](http://twitter.com/caneco).
-- Old `Shipping` logo image licensed under [Creative Commons 3.0](https://creativecommons.org/licenses/by/3.0/us/) by Gan Khoon Lay.
+- `Laravel Paket` logo by [Caneco].
 
 ## About CyberCog
 
-[CyberCog](https://cybercog.su) is a Social Unity of enthusiasts. Research best solutions in product & software development is our passion.
+[CyberCog] is a Social Unity of enthusiasts. Research best solutions in product & software development is our passion.
 
 - [Follow us on Twitter](https://twitter.com/cybercog)
 
 <a href="https://cybercog.su"><img src="https://cloud.githubusercontent.com/assets/1849174/18418932/e9edb390-7860-11e6-8a43-aa3fad524664.png" alt="CyberCog"></a>
 
 [Anton Komarev]: https://komarev.com
+[Caneco]: http://twitter.com/caneco
+[CyberCog]: https://cybercog.su
+[Laravel Paket Guide]: https://laravel-paket.readme.io/docs
