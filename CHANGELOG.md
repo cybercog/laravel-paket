@@ -4,9 +4,12 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 ## [Unreleased]
 
+## [1.5.1]
+
 ### Fixed
 
 - ([#58]) Fix fallback Base URI value
+- ([#61]) Fixed [GHSA-h9rv-jmmf-4pgx](https://github.com/advisories/GHSA-h9rv-jmmf-4pgx)
 
 ## [1.5.0]
 
@@ -61,13 +64,15 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 - Initial release
 
-[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.5.0...master
+[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.5.1...master
+[1.5.1]: https://github.com/cybercog/laravel-paket/compare/1.5.0...1.5.1
 [1.5.0]: https://github.com/cybercog/laravel-paket/compare/1.4.0...1.5.0
 [1.4.0]: https://github.com/cybercog/laravel-paket/compare/1.3.0...1.4.0
 [1.3.0]: https://github.com/cybercog/laravel-paket/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/cybercog/laravel-paket/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/cybercog/laravel-paket/compare/1.0.0...1.1.0
 
+[#61]: https://github.com/cybercog/laravel-paket/pull/61
 [#58]: https://github.com/cybercog/laravel-paket/pull/58
 [#55]: https://github.com/cybercog/laravel-paket/pull/55
 [#53]: https://github.com/cybercog/laravel-paket/pull/53
