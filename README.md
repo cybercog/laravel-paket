@@ -14,6 +14,8 @@
 
 Laravel Paket satisfies application requirements. Manage Laravel dependencies without switching to command line!
 
+Graphical User Interface made with [Tailwind CSS].
+
 ## Official Documentation
 
 Documentation can be found in [Laravel Paket Guide].
@@ -81,11 +83,13 @@ You will only be able to access this dashboard when `APP_ENV=local` is set in `.
 
 [CyberCog] is a Social Unity of enthusiasts. Research best solutions in product & software development is our passion.
 
-- [Follow us on Twitter](https://twitter.com/cybercog)
+- [Follow us on Twitter]
 
 <a href="https://cybercog.su"><img src="https://cloud.githubusercontent.com/assets/1849174/18418932/e9edb390-7860-11e6-8a43-aa3fad524664.png" alt="CyberCog"></a>
 
 [Anton Komarev]: https://komarev.com
 [Caneco]: http://twitter.com/caneco
 [CyberCog]: https://cybercog.su
+[Follow us on Twitter]: https://twitter.com/cybercog
 [Laravel Paket Guide]: https://laravel-paket.readme.io/docs
+[Tailwind CSS]: https://github.com/tailwindcss/tailwindcss
