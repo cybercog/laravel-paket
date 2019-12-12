@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace Cog\Laravel\Paket\Support;
 
-use Cog\Contracts\Paket\Job\Exceptions\JobFailed;
 use Cog\Contracts\Paket\Job\Entities\Job as JobContract;
+use Cog\Contracts\Paket\Job\Exceptions\JobFailed;
 use Cog\Contracts\Paket\Requirement\Entities\Requirement as RequirementContract;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ProcessUtils;
-use Symfony\Component\Process\Process;
 use Symfony\Component\Process\PhpExecutableFinder;
+use Symfony\Component\Process\Process;
 
 final class Composer
 {

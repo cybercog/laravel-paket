@@ -19,9 +19,9 @@ use Cog\Contracts\Paket\Job\Repositories\Job as JobRepositoryContract;
 use Cog\Laravel\Paket\Job\Events\JobHasBeenTerminated;
 use Cog\Laravel\Paket\Support\Composer;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
 use RuntimeException;
 
 final class RunJob implements ShouldQueue
