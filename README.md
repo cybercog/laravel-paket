@@ -24,13 +24,13 @@ Documentation can be found in [Laravel Paket Guide].
 
 Pull in the package through Composer.
 
-```sh
+```shell script
 $ composer require cybercog/laravel-paket --dev
 ```
 
 Run Artisan `paket:setup` command to publish Paket assets to `public/vendor/paket` directory & create `storage/paket` directory for terminal job logs.
 
-```sh
+```shell script
 $ php artisan paket:setup
 ```
 
@@ -38,7 +38,7 @@ $ php artisan paket:setup
 
 When upgrading Paket, you should re-publish assets to `public/vendor/paket` directory with force setup command.
 
-```sh
+```shell script
 $ php artisan paket:setup --force
 ```
 
@@ -46,7 +46,7 @@ $ php artisan paket:setup --force
 
 Run local development server.
 
-```sh
+```shell script
 $ php artisan serve
 ```
 
