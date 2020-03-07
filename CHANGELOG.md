@@ -4,6 +4,12 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 ## [Unreleased]
 
+## [1.5.2]
+
+### Added
+
+- ([#58]) Add Laravel 7.x support
+
 ## [1.5.1]
 
 ### Fixed
@@ -64,7 +70,8 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 - Initial release
 
-[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.5.1...master
+[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.5.2...master
+[1.5.2]: https://github.com/cybercog/laravel-paket/compare/1.5.1...1.5.2
 [1.5.1]: https://github.com/cybercog/laravel-paket/compare/1.5.0...1.5.1
 [1.5.0]: https://github.com/cybercog/laravel-paket/compare/1.4.0...1.5.0
 [1.4.0]: https://github.com/cybercog/laravel-paket/compare/1.3.0...1.4.0
