@@ -14,14 +14,11 @@ declare(strict_types=1);
 namespace Cog\Laravel\Paket\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Console\DetectsApplicationNamespace;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Console\Input\InputOption;
 
 final class Setup extends Command
 {
-    use DetectsApplicationNamespace;
-
     protected $name = 'paket:setup';
 
     protected $description = 'Set up all of the Paket resources';
