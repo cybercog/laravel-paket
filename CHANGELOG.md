@@ -4,6 +4,13 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 ## [Unreleased]
 
+## [1.6.0]
+
+### Added
+
+- ([#68]) Add Laravel Sanctum to Laravel Ecosystem tab
+- ([#68]) Add PurgeCSS
+
 ## [1.5.2]
 
 ### Added
@@ -70,7 +77,8 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 - Initial release
 
-[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.5.2...master
+[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.6.0...master
+[1.6.0]: https://github.com/cybercog/laravel-paket/compare/1.5.2...1.6.0
 [1.5.2]: https://github.com/cybercog/laravel-paket/compare/1.5.1...1.5.2
 [1.5.1]: https://github.com/cybercog/laravel-paket/compare/1.5.0...1.5.1
 [1.5.0]: https://github.com/cybercog/laravel-paket/compare/1.4.0...1.5.0
@@ -79,6 +87,7 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 [1.2.0]: https://github.com/cybercog/laravel-paket/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/cybercog/laravel-paket/compare/1.0.0...1.1.0
 
+[#68]: https://github.com/cybercog/laravel-paket/pull/68
 [#64]: https://github.com/cybercog/laravel-paket/pull/64
 [#61]: https://github.com/cybercog/laravel-paket/pull/61
 [#58]: https://github.com/cybercog/laravel-paket/pull/58

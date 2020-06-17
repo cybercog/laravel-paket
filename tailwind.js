@@ -4,4 +4,8 @@ module.exports = {
     },
     variants: {},
     plugins: [],
+    purge: [
+        './resources/js/**/*.vue',
+        './resources/js/**/**/*.vue',
+    ],
 };
