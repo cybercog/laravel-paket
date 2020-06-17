@@ -58,6 +58,14 @@
                         isDevelopment: false,
                     },
                     {
+                        name: 'laravel/sanctum',
+                        title: 'Sanctum',
+                        description: 'Authentication for SPAs',
+                        iconBg: '#28cef0',
+                        icon: 'https://laravel.com/img/ecosystem/passport.min.svg',
+                        isDevelopment: false,
+                    },
+                    {
                         name: 'laravel/socialite',
                         title: 'Socialite',
                         description: 'OAuth Authentication',

@@ -4,6 +4,11 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Add Laravel Sanctum to Laravel Ecosystem tab
+- Add PurgeCSS
+
 ## [1.5.2]
 
 ### Added
