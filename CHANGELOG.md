@@ -8,7 +8,7 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 ### Added
 
-- ([#64]) Add Laravel 8 support
+- ([#71]) Add Laravel 8 support
 
 ## [1.6.0]
 
@@ -94,6 +94,7 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 [1.2.0]: https://github.com/cybercog/laravel-paket/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/cybercog/laravel-paket/compare/1.0.0...1.1.0
 
+[#71]: https://github.com/cybercog/laravel-paket/pull/71
 [#68]: https://github.com/cybercog/laravel-paket/pull/68
 [#64]: https://github.com/cybercog/laravel-paket/pull/64
 [#61]: https://github.com/cybercog/laravel-paket/pull/61
