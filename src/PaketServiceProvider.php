@@ -107,7 +107,8 @@ final class PaketServiceProvider extends ServiceProvider
             return new Composer(
                 $this->app->make(Filesystem::class),
                 base_path(),
-                storage_path('paket/jobs')
+                storage_path('paket/jobs'),
+                Config::get('paket.composer_path', '/usr/bin/composer')
             );
         });
 

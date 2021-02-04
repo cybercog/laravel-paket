@@ -45,17 +45,26 @@ final class Composer
     private $loggingPath;
 
     /**
+     * The composer location  path.
+     *
+     * @var string
+     */
+    private $composerPath;
+
+    /**
      * Create a new Composer manager instance.
      *
      * @param \Illuminate\Filesystem\Filesystem $files
      * @param string $workingPath
      * @param string $loggingPath
+     * @param string $composerPath
      */
-    public function __construct(Filesystem $files, string $workingPath, string $loggingPath)
+    public function __construct(Filesystem $files, string $workingPath, string $loggingPath, string $composerPath)
     {
         $this->files = $files;
         $this->workingPath = $workingPath;
         $this->loggingPath = $loggingPath;
+        $this->composerPath = $composerPath;
     }
 
     /**
@@ -102,7 +111,7 @@ final class Composer
 
         $command = sprintf(
             '%s require %s %s',
-            '/usr/bin/composer',
+            $this->composerPath,
             $requirement,
             implode(' ', $flags)
         );
@@ -131,7 +140,7 @@ final class Composer
 
         $command = sprintf(
             '%s remove %s %s',
-            '/usr/bin/composer',
+            $this->composerPath,
             $requirement->getName(),
             implode(' ', $flags)
         );
