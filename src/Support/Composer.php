@@ -59,7 +59,7 @@ final class Composer
      * @param string $loggingPath
      * @param string $composerPath
      */
-    public function __construct(Filesystem $files, string $workingPath, string $loggingPath,string $composerPath='/usr/bin/composer')
+    public function __construct(Filesystem $files, string $workingPath, string $loggingPath, string $composerPath = '/usr/bin/composer')
     {
         $this->files = $files;
         $this->workingPath = $workingPath;
