@@ -4,6 +4,12 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 ## [Unreleased]
 
+## [1.8.0]
+
+### Added
+
+- ([#75]) Add configurable Composer path
+
 ## [1.7.0]
 
 ### Added
@@ -83,8 +89,9 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 
 - Initial release
 
-[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.7.0...master
-[1.7.0]: https://github.com/cybercog/laravel-paket/compare/1.7.0...1.7.0
+[Unreleased]: https://github.com/cybercog/laravel-paket/compare/1.8.0...master
+[1.8.0]: https://github.com/cybercog/laravel-paket/compare/1.7.0...1.8.0
+[1.7.0]: https://github.com/cybercog/laravel-paket/compare/1.6.0...1.7.0
 [1.6.0]: https://github.com/cybercog/laravel-paket/compare/1.5.2...1.6.0
 [1.5.2]: https://github.com/cybercog/laravel-paket/compare/1.5.1...1.5.2
 [1.5.1]: https://github.com/cybercog/laravel-paket/compare/1.5.0...1.5.1
@@ -94,6 +101,7 @@ All notable changes to `cybercog/laravel-paket` will be documented in this file.
 [1.2.0]: https://github.com/cybercog/laravel-paket/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/cybercog/laravel-paket/compare/1.0.0...1.1.0
 
+[#75]: https://github.com/cybercog/laravel-paket/pull/75
 [#71]: https://github.com/cybercog/laravel-paket/pull/71
 [#68]: https://github.com/cybercog/laravel-paket/pull/68
 [#64]: https://github.com/cybercog/laravel-paket/pull/64
