@@ -45,7 +45,7 @@ final class Composer
     private $loggingPath;
 
     /**
-     * The composer location  path.
+     * The Composer executable file path.
      *
      * @var string
      */

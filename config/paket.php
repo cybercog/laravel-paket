@@ -32,7 +32,7 @@ return [
     | Composer PATH
     |--------------------------------------------------------------------------
     |
-    | to change this path to anything your composer location.
+    | Composer executable file location.
     |
     */
 
