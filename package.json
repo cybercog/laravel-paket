@@ -12,7 +12,7 @@
     "devDependencies": {
         "@ibm/plex": "^2.0.0",
         "ansi-to-html": "^0.6.10",
-        "axios": "^0.18",
+        "axios": "^0.21",
         "cross-env": "^5.1",
         "laravel-mix": "^4.0.7",
         "moment": "^2.10.6",
